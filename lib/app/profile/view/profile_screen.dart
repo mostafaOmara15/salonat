@@ -7,14 +7,15 @@ import 'package:salonat/utils/extensions/theme/colors/color_manager.dart';
 import 'package:salonat/utils/spaces.dart';
 
 class ProfileScreen extends StatelessWidget {
-  ProfileScreen({super.key});
+  const ProfileScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: ColorManager.primaryColor,
-        title: const Text("Profile", style: TextStyle(fontSize: 36, color: Colors.white)),
+        title: const Text("Profile",
+            style: TextStyle(fontSize: 36, color: Colors.white)),
         centerTitle: true,
       ),
       body: Padding(
@@ -24,12 +25,23 @@ class ProfileScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               ImagesSlider(),
-              Text("NIRVANA", style: TextStyle(color: ColorManager.darkBrown, fontSize: 22, fontWeight: FontWeight.w700)),
+              Text("NIRVANA",
+                  style: TextStyle(
+                      color: ColorManager.darkBrown,
+                      fontSize: 22,
+                      fontWeight: FontWeight.w700)),
               Row(
                 children: [
-                  Image.asset("assets/images/5_stars.png", width: context.width * 0.15,),
+                  Image.asset(
+                    "assets/images/5_stars.png",
+                    width: context.width * 0.15,
+                  ),
                   widthSpace(context.width * 0.04),
-                  Text("5.0", style: TextStyle(color: ColorManager.darkBrown, fontSize: 22, fontWeight: FontWeight.w700)),
+                  Text("5.0",
+                      style: TextStyle(
+                          color: ColorManager.darkBrown,
+                          fontSize: 22,
+                          fontWeight: FontWeight.w700)),
                 ],
               ),
               heightSpace(context.height * 0.015),
@@ -38,17 +50,23 @@ class ProfileScreen extends StatelessWidget {
                   CircleAvatar(
                     backgroundColor: ColorManager.primaryColor,
                     radius: context.width * 0.03,
-                    child: Icon(Icons.remove_red_eye_outlined, color: ColorManager.darkBrown, size: context.width * 0.04),
+                    child: Icon(Icons.remove_red_eye_outlined,
+                        color: ColorManager.darkBrown,
+                        size: context.width * 0.04),
                   ),
                   widthSpace(context.width * 0.02),
-                  Text("98 viewed your profile", style: TextStyle(color: ColorManager.subText, fontSize: 16,)),
+                  Text("98 viewed your profile",
+                      style: TextStyle(
+                        color: ColorManager.subText,
+                        fontSize: 16,
+                      )),
                 ],
               ),
               heightSpace(context.height * 0.015),
               Row(
-                 crossAxisAlignment: CrossAxisAlignment.baseline,
-                 textBaseline: TextBaseline.alphabetic,
-                 children: [
+                crossAxisAlignment: CrossAxisAlignment.baseline,
+                textBaseline: TextBaseline.alphabetic,
+                children: [
                   const Text("About  ", style: TextStyle(fontSize: 19)),
                   SizedBox(
                     height: context.height * 0.04,
@@ -59,12 +77,17 @@ class ProfileScreen extends StatelessWidget {
                       width: 15,
                     ),
                   ),
-
                   TextButton(
-                    child: const Text("Reviews", style: TextStyle(decoration: TextDecoration.underline, fontSize: 19, color: Colors.grey)),
-                    onPressed: () {}
-                  ),
-                  const Text("(57 comment)", style: TextStyle(color: Colors.grey, fontSize: 14),)
+                      child: const Text("Reviews",
+                          style: TextStyle(
+                              decoration: TextDecoration.underline,
+                              fontSize: 19,
+                              color: Colors.grey)),
+                      onPressed: () {}),
+                  const Text(
+                    "(57 comment)",
+                    style: TextStyle(color: Colors.grey, fontSize: 14),
+                  )
                 ],
               ),
               Container(
@@ -76,21 +99,37 @@ class ProfileScreen extends StatelessWidget {
                   trimMode: TrimMode.Line,
                   trimCollapsedText: ' Read more',
                   trimExpandedText: ' Read less',
-                  lessStyle: TextStyle(fontSize: 15, color: Colors.blue, decoration: TextDecoration.underline, decorationColor: Colors.blue),
-                  moreStyle: TextStyle(fontSize: 15, color: Colors.blue, decoration: TextDecoration.underline, decorationColor: Colors.blue,),
+                  lessStyle: TextStyle(
+                      fontSize: 15,
+                      color: Colors.blue,
+                      decoration: TextDecoration.underline,
+                      decorationColor: Colors.blue),
+                  moreStyle: TextStyle(
+                    fontSize: 15,
+                    color: Colors.blue,
+                    decoration: TextDecoration.underline,
+                    decorationColor: Colors.blue,
+                  ),
                   style: TextStyle(fontSize: 15, color: Colors.black54),
                 ),
               ),
               heightSpace(context.height * 0.01),
               Row(
                 children: [
-                  Icon(Icons.location_on_outlined, color: ColorManager.primaryColor,),
+                  Icon(
+                    Icons.location_on_outlined,
+                    color: ColorManager.primaryColor,
+                  ),
                   widthSpace(context.width * 0.01),
-                  const Text("at Grand Hyatt al khobar hotel and residences", style: TextStyle(fontSize: 18),),
+                  const Text(
+                    "at Grand Hyatt al khobar hotel and residences",
+                    style: TextStyle(fontSize: 18),
+                  ),
                 ],
               ),
               heightSpace(context.height * 0.01),
-              ProfileTile(title: "Open from  09:00am - 10:00pm ", withButton: true),
+              ProfileTile(
+                  title: "Open from  09:00am - 10:00pm ", withButton: true),
               Divider(color: Colors.grey.shade300),
               ProfileTile(title: "Services", withButton: false),
               Divider(color: Colors.grey.shade300),

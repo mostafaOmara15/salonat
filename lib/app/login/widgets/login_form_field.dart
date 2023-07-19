@@ -14,7 +14,7 @@ class LoginFormField extends StatelessWidget {
       style: TextStyle(color: ColorManager.darkBrown, fontSize: 19),
       cursorColor: ColorManager.darkBrown,
       decoration: InputDecoration(
-        contentPadding: EdgeInsets.symmetric(vertical:10, horizontal: 10),
+        contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
         fillColor: Colors.white,
         filled: true,
         hintText: hintText,

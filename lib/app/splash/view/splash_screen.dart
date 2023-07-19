@@ -15,11 +15,11 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-
   @override
   void initState() {
     super.initState();
-    Timer(const Duration(seconds:3), () => context.pushReplacement(const LoginScreen()));
+    Timer(const Duration(seconds: 3),
+        () => context.pushReplacement(const LoginScreen()));
   }
 
   @override
@@ -28,15 +28,28 @@ class _SplashScreenState extends State<SplashScreen> {
       backgroundColor: ColorManager.primaryColor,
       body: Column(
         children: [
-          heightSpace(context.height * 0.1,),
+          heightSpace(
+            context.height * 0.1,
+          ),
           Center(child: LogoVictor(size: 0.42)),
-          heightSpace(context.height * 0.03,),
-          const Text("For our partners", style: TextStyle(fontSize: 18, color: Colors.white, fontWeight: FontWeight.w700),),
-          heightSpace(context.height * 0.1,),
-          const Text("ONE STEP TO BEAUTY", style: TextStyle(fontSize: 18, color: Colors.white, fontWeight: FontWeight.w700),),
+          heightSpace(
+            context.height * 0.03,
+          ),
+          const Text(
+            "For our partners",
+            style: TextStyle(
+                fontSize: 18, color: Colors.white, fontWeight: FontWeight.w700),
+          ),
+          heightSpace(
+            context.height * 0.1,
+          ),
+          const Text(
+            "ONE STEP TO BEAUTY",
+            style: TextStyle(
+                fontSize: 18, color: Colors.white, fontWeight: FontWeight.w700),
+          ),
         ],
       ),
-
     );
   }
 }

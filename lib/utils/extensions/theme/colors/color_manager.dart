@@ -7,3 +7,4 @@ class ColorManager{
   static Color activeColor = const Color(0xff7C7978);
   static Color subText = const Color(0xff6B6B6B);
 }
+

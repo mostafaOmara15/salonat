@@ -14,7 +14,6 @@ class ImagesSlider extends StatefulWidget {
 }
 
 class _ImagesSliderState extends State<ImagesSlider> {
-
   List<String> imagesUrl = [
     "https://www.rd.com/wp-content/uploads/2020/06/GettyImages-1139132195.jpg?resize=2048,1367",
     "https://cdn.concreteplayground.com/content/uploads/2022/04/Telleish-Pic-1.jpg-Salon-1920x1080.jpeg",
@@ -28,82 +27,77 @@ class _ImagesSliderState extends State<ImagesSlider> {
     return SizedBox(
       width: context.width,
       height: context.height * 0.25,
-      child: Stack(
-          children: [
-            SizedBox(
-              width: context.width,
-              height: context.height * 0.235,
-              child: CarouselSlider(
-                carouselController: controller,
-                items: imagesUrl.map((e) {
-                  return Image.network(e, fit: BoxFit.fitWidth);
-                }).toList(),
-                options: CarouselOptions(
-                  initialPage: 0,
-                  viewportFraction: 1,
-                  onPageChanged: (val, _) {
-                    setState(() {
-                      print("index $val");
-                      if (indicatorController.hasClients){
-                        indicatorController.jumpToPage(val);
-                      }
-                    });
-                  }
-                ),
-              ),
-            ),
-
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: SmoothPageIndicator(
-                  controller: indicatorController,
-                  count: imagesUrl.length,
-                  onDotClicked: (index) {
-                    setState(() {
-                      controller.jumpToPage(index);
-                    });
-                    if (indicatorController.hasClients){
-                      setState(() {
-                        indicatorController.jumpToPage(index);
-                        print(index);
-                      });
+      child: Stack(children: [
+        SizedBox(
+          width: context.width,
+          height: context.height * 0.235,
+          child: CarouselSlider(
+            carouselController: controller,
+            items: imagesUrl.map((e) {
+              return Image.network(e, fit: BoxFit.fitWidth);
+            }).toList(),
+            options: CarouselOptions(
+                initialPage: 0,
+                viewportFraction: 1,
+                onPageChanged: (val, _) {
+                  setState(() {
+                    print("index $val");
+                    if (indicatorController.hasClients) {
+                      indicatorController.jumpToPage(val);
                     }
-                  },
-                  effect: SlideEffect(
-                      spacing: 5,
-                      radius: 5,
-                      dotWidth: 24.0,
-                      dotHeight:3,
-                      paintStyle: PaintingStyle.stroke,
-                      strokeWidth: 1,
-                      dotColor: Colors.grey,
-                      activeDotColor: ColorManager.primaryColor
-                  ),
+                  });
+                }),
+          ),
+        ),
+        Align(
+          alignment: Alignment.bottomCenter,
+          child: SmoothPageIndicator(
+            controller: indicatorController,
+            count: imagesUrl.length,
+            onDotClicked: (index) {
+              setState(() {
+                controller.jumpToPage(index);
+              });
+              if (indicatorController.hasClients) {
+                setState(() {
+                  indicatorController.jumpToPage(index);
+                  print(index);
+                });
+              }
+            },
+            effect: SlideEffect(
+                spacing: 5,
+                radius: 5,
+                dotWidth: 24.0,
+                dotHeight: 3,
+                paintStyle: PaintingStyle.stroke,
+                strokeWidth: 1,
+                dotColor: Colors.grey,
+                activeDotColor: ColorManager.primaryColor),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10),
+          child: Align(
+            alignment: Alignment.centerRight,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                CircleAvatar(
+                    backgroundColor: Colors.grey.shade300,
+                    radius: context.height * 0.015,
+                    child: Icon(Icons.close, size: context.height * 0.02)
+                        .onTap(() {})),
+                CircleAvatar(
+                  backgroundColor: ColorManager.primaryColor,
+                  radius: context.height * 0.022,
+                  child: const Icon(Icons.add).onTap(() {}),
                 ),
+              ],
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: Align(
-                alignment: Alignment.centerRight,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    CircleAvatar(
-                        backgroundColor: Colors.grey.shade300,
-                        radius: context.height * 0.015,
-                        child: Icon(Icons.close,size: context.height * 0.02).onTap((){})
-                    ),
-                    CircleAvatar(
-                      backgroundColor: ColorManager.primaryColor,
-                      radius: context.height * 0.022,
-                      child: const Icon(Icons.add).onTap((){}),
-                    ),
-                  ],
-                ),
-              ),
-            )
-          ]
-      ),
+          ),
+        )
+      ]),
     );
   }
 }

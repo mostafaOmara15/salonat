@@ -13,7 +13,6 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     TextEditingController userNameCtrl = TextEditingController();
     TextEditingController passwordCtrl = TextEditingController();
 
@@ -26,16 +25,30 @@ class LoginScreen extends StatelessWidget {
             children: [
               heightSpace(context.height * 0.03),
               LogoVictor(size: 0.3),
-              heightSpace(context.height * 0.02,),
-              const Text("For our partners", style: TextStyle(fontSize: 19, color: Colors.white),),
+              heightSpace(
+                context.height * 0.02,
+              ),
+              const Text(
+                "For our partners",
+                style: TextStyle(fontSize: 19, color: Colors.white),
+              ),
               heightSpace(context.width * 0.15),
               LoginFormField(fieldCtrl: userNameCtrl, hintText: ("Username")),
               heightSpace(context.width * 0.05),
               LoginFormField(fieldCtrl: passwordCtrl, hintText: ("Password")),
               heightSpace(context.width * 0.05),
-              LoginButton(function: (){context.pushReplacement(AppLayout());}),
+              LoginButton(function: () {
+                context.pushReplacement(AppLayout());
+              }),
               heightSpace(context.width * 0.1),
-              const Text("ONE STEP TO BEAUTY", style: TextStyle(fontSize: 19, color: Colors.white, fontWeight: FontWeight.w700),),
+              const Text(
+                "ONE STEP TO BEAUTY",
+                style: TextStyle(
+                  fontSize: 19,
+                  color: Colors.white,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
             ],
           ),
         ),
