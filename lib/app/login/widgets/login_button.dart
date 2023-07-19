@@ -1,9 +1,11 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:salonat/utils/common_widgets/texts.dart';
+import 'package:salonat/utils/extensions/media_query/media_query.dart';
 import 'package:salonat/utils/extensions/on_tap/on_tap.dart';
 import '../../../utils/extensions/theme/colors/color_manager.dart';
 
 class LoginButton extends StatelessWidget {
-
   Function? function;
 
   LoginButton({required this.function});
@@ -12,17 +14,14 @@ class LoginButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(10),
-      width: double.infinity,
+      width: context.width * 0.3,
       decoration: BoxDecoration(
         color: Colors.white,
-        border: Border.all(color: ColorManager.lightBrown, width: 1.5),
+        border: Border.all(color: ColorManager.lightBrownColor, width: 1.5),
       ),
-      child: Center(child: Text("Log in", style: TextStyle(
-          color: ColorManager.darkBrown,
-          fontSize: 19,
-          fontWeight: FontWeight.w600))),
-    ).onTap(
-        function
-    );
+      child: Center(
+          child: SubTitle(text: "login".tr(), color: ColorManager.darkBrownColor, isBold: false,)
+      ),
+    ).onTap(function);
   }
 }

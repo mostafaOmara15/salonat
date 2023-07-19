@@ -27,7 +27,7 @@ class ProfileScreen extends StatelessWidget {
               ImagesSlider(),
               Text("NIRVANA",
                   style: TextStyle(
-                      color: ColorManager.darkBrown,
+                      color: ColorManager.darkBrownColor,
                       fontSize: 22,
                       fontWeight: FontWeight.w700)),
               Row(
@@ -39,7 +39,7 @@ class ProfileScreen extends StatelessWidget {
                   widthSpace(context.width * 0.04),
                   Text("5.0",
                       style: TextStyle(
-                          color: ColorManager.darkBrown,
+                          color: ColorManager.darkBrownColor,
                           fontSize: 22,
                           fontWeight: FontWeight.w700)),
                 ],
@@ -51,13 +51,13 @@ class ProfileScreen extends StatelessWidget {
                     backgroundColor: ColorManager.primaryColor,
                     radius: context.width * 0.03,
                     child: Icon(Icons.remove_red_eye_outlined,
-                        color: ColorManager.darkBrown,
+                        color: ColorManager.darkBrownColor,
                         size: context.width * 0.04),
                   ),
                   widthSpace(context.width * 0.02),
                   Text("98 viewed your profile",
                       style: TextStyle(
-                        color: ColorManager.subText,
+                        color: ColorManager.subTextColor,
                         fontSize: 16,
                       )),
                 ],
@@ -128,12 +128,12 @@ class ProfileScreen extends StatelessWidget {
                 ],
               ),
               heightSpace(context.height * 0.01),
-              ProfileTile(
-                  title: "Open from  09:00am - 10:00pm ", withButton: true),
-              Divider(color: Colors.grey.shade300),
-              ProfileTile(title: "Services", withButton: false),
-              Divider(color: Colors.grey.shade300),
-              ProfileTile(title: "Staff", withButton: false),
+              // ProfileTile(
+              //     title: "Open from  09:00am - 10:00pm ", withButton: true),
+              // Divider(color: Colors.grey.shade300),
+              // ProfileTile(title: "Services", withButton: false),
+              // Divider(color: Colors.grey.shade300),
+              // ProfileTile(title: "Staff", withButton: false),
             ],
           ),
         ),
