@@ -28,7 +28,6 @@ class LoginFormField extends StatelessWidget {
     }
   );
 
-
   @override
   Widget build(BuildContext context) {
     return TextFormField(

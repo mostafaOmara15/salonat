@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:salonat/app/login/view_model/cubit/login_cubit.dart';
 import 'package:salonat/app/splash/view/splash_screen.dart';
 import 'package:salonat/utils/extensions/theme/colors/color_manager.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -23,22 +25,28 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      localizationsDelegates:context.localizationDelegates ,
-      supportedLocales: context.supportedLocales,
-      locale: context.locale,
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        appBarTheme: AppBarTheme(
-          color: ColorManager.primaryColor,
-          centerTitle: true,
-          titleTextStyle: const TextStyle(fontSize: 28, color: Colors.white, fontFamily: 'Fraunces'),
-          iconTheme: const IconThemeData(color: Colors.white),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => LoginCubit()),
+      ],
+      child: MaterialApp(
+        localizationsDelegates:context.localizationDelegates ,
+        supportedLocales: context.supportedLocales,
+        locale: context.locale,
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          appBarTheme: AppBarTheme(
+            color: ColorManager.primaryColor,
+            elevation: 0,
+            centerTitle: true,
+            titleTextStyle: const TextStyle(fontSize: 28, color: Colors.white, fontFamily: 'Fraunces'),
+            iconTheme: const IconThemeData(color: Colors.white),
+          ),
+          fontFamily: 'Fraunces',
+          useMaterial3: true,
         ),
-        fontFamily: 'Fraunces',
-        useMaterial3: true,
+        home: const SplashScreen(),
       ),
-      home: const SplashScreen(),
     );
   }
 }

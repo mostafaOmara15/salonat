@@ -32,9 +32,9 @@ class _SplashScreenState extends State<SplashScreen> {
           heightSpace(context.height * 0.1),
           Center(child: LogoVictor(size: 0.42)),
           heightSpace(context.height * 0.03),
-          LargeTitle(text: "tagLine".tr(), color: ColorManager.whiteColor, isBold: true,),
+          largeTitle("tagLine".tr(), ColorManager.whiteColor),
           heightSpace(context.height * 0.07),
-          SubTitle(text: "introSentence".tr(), color: ColorManager.whiteColor, isBold: true,),
+          mediumTitle("introSentence".tr(), ColorManager.whiteColor, true),
         ],
       ),
     );

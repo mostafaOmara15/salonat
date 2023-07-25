@@ -20,7 +20,7 @@ class LoginButton extends StatelessWidget {
         border: Border.all(color: ColorManager.lightBrownColor, width: 1.5),
       ),
       child: Center(
-          child: SubTitle(text: "login".tr(), color: ColorManager.darkBrownColor, isBold: false,)
+          child: mediumTitle("login".tr(), ColorManager.darkBrownColor, false)
       ),
     ).onTap(function);
   }

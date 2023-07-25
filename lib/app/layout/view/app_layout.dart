@@ -10,8 +10,7 @@ import '../../profile/view/profile_screen.dart';
 class AppLayout extends StatelessWidget {
   AppLayout({super.key});
 
-  final PersistentTabController _controller =
-      PersistentTabController(initialIndex: 0);
+  final PersistentTabController _controller = PersistentTabController(initialIndex: 0);
 
   List<Widget> _buildScreens() {
     return [
@@ -52,7 +51,7 @@ class AppLayout extends StatelessWidget {
         PersistentBottomNavBarItem(
           icon: const Icon(Icons.notifications_none),
           title: ("Notifications"),
-          iconSize: context.height * 0.03,
+          iconSize: context.height * 0.035,
           activeColorPrimary: ColorManager.activeColor,
           inactiveColorPrimary: Colors.white,
         ),
@@ -70,7 +69,9 @@ class AppLayout extends StatelessWidget {
       popAllScreensOnTapOfSelectedTab: true,
       popActionScreens: PopActionScreensType.all,
       itemAnimationProperties: const ItemAnimationProperties(
-          duration: Duration(milliseconds: 200), curve: Curves.ease),
+          duration: Duration(milliseconds: 200),
+          curve: Curves.ease
+      ),
       screenTransitionAnimation: const ScreenTransitionAnimation(
         animateTabTransition: true,
         curve: Curves.ease,

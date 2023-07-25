@@ -20,83 +20,110 @@ class _ImagesSliderState extends State<ImagesSlider> {
     "https://res.cloudinary.com/conferences-and-exhibitions-pvt-ltd/image/upload/v1655285681/Salon-Management/2022/June/Men/Lead_e305ap.jpg"
   ];
   final indicatorController = PageController();
-  CarouselController controller = CarouselController();
+  final CarouselController _controller = CarouselController();
+  int _currentIndex = 0;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: context.width,
-      height: context.height * 0.25,
-      child: Stack(children: [
-        SizedBox(
-          width: context.width,
-          height: context.height * 0.235,
-          child: CarouselSlider(
-            carouselController: controller,
-            items: imagesUrl.map((e) {
-              return Image.network(e, fit: BoxFit.fitWidth);
-            }).toList(),
-            options: CarouselOptions(
-                initialPage: 0,
-                viewportFraction: 1,
-                onPageChanged: (val, _) {
-                  setState(() {
-                    print("index $val");
-                    if (indicatorController.hasClients) {
-                      indicatorController.jumpToPage(val);
-                    }
-                  });
-                }),
-          ),
-        ),
-        Align(
-          alignment: Alignment.bottomCenter,
-          child: SmoothPageIndicator(
-            controller: indicatorController,
-            count: imagesUrl.length,
-            onDotClicked: (index) {
-              setState(() {
-                controller.jumpToPage(index);
-              });
-              if (indicatorController.hasClients) {
-                setState(() {
-                  indicatorController.jumpToPage(index);
-                  print(index);
-                });
-              }
-            },
-            effect: SlideEffect(
-                spacing: 5,
-                radius: 5,
-                dotWidth: 24.0,
-                dotHeight: 3,
-                paintStyle: PaintingStyle.stroke,
-                strokeWidth: 1,
-                dotColor: Colors.grey,
-                activeDotColor: ColorManager.primaryColor),
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10),
-          child: Align(
-            alignment: Alignment.centerRight,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                CircleAvatar(
-                    backgroundColor: Colors.grey.shade300,
-                    radius: context.height * 0.015,
-                    child: Icon(Icons.close, size: context.height * 0.02)
-                        .onTap(() {})),
-                CircleAvatar(
-                  backgroundColor: ColorManager.primaryColor,
-                  radius: context.height * 0.022,
-                  child: const Icon(Icons.add).onTap(() {}),
-                ),
-              ],
+      height: context.height * 0.275,
+      child: Stack(alignment: AlignmentDirectional.centerEnd, children: [
+        Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            SizedBox(
+              width: context.width,
+              height: context.height * 0.26,
+              child: CarouselSlider(
+                carouselController: _controller,
+                items: imagesUrl.map((e) {
+                  return Container(
+                    decoration: BoxDecoration(
+                        image: DecorationImage(
+                            fit: BoxFit.cover, image: NetworkImage(e))),
+                  );
+                }).toList(),
+                options: CarouselOptions(
+                    initialPage: 0,
+                    viewportFraction: 1,
+                    onPageChanged: (index, _) {
+                      setState(() {
+                        _currentIndex = index;
+                      });
+                    }),
+              ),
             ),
-          ),
-        )
+            AnimatedSmoothIndicator(
+              activeIndex: _currentIndex,
+              count: imagesUrl.length,
+              effect: SlideEffect(
+                  spacing: 3,
+                  radius: 5,
+                  dotWidth: context.width * 0.05,
+                  dotHeight: 3,
+                  paintStyle: PaintingStyle.fill,
+                  dotColor: ColorManager.greyColor,
+                  activeDotColor: ColorManager.primaryColor),
+            ),
+          ],
+        ),
+        Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            IconButton(
+              onPressed: () {},
+              icon: Container(
+                alignment: Alignment.center,
+                // backgroundColor: ColorManager.primaryColor,
+                // radius: context.height * 0.018,
+                width: 25,
+                height: 25,
+                decoration: BoxDecoration(
+                    color: ColorManager.greyColor.withOpacity(0.67),
+                    borderRadius: BorderRadius.circular(50)),
+                child: const Icon(Icons.close_sharp,size: 18,),
+              ),
+            ),
+            IconButton(
+              onPressed: () {},
+              icon: Container(
+                alignment: Alignment.center,
+                // backgroundColor: ColorManager.primaryColor,
+                // radius: context.height * 0.018,
+                width: 25,
+                height: 25,
+                decoration: BoxDecoration(
+                    color:ColorManager.primaryColor,
+                    borderRadius: BorderRadius.circular(50)),
+                child: const Icon(Icons.add,size: 18,),
+              ),
+            ),
+
+          ],
+        ),
+        // Align(
+        //   alignment: Alignment.centerRight,
+        //   child: Padding(
+        //     padding: const EdgeInsets.only(right: 10, top: 15),
+        //     child: Column(
+        //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        //       children: [
+        //         CircleAvatar(
+        //             backgroundColor: ColorManager.greyColor.withOpacity(0.67),
+        //             radius: context.height * 0.013,
+        //             child: Image.asset("assets/icons/delete_icon.png", height: context.height * 0.01)
+        //                 .onTap(() {})),
+        //         CircleAvatar(
+        //           backgroundColor: ColorManager.primaryColor,
+        //           radius: context.height * 0.018,
+        //           child: Image.asset("assets/icons/add_icon.png", height: context.height * 0.016 ).onTap(() {}),
+        //         ),
+        //       ],
+        //     ),
+        //   ),
+        // )
       ]),
     );
   }

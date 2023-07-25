@@ -3,7 +3,6 @@ import 'package:salonat/utils/extensions/media_query/media_query.dart';
 
 class LogoVictor extends StatelessWidget {
   double size;
-
   LogoVictor({required this.size});
 
   @override

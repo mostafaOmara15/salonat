@@ -8,6 +8,6 @@ class ColorManager{
   static Color subTextColor = const Color(0xff6B6B6B);
   static Color whiteColor = Colors.white;
   static Color blackColor = Colors.black;
-  static Color greyColor = Colors.grey;
+  static Color greyColor = const Color(0xffD9D9D9);
+  static Color darkGreyColor = const Color(0xff6B6B6B);
 }
-

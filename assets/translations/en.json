@@ -3,5 +3,9 @@
   "introSentence": "ONE STEP TO BEAUTY",
   "useName": "User name",
   "password": "Password",
-  "login": "Login"
+  "login": "Login",
+  "viewed your profile": "viewed your profile",
+  "about": "About",
+  "reviews": "Reviews",
+  "comment": "comment"
 }
