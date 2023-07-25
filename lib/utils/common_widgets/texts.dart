@@ -2,19 +2,14 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-
-Widget largeTitle(String text, Color color){
+Widget largeTitle(String text, Color color, bool isBold){
   return AutoSizeText(
     text,
     style: GoogleFonts.fraunces(
-        textStyle: TextStyle(
-            color: color,
-            letterSpacing: 0.5,
-            fontSize: 22,
-            fontWeight: FontWeight.w700
-        )
+      textStyle: TextStyle(color: color, letterSpacing: 0.5, fontWeight: isBold ? FontWeight.w700 : FontWeight.w600)
     ),
-    minFontSize: 20,
+    minFontSize: 18,
+    maxFontSize: 22,
     maxLines: 1,
   );
 }
@@ -22,16 +17,12 @@ Widget largeTitle(String text, Color color){
 Widget mediumTitle(String text, Color color, bool isBold){
   return AutoSizeText(
     text,
-    textAlign: TextAlign.center,
     style: GoogleFonts.fraunces(
-        textStyle: TextStyle(
-            color: color,
-            letterSpacing: 0.5,
-            fontSize: 20,
-            fontWeight: isBold ? FontWeight.w700 : FontWeight.w600,
-        ),
+      textStyle: TextStyle(color: color, letterSpacing: 0.5, fontWeight: isBold ? FontWeight.w700 : FontWeight.w600),
     ),
-    minFontSize: 18,
+    textAlign: TextAlign.center,
+    minFontSize: 16,
+    maxFontSize: 20,
     maxLines: 2,
   );
 }
@@ -40,17 +31,14 @@ Widget smallTitle(String text, Color color, bool isBold){
   return AutoSizeText(
     text,
     style: GoogleFonts.fraunces(
-        textStyle: TextStyle(
-            color: color,
-            letterSpacing: 0.5,
-            fontWeight: isBold ? FontWeight.w700 : FontWeight.normal,
-            fontSize: 16
-        )
+      textStyle: TextStyle(color: color, letterSpacing: 0.5, fontWeight: isBold ? FontWeight.w700 : FontWeight.w400),
     ),
     maxLines: 1,
-    minFontSize: 14,
+    minFontSize: 12,
+    maxFontSize: 16,
   );
 }
+
 Widget largeBody(String text, Color color){
   return AutoSizeText(
     text,

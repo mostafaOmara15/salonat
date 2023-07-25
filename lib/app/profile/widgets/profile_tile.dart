@@ -6,39 +6,22 @@ import '../../../utils/extensions/theme/colors/color_manager.dart';
 
 class ProfileTile extends StatelessWidget {
   String title;
-  bool withButton;
   Widget navigatedScreen;
 
   ProfileTile({super.key,
     required this.title,
-    required this.withButton,
     required this.navigatedScreen,
   });
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      title: withButton
-          ? mediumTitle(title, ColorManager.blackColor, false)
-          : mediumTitle(title, ColorManager.blackColor, false),
-      onTap: () {
-        withButton == false ? context.push(navigatedScreen) : () {};
-      },
-      trailing: withButton
-          ? SizedBox(
-              height: context.height * 0.03,
-              child: ElevatedButton(
-                  onPressed: () {
-                    context.push(navigatedScreen);
-                  },
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor: ColorManager.primaryColor, elevation: 0),
-                  child: const Text(
-                    "Edit",
-                    style: TextStyle(color: Colors.white),
-                  )),
-            )
-          : const Icon(Icons.arrow_forward_ios_rounded),
+    return Container(
+      decoration: BoxDecoration(border: Border(top: BorderSide(color: ColorManager.greyColor))),
+      child: ListTile(
+        title: largeTitle(title, ColorManager.blackColor, false),
+        onTap: () {},
+        trailing: const Icon(Icons.arrow_forward_ios_rounded),
+      ),
     );
   }
 }

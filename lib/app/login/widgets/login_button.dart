@@ -8,7 +8,7 @@ import '../../../utils/extensions/theme/colors/color_manager.dart';
 class LoginButton extends StatelessWidget {
   Function? function;
 
-  LoginButton({required this.function});
+  LoginButton({super.key, required this.function});
 
   @override
   Widget build(BuildContext context) {

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../../../utils/extensions/theme/colors/color_manager.dart';
 
 class LoginFormField extends StatelessWidget {
@@ -16,15 +17,16 @@ class LoginFormField extends StatelessWidget {
   LoginFormField
   (
     {
-        this.validate,
-        required this.fieldCtrl,
-        required this.withIcon,
-        required this.fieldIcon,
-        required this.isSecured,
-        required this.fieldInput,
-        this.fieldHint,
-        this.showPass,
-        this.checkFields
+      super.key,
+      this.validate,
+      required this.fieldCtrl,
+      required this.withIcon,
+      required this.fieldIcon,
+      required this.isSecured,
+      required this.fieldInput,
+      this.fieldHint,
+      this.showPass,
+      this.checkFields
     }
   );
 
@@ -35,23 +37,25 @@ class LoginFormField extends StatelessWidget {
       validator: (p) => validate!(p),
       keyboardType: fieldInput,
       obscureText: isSecured,
-      style: TextStyle(color: ColorManager.darkBrownColor, fontSize: 19),
+      style: GoogleFonts.fraunces(
+        textStyle: TextStyle(fontSize: 16 ,color: ColorManager.darkBrownColor, letterSpacing: 0.5),
+      ),
       cursorColor: ColorManager.darkBrownColor,
       decoration: InputDecoration(
         suffixIcon: withIcon
-            ? IconButton(
-                onPressed: showPass,
-                icon: isSecured
-                    ? Icon(
-                        Icons.visibility_off,
-                        color: ColorManager.greyColor
-                      )
-                    : Icon(
-                        Icons.visibility,
-                        color: ColorManager.darkBrownColor
-                      )
+          ? IconButton(
+            onPressed: showPass,
+            icon: isSecured
+              ? Icon(
+                Icons.visibility_off,
+                color: ColorManager.greyColor
               )
-            : null,
+              : Icon(
+                  Icons.visibility,
+                  color: ColorManager.darkBrownColor
+              )
+          )
+          : null,
         contentPadding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
         fillColor: Colors.white,
         filled: true,

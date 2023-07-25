@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:salonat/app/login/view/login_screen.dart';
 import 'package:salonat/app/login/view_model/cubit/login_cubit.dart';
 import 'package:salonat/app/splash/view/splash_screen.dart';
 import 'package:salonat/utils/extensions/theme/colors/color_manager.dart';
@@ -45,7 +46,7 @@ class MyApp extends StatelessWidget {
           fontFamily: 'Fraunces',
           useMaterial3: true,
         ),
-        home: const SplashScreen(),
+        home: const LoginScreen(),
       ),
     );
   }

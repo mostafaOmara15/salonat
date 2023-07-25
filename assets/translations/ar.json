@@ -1,11 +1,14 @@
 {
   "tagLine": "من اجل شركائنا",
   "introSentence": "خطوة واحدة للجمال",
-  "useName": "اسم المستخدم",
+  "userName": "اسم المستخدم",
   "password": "كلمة السر",
   "login": "تسجيل الدخول",
   "viewed your profile": "شاهدوا صفحتك",
   "about": "حول",
   "Reviews": "المراجعات",
-  "comment": "تعليق"
+  "comment": "تعليق",
+  "openFrom": "يفتح خلال",
+  "services": "خدمات",
+  "staff": "طاقم عمل"
 }

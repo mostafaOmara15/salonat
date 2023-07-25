@@ -67,7 +67,8 @@ class _ImagesSliderState extends State<ImagesSlider> {
                   dotHeight: 3,
                   paintStyle: PaintingStyle.fill,
                   dotColor: ColorManager.greyColor,
-                  activeDotColor: ColorManager.primaryColor),
+                  activeDotColor: ColorManager.primaryColor
+              ),
             ),
           ],
         ),
@@ -82,17 +83,18 @@ class _ImagesSliderState extends State<ImagesSlider> {
                   barrierDismissible: false, // user must tap button!
                   builder: (BuildContext context) {
                     return AlertDialog(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                      contentPadding: const EdgeInsets.all(20),
+                      titlePadding: const EdgeInsets.all(0),
                       actionsPadding: EdgeInsets.all(0),
-                      contentPadding: const EdgeInsets.all(0),
+                      title: const Text(""),
                       content: Container(
-                        height: context.height * 0.12,
+                        height: context.height * 0.1,
                         width: context.width * 0.8,
                         decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
                         child: SingleChildScrollView(
                           child: Column(
+                            mainAxisSize: MainAxisSize.min,
                             children: [
                               mediumTitle('Are you sure you want to delete this picture ?', ColorManager.buttonColor, false),
                             ],
@@ -104,38 +106,69 @@ class _ImagesSliderState extends State<ImagesSlider> {
                           children: [
                             const Divider(thickness: 1),
                             Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                ElevatedButton(
-                                    onPressed: () {
-                                      Navigator.of(context).pop();
-                                    },
-                                    style: ElevatedButton.styleFrom(
-                                      backgroundColor: ColorManager.buttonColor,
-                                      elevation: 0,
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(5), // <-- Radius
-                                      ),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                                  child: SizedBox(
+                                    height: context.height * 0.03,
+                                    child: ElevatedButton(
+                                        onPressed: () {Navigator.of(context).pop();},
+                                        style: ElevatedButton.styleFrom(
+                                            backgroundColor: ColorManager.buttonColor,
+                                            elevation: 0,
+                                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5),)
+                                        ),
+                                        child: const Text("Cancel", style: TextStyle(color: Colors.white))
                                     ),
-                                    child: const Text(
-                                      "Cancel",
-                                      style: TextStyle(color: Colors.white),
-                                    )),
-                                ElevatedButton(
-                                    onPressed: () {
-                                      Navigator.of(context).pop();
-                                    },
-                                    style: ElevatedButton.styleFrom(
-                                        backgroundColor: ColorManager.buttonColor,
-                                        elevation: 0,
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(5), // <-- Radius
-                                      ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                                  child: SizedBox(
+                                    height: context.height * 0.03,
+                                    child: ElevatedButton(
+                                        onPressed: () {Navigator.of(context).pop();},
+                                        style: ElevatedButton.styleFrom(
+                                            backgroundColor: ColorManager.buttonColor,
+                                            elevation: 0,
+                                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5),)
+                                        ),
+                                        child: const Text("Delete", style: TextStyle(color: Colors.white))
                                     ),
-                                    child: const Text(
-                                      "Delete",
-                                      style: TextStyle(color: Colors.white),
-                                    )),
+                                  ),
+                                ),
+
+                                // ElevatedButton(
+                                //     onPressed: () {
+                                //       Navigator.of(context).pop();
+                                //     },
+                                //     style: ElevatedButton.styleFrom(
+                                //       backgroundColor: ColorManager.buttonColor,
+                                //       elevation: 0,
+                                //       shape: RoundedRectangleBorder(
+                                //         borderRadius: BorderRadius.circular(5), // <-- Radius
+                                //       ),
+                                //     ),
+                                //     child: const Text(
+                                //       "Cancel",
+                                //       style: TextStyle(color: Colors.white),
+                                //     )),
+                                // ElevatedButton(
+                                //     onPressed: () {
+                                //       Navigator.of(context).pop();
+                                //     },
+                                //     style: ElevatedButton.styleFrom(
+                                //         backgroundColor: ColorManager.buttonColor,
+                                //         elevation: 0,
+                                //       shape: RoundedRectangleBorder(
+                                //         borderRadius: BorderRadius.circular(5), // <-- Radius
+                                //       ),
+                                //     ),
+                                //     child: const Text(
+                                //       "Delete",
+                                //       style: TextStyle(color: Colors.white),
+                                //     )),
                               ],
                             ),
                           ],
@@ -165,15 +198,12 @@ class _ImagesSliderState extends State<ImagesSlider> {
                 // radius: context.height * 0.018,
                 width: 25,
                 height: 25,
-                decoration: BoxDecoration(
-                    color:ColorManager.primaryColor,
-                    borderRadius: BorderRadius.circular(50)),
+                decoration: BoxDecoration(color:ColorManager.primaryColor, borderRadius: BorderRadius.circular(50)),
                 child: const Icon(Icons.add,size: 18,),
               ),
             ),
           ],
         ),
-
       ]),
     );
   }

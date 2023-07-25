@@ -20,7 +20,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Timer(const Duration(seconds: 3), () => context.pushReplacement(const LoginScreen()));
+    // Timer(const Duration(seconds: 3), () => context.pushReplacement(const LoginScreen()));
   }
 
   @override
@@ -32,9 +32,9 @@ class _SplashScreenState extends State<SplashScreen> {
           heightSpace(context.height * 0.1),
           Center(child: LogoVictor(size: 0.42)),
           heightSpace(context.height * 0.03),
-          largeTitle("tagLine".tr(), ColorManager.whiteColor),
+          largeTitle("tagLine".tr(), ColorManager.whiteColor, true),
           heightSpace(context.height * 0.07),
-          mediumTitle("introSentence".tr(), ColorManager.whiteColor, true),
+          largeTitle("introSentence".tr(), ColorManager.whiteColor, false),
         ],
       ),
     );

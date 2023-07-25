@@ -1,11 +1,14 @@
 {
   "tagLine": "For our partners",
   "introSentence": "ONE STEP TO BEAUTY",
-  "useName": "User name",
+  "userName": "Username",
   "password": "Password",
   "login": "Login",
   "viewed your profile": "viewed your profile",
   "about": "About",
   "reviews": "Reviews",
-  "comment": "comment"
+  "comment": "comment",
+  "openFrom": "Open from",
+  "services": "Services",
+  "staff": "Staff"
 }

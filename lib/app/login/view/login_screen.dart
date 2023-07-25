@@ -22,11 +22,8 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
 
-
-
   @override
   Widget build(BuildContext context) {
-
     return BlocProvider(
       create: (context) => LoginCubit(),
       child: BlocConsumer<LoginCubit, LoginStates>(
@@ -47,16 +44,18 @@ class _LoginScreenState extends State<LoginScreen> {
                       children: [
                         LogoVictor(size: 0.3),
                         heightSpace(context.height * 0.02),
-                        mediumTitle("tagLine".tr(), ColorManager.whiteColor, false),
+                        largeTitle("tagLine".tr(), ColorManager.whiteColor, true),
                         heightSpace(context.width * 0.15),
+
                         LoginFormField(
                           fieldCtrl: loginCubit.userNameCtrl,
                           withIcon: false,
                           fieldIcon: Icons.email_outlined,
                           isSecured: false,
                           fieldInput: TextInputType.name,
-                          fieldHint: "useName".tr(),
+                          fieldHint: "userName".tr(),
                         ),
+
                         heightSpace(context.width * 0.05),
 
                         LoginFormField(
@@ -77,7 +76,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           context.pushReplacement(AppLayout());
                         }),
                         heightSpace(context.width * 0.05),
-                        mediumTitle("introSentence".tr(), ColorManager.whiteColor, true),
+                        largeTitle("introSentence".tr(), ColorManager.whiteColor, false),
                       ],
                     ),
                   ],
