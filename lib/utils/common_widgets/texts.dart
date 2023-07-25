@@ -22,16 +22,17 @@ Widget largeTitle(String text, Color color){
 Widget mediumTitle(String text, Color color, bool isBold){
   return AutoSizeText(
     text,
+    textAlign: TextAlign.center,
     style: GoogleFonts.fraunces(
         textStyle: TextStyle(
             color: color,
             letterSpacing: 0.5,
             fontSize: 20,
-            fontWeight: isBold ? FontWeight.w700 : FontWeight.w600
-        )
+            fontWeight: isBold ? FontWeight.w700 : FontWeight.w600,
+        ),
     ),
     minFontSize: 18,
-    maxLines: 1,
+    maxLines: 2,
   );
 }
 

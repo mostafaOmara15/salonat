@@ -25,7 +25,9 @@ class ProfileScreen extends StatelessWidget {
       ),
       body: Padding(
         padding: EdgeInsets.all(context.width * 0.022),
-        child: ListView(children: [
+        child: ListView(
+          shrinkWrap: true,
+            children: [
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

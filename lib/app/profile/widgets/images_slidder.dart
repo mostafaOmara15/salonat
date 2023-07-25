@@ -1,10 +1,13 @@
 import 'package:carousel_slider/carousel_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:salonat/utils/common_widgets/texts.dart';
 import 'package:salonat/utils/extensions/media_query/media_query.dart';
 import 'package:salonat/utils/extensions/on_tap/on_tap.dart';
+import 'package:salonat/utils/spaces.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import '../../../utils/extensions/theme/colors/color_manager.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:adaptive_dialog/adaptive_dialog.dart';
 
 class ImagesSlider extends StatefulWidget {
   ImagesSlider({super.key});
@@ -73,7 +76,75 @@ class _ImagesSliderState extends State<ImagesSlider> {
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             IconButton(
-              onPressed: () {},
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  barrierDismissible: false, // user must tap button!
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      actionsPadding: EdgeInsets.all(0),
+                      contentPadding: const EdgeInsets.all(0),
+                      content: Container(
+                        height: context.height * 0.12,
+                        width: context.width * 0.8,
+                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
+                        child: SingleChildScrollView(
+                          child: Column(
+                            children: [
+                              mediumTitle('Are you sure you want to delete this picture ?', ColorManager.buttonColor, false),
+                            ],
+                          ),
+                        ),
+                      ),
+                      actions: [
+                        Column(
+                          children: [
+                            const Divider(thickness: 1),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                ElevatedButton(
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor: ColorManager.buttonColor,
+                                      elevation: 0,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(5), // <-- Radius
+                                      ),
+                                    ),
+                                    child: const Text(
+                                      "Cancel",
+                                      style: TextStyle(color: Colors.white),
+                                    )),
+                                ElevatedButton(
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                    style: ElevatedButton.styleFrom(
+                                        backgroundColor: ColorManager.buttonColor,
+                                        elevation: 0,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(5), // <-- Radius
+                                      ),
+                                    ),
+                                    child: const Text(
+                                      "Delete",
+                                      style: TextStyle(color: Colors.white),
+                                    )),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ],
+                    );
+                  },
+                );
+              },
               icon: Container(
                 alignment: Alignment.center,
                 // backgroundColor: ColorManager.primaryColor,
@@ -100,30 +171,9 @@ class _ImagesSliderState extends State<ImagesSlider> {
                 child: const Icon(Icons.add,size: 18,),
               ),
             ),
-
           ],
         ),
-        // Align(
-        //   alignment: Alignment.centerRight,
-        //   child: Padding(
-        //     padding: const EdgeInsets.only(right: 10, top: 15),
-        //     child: Column(
-        //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        //       children: [
-        //         CircleAvatar(
-        //             backgroundColor: ColorManager.greyColor.withOpacity(0.67),
-        //             radius: context.height * 0.013,
-        //             child: Image.asset("assets/icons/delete_icon.png", height: context.height * 0.01)
-        //                 .onTap(() {})),
-        //         CircleAvatar(
-        //           backgroundColor: ColorManager.primaryColor,
-        //           radius: context.height * 0.018,
-        //           child: Image.asset("assets/icons/add_icon.png", height: context.height * 0.016 ).onTap(() {}),
-        //         ),
-        //       ],
-        //     ),
-        //   ),
-        // )
+
       ]),
     );
   }
