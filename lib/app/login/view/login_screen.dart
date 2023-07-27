@@ -13,14 +13,8 @@ import '../../../utils/common_widgets/texts.dart';
 import '../../../utils/spaces.dart';
 import '../view_model/cubit/login_states.dart';
 
-class LoginScreen extends StatefulWidget {
+class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
-
-  @override
-  State<LoginScreen> createState() => _LoginScreenState();
-}
-
-class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
@@ -66,15 +60,15 @@ class _LoginScreenState extends State<LoginScreen> {
                           isSecured: loginCubit.showPass,
                           withIcon: true,
                           showPass: () {
-                            setState(() {
-                              loginCubit.changePasswordVisibility();
-                            });
+                            loginCubit.changePasswordVisibility();
                           },
                         ),
                         heightSpace(context.width * 0.05),
-                        LoginButton(function: () {
-                          context.pushReplacement(AppLayout());
-                        }),
+                        LoginButton(
+                          function: () {
+                            context.pushReplacement(AppLayout());
+                          }
+                        ),
                         heightSpace(context.width * 0.05),
                         largeTitle("introSentence".tr(), ColorManager.whiteColor, false),
                       ],

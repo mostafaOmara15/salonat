@@ -10,7 +10,7 @@ Widget largeTitle(String text, Color color, bool isBold){
     ),
     minFontSize: 18,
     maxFontSize: 22,
-    maxLines: 1,
+    maxLines: 2,
   );
 }
 
@@ -33,7 +33,8 @@ Widget smallTitle(String text, Color color, bool isBold){
     style: GoogleFonts.fraunces(
       textStyle: TextStyle(color: color, letterSpacing: 0.5, fontWeight: isBold ? FontWeight.w700 : FontWeight.w400),
     ),
-    maxLines: 1,
+    textAlign: TextAlign.center,
+    maxLines: 2,
     minFontSize: 12,
     maxFontSize: 16,
   );
@@ -43,31 +44,31 @@ Widget largeBody(String text, Color color){
   return AutoSizeText(
     text,
     style: GoogleFonts.fraunces(
-        textStyle: TextStyle(
-            color: color,
-            letterSpacing: 0.5,
-            fontWeight: FontWeight.w600
-        )
-    ),
-    maxFontSize: 20,
-    minFontSize: 18,
-    maxLines: 1,
-  );
-}
-
-Widget mediumBody(String text, Color color, bool isBold){
-  return AutoSizeText(
-    text,
-    style: GoogleFonts.fraunces(
-        textStyle: TextStyle(
-            color: color,
-            letterSpacing: 0.5,
-            fontWeight: isBold ? FontWeight.w700 : FontWeight.normal
-        )
+      textStyle: TextStyle(
+        color: color,
+        letterSpacing: 0.5,
+        fontWeight: FontWeight.w600
+      )
     ),
     maxFontSize: 14,
     minFontSize: 12,
     maxLines: 1,
+  );
+}
+
+Widget mediumBody(String text, Color color, bool center){
+  return AutoSizeText(
+    text,
+    style: GoogleFonts.fraunces(
+      textStyle: TextStyle(
+        color: color,
+        letterSpacing: 0.5,
+        fontWeight: FontWeight.w600
+      ),
+    ),
+    textAlign: center ? TextAlign.center : TextAlign.start,
+    maxFontSize: 12,
+    minFontSize: 10,
   );
 }
 

@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:salonat/app/login/view/login_screen.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:salonat/app/login/view_model/cubit/login_cubit.dart';
 import 'package:salonat/app/splash/view/splash_screen.dart';
+import 'package:salonat/utils/block_observer.dart';
 import 'package:salonat/utils/extensions/theme/colors/color_manager.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  Bloc.observer = MyBlocObserver();
   await EasyLocalization.ensureInitialized();
   runApp(
     EasyLocalization(
@@ -36,17 +38,20 @@ class MyApp extends StatelessWidget {
         locale: context.locale,
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
+          scaffoldBackgroundColor: ColorManager.whiteColor,
+          bottomSheetTheme: BottomSheetThemeData(backgroundColor: ColorManager.whiteColor),
           appBarTheme: AppBarTheme(
             color: ColorManager.primaryColor,
             elevation: 0,
+            scrolledUnderElevation: 0,
             centerTitle: true,
-            titleTextStyle: const TextStyle(fontSize: 28, color: Colors.white, fontFamily: 'Fraunces'),
+            titleTextStyle: GoogleFonts.fraunces(textStyle: const TextStyle(letterSpacing: 0.5, fontSize: 24)),
             iconTheme: const IconThemeData(color: Colors.white),
           ),
           fontFamily: 'Fraunces',
           useMaterial3: true,
         ),
-        home: const LoginScreen(),
+        home: const SplashScreen(),
       ),
     );
   }

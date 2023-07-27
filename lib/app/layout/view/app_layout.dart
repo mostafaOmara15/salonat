@@ -11,7 +11,6 @@ class AppLayout extends StatelessWidget {
   AppLayout({super.key});
 
   final PersistentTabController _controller = PersistentTabController(initialIndex: 0);
-
   List<Widget> _buildScreens() {
     return [
       const ProfileScreen(),
@@ -26,9 +25,7 @@ class AppLayout extends StatelessWidget {
     List<PersistentBottomNavBarItem> navBarsItems() {
       return [
         PersistentBottomNavBarItem(
-          icon: const Icon(
-            Icons.home_outlined,
-          ),
+          icon: const Icon(Icons.home_outlined),
           title: ("Profile"),
           iconSize: context.height * 0.03,
           activeColorPrimary: ColorManager.activeColor,
@@ -68,17 +65,13 @@ class AppLayout extends StatelessWidget {
       decoration: const NavBarDecoration(colorBehindNavBar: Colors.white),
       popAllScreensOnTapOfSelectedTab: true,
       popActionScreens: PopActionScreensType.all,
-      itemAnimationProperties: const ItemAnimationProperties(
-          duration: Duration(milliseconds: 200),
-          curve: Curves.ease
-      ),
+      navBarStyle: NavBarStyle.style6,
+      itemAnimationProperties: const ItemAnimationProperties(duration: Duration(milliseconds: 200),curve: Curves.ease),
       screenTransitionAnimation: const ScreenTransitionAnimation(
         animateTabTransition: true,
         curve: Curves.ease,
         duration: Duration(milliseconds: 200),
       ),
-      navBarStyle:
-          NavBarStyle.style6, // Choose the nav bar style with this property.
     );
   }
 }

@@ -19,8 +19,10 @@ class ProfileTile extends StatelessWidget {
       decoration: BoxDecoration(border: Border(top: BorderSide(color: ColorManager.greyColor))),
       child: ListTile(
         title: largeTitle(title, ColorManager.blackColor, false),
-        onTap: () {},
-        trailing: const Icon(Icons.arrow_forward_ios_rounded),
+        onTap: () {
+          context.push(navigatedScreen);
+        },
+        trailing: Icon(Icons.arrow_forward_ios_rounded, size: context.width * 0.04),
       ),
     );
   }
