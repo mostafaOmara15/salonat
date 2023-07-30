@@ -4,7 +4,9 @@ import '../extensions/theme/colors/color_manager.dart';
 
 class AlertButton extends StatelessWidget {
   String title;
-  AlertButton({super.key, required this.title});
+  Function() onTap;
+
+  AlertButton({super.key, required this.title, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +15,7 @@ class AlertButton extends StatelessWidget {
       child: SizedBox(
         height: context.height * 0.035,
         child: ElevatedButton(
-            onPressed: () {Navigator.of(context).pop();},
+            onPressed: onTap,
             style: ElevatedButton.styleFrom(
                 backgroundColor: ColorManager.buttonColor,
                 elevation: 0,

@@ -3,7 +3,7 @@ import 'package:salonat/utils/extensions/media_query/media_query.dart';
 
 class DayButtons extends StatelessWidget {
   String day;
-  DayButtons({required this.day});
+  DayButtons({super.key, required this.day});
 
   @override
   Widget build(BuildContext context) {

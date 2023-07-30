@@ -5,15 +5,18 @@ import '../../../utils/extensions/theme/colors/color_manager.dart';
 
 class ServiceButton extends StatelessWidget {
   String title;
+  bool active;
 
-  ServiceButton({super.key, required this.title});
+  ServiceButton({super.key, required this.title, required this.active});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: context.height * 0.03, horizontal: context.width * 0.04),
+      padding: EdgeInsets.symmetric(vertical: context.height * 0.03, horizontal: context.width * 0.02),
       child: ElevatedButton(
-          style: ElevatedButton.styleFrom(backgroundColor: ColorManager.greyColor, elevation: 0),
+          style: ElevatedButton.styleFrom(
+              backgroundColor: active ? ColorManager.primaryColor :ColorManager.greyColor,
+              elevation: 0),
           onPressed: (){},
           child: smallTitle(title, ColorManager.opacityBlackColor, false)
       ),

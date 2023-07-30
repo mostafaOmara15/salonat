@@ -11,12 +11,15 @@ class SupButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    return SizedBox(
-      height: height,
-      child: ElevatedButton(
-        onPressed: onTap,
-        style: ElevatedButton.styleFrom(backgroundColor: ColorManager.primaryColor, elevation: 0),
-        child: mediumBody(title, ColorManager.whiteColor, false)
+    return Padding(
+      padding: const EdgeInsets.only(top: 8),
+      child: SizedBox(
+        height: height,
+        child: ElevatedButton(
+          onPressed: onTap,
+          style: ElevatedButton.styleFrom(backgroundColor: ColorManager.primaryColor, elevation: 0),
+          child: mediumBody(title, ColorManager.whiteColor, false)
+        ),
       ),
     );
   }

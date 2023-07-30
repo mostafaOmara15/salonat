@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:salonat/utils/common_widgets/app_button.dart';
 import 'package:salonat/utils/extensions/media_query/media_query.dart';
 import '../../../utils/spaces.dart';
-import '../../services/widgets/service_textfield.dart';
+import '../../services/widgets/service_text-field.dart';
 
 class EditServiceScreen extends StatelessWidget {
   EditServiceScreen({Key? key}) : super(key: key);

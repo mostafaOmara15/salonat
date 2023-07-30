@@ -6,7 +6,7 @@ class ProfileCubit extends Cubit<ProfileStates> {
   ProfileCubit() : super(ProfileInitialState());
 
   bool showReview = false;
-  List reviews = [];
+  List reviews = [1,2,3,4];
   static ProfileCubit get(context) => BlocProvider.of(context);
 
   void showSalonInfo() {
