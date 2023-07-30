@@ -33,5 +33,10 @@
   "addStaff": "Add Staff",
   "specialization": "Specialization",
   "name": "Name",
-  "rate" : "Rate"
+  "rate" : "Rate",
+  "add_offer": "Add Offer",
+  "offers": "Offers",
+  "add_pic": "Add picture",
+  "add_offer_desc": "Add offer description"
+
 }
