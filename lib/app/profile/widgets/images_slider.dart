@@ -3,6 +3,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:salonat/utils/common_widgets/dialog_button.dart';
 import 'package:salonat/utils/common_widgets/texts.dart';
+import 'package:salonat/utils/common_widgets/warning_alert.dart';
 import 'package:salonat/utils/extensions/media_query/media_query.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import '../../../utils/extensions/theme/colors/color_manager.dart';
@@ -31,7 +32,8 @@ class _ImagesSliderState extends State<ImagesSlider> {
     return SizedBox(
       width: context.width,
       height: context.height * 0.275,
-      child: Stack(alignment: AlignmentDirectional.centerEnd, children: [
+      child: Stack(
+          alignment: AlignmentDirectional.centerEnd, children: [
         Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -83,42 +85,10 @@ class _ImagesSliderState extends State<ImagesSlider> {
                   context: context,
                   barrierDismissible: false,
                   builder: (BuildContext context) {
-                    return AlertDialog(
-                      backgroundColor: ColorManager.whiteColor,
-                      elevation: 0,
-                      insetPadding: EdgeInsets.only(bottom: context.height * 0.35),
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                      contentPadding: const EdgeInsets.symmetric(horizontal: 20),
-                      titlePadding: const EdgeInsets.all(0),
-                      actionsPadding: const EdgeInsets.all(0),
-                      title: const Text(""),
-                      content: Container(
-                        height: context.height * 0.1,
-                        width: context.width * 0.6,
-                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
-                        child: SingleChildScrollView(
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              mediumTitle("warningImage".tr(), ColorManager.buttonColor, false),
-                            ],
-                          ),
-                        ),
-                      ),
-                      actions: [
-                        Column(
-                          children: [
-                            const Divider(thickness: 1),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                AlertButton(title: "cancel".tr()),
-                                AlertButton(title: "delete".tr()),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ],
+                    return WarningAlert(
+                        title: "",
+                        supTitle: "warningImage".tr(),
+                        action: (){}
                     );
                   },
                 );
