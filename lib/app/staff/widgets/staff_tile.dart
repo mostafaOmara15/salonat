@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:salonat/utils/extensions/media_query/media_query.dart';
 import '../../../utils/common_widgets/texts.dart';
+import '../../../utils/common_widgets/warning_alert.dart';
 import '../../../utils/extensions/theme/colors/color_manager.dart';
 import '../../../utils/spaces.dart';
 
@@ -21,7 +22,22 @@ class StaffTile extends StatelessWidget {
             title: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  Icon(Icons.close, size: context.width * 0.04,),
+                  IconButton(
+                    onPressed: (){
+                      showDialog(
+                        context: context,
+                        barrierDismissible: false,
+                        builder: (BuildContext context) {
+                          return WarningAlert(
+                              title: "removeStaff".tr(),
+                              supTitle: "warningMember".tr(),
+                              action: (){}
+                          );
+                        },
+                      );
+                    },
+                    icon: Icon(Icons.close, size: context.width * 0.04,)
+                  )
                 ]
             ),
             subtitle: Row(

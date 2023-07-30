@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:salonat/app/offer_details/view/offer_details_view.dart';
+import 'package:salonat/app/add_staff/add_staff_screen.dart';
 import 'package:salonat/app/staff/widgets/staff_tile.dart';
 import 'package:salonat/utils/common_widgets/app_button.dart';
 import 'package:salonat/utils/extensions/media_query/media_query.dart';
@@ -35,6 +36,7 @@ class StaffScreen extends StatelessWidget {
             AppButton(
               title: "addStaff".tr(),
               onTap: (){
+                context.push(const AddStaff());
               },
             ),
             heightSpace(context.height * 0.05),
