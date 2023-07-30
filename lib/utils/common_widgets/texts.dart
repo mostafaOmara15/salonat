@@ -69,6 +69,7 @@ Widget mediumBody(String text, Color color, bool center){
     textAlign: center ? TextAlign.center : TextAlign.start,
     maxFontSize: 12,
     minFontSize: 10,
+    maxLines: 2,
   );
 }
 

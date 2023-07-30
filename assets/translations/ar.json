@@ -29,5 +29,9 @@
   "staff": "طاقم عمل",
   "save": "حفظ",
   "done": "تم",
-  "addService": "اضف خدمة"
+  "addService": "اضف خدمة",
+  "addStaff": "اضف موظف",
+  "specialization": "التخصص",
+  "name": "الاسم",
+  "rate" : "التقييم"
 }

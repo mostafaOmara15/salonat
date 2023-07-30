@@ -4,22 +4,18 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:salonat/app/profile/view_model/cubit/profile_cubit.dart';
 import 'package:salonat/app/profile/view_model/cubit/profile_states.dart';
-import 'package:salonat/app/profile/widgets/about_salon.dart';
 import 'package:salonat/app/profile/widgets/images_slider.dart';
 import 'package:salonat/app/profile/widgets/profile_tile.dart';
 import 'package:salonat/app/profile/widgets/salon_info.dart';
 import 'package:salonat/app/profile/widgets/salon_reviews.dart';
-import 'package:salonat/app/splash/view/splash_screen.dart';
 import 'package:salonat/utils/common_widgets/logo_victor.dart';
 import 'package:salonat/utils/common_widgets/texts.dart';
 import 'package:salonat/utils/extensions/media_query/media_query.dart';
-import 'package:salonat/utils/extensions/navigation/navigation.dart';
 import 'package:salonat/utils/extensions/on_tap/on_tap.dart';
 import 'package:salonat/utils/extensions/theme/colors/color_manager.dart';
 import 'package:salonat/utils/spaces.dart';
-import '../../opening/view/opening_screen.dart';
 import '../../services/view/services_screen.dart';
-import '../widgets/review_tile.dart';
+import '../../staff/view/staff_screen.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -116,8 +112,8 @@ class ProfileScreen extends StatelessWidget {
                         : SalonReviews(reviews: profileCubit.reviews),
                         heightSpace(context.height * 0.01),
 
-                        ProfileTile(title: "services".tr(), navigatedScreen: ServicesScreen()),
-                        ProfileTile(title: "staff".tr(), navigatedScreen: const SplashScreen()),
+                        ProfileTile(title: "services".tr(), navigatedScreen: const ServicesScreen()),
+                        ProfileTile(title: "staff".tr(), navigatedScreen: const StaffScreen()),
                     ],
                   ),
                 ]

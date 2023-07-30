@@ -29,5 +29,9 @@
   "staff": "Staff",
   "save": "Save",
   "done": "Done",
-  "addService": "Add Services"
+  "addService": "Add Services",
+  "addStaff": "Add Staff",
+  "specialization": "Specialization",
+  "name": "Name",
+  "rate" : "Rate"
 }
