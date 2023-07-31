@@ -51,8 +51,6 @@
   "date": "التاريخ",
   "client_name": "اسم العميل",
   "reservation_amount": "مبلغ الحجز",
-  "staff_name": "اسم الموظف"
-
-
-
+  "staff_name": "اسم الموظف",
+  "phoneNumber" : "رقم الهاتف"
 }
