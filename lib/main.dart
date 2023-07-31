@@ -7,6 +7,8 @@ import 'package:salonat/utils/block_observer.dart';
 import 'package:salonat/utils/extensions/theme/colors/color_manager.dart';
 import 'package:easy_localization/easy_localization.dart';
 
+import 'app/booking/cubit/booking_cubit.dart';
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer = MyBlocObserver();
@@ -31,6 +33,7 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => LoginCubit()),
+        BlocProvider(create: (context) => BookingCubit()),
       ],
       child: MaterialApp(
         localizationsDelegates:context.localizationDelegates ,

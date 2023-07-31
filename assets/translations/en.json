@@ -42,6 +42,9 @@
   "add_pic": "Add picture",
   "add_offer_desc": "Add offer description",
   "notifications": "NOTIFICATIONS",
-  "bookings": "BOOKINGS"
-
+  "bookings": "BOOKINGS",
+  "clientName": "Client Name",
+  "photoNumber": "Photo Number",
+  "time": "Time",
+  "reservationAmount": "Reservation Amount"
 }
