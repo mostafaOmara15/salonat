@@ -6,6 +6,7 @@ import 'package:salonat/app/offer_details/view/offer_details_view.dart';
 import 'package:salonat/app/offers/cubit/offer_cubit.dart';
 import 'package:salonat/utils/common_widgets/app_button.dart';
 import 'package:salonat/utils/common_widgets/inputField.dart';
+import 'package:salonat/utils/common_widgets/sup_button.dart';
 import 'package:salonat/utils/extensions/media_query/media_query.dart';
 import 'package:salonat/utils/extensions/navigation/navigation.dart';
 import 'package:salonat/utils/spaces.dart';
@@ -90,7 +91,9 @@ class _OffersViewState extends State<OffersView> {
                                         child: Column(
                                       children: [
                                         Expanded(
+                                          flex: 2,
                                           child: Container(
+                                            
                                             padding: EdgeInsets.symmetric(
                                               horizontal: context.width / 30,
                                             ),
@@ -105,16 +108,20 @@ class _OffersViewState extends State<OffersView> {
                                           ),
                                         ),
                                         heightSpace(context.width / 60),
-                                        Expanded(
-                                          child: Padding(
-                                            padding: EdgeInsets.symmetric(
-                                              horizontal: context.width / 30,
-                                            ),
-                                            child: AppButton(
-                                                onTap: () {},
-                                                title: "edit".tr()),
-                                          ),
+
+
+                                          Expanded(
+                                            flex: 1,
+                                            child: Padding(
+                                              padding: EdgeInsets.symmetric(
+                                                horizontal: context.width / 30,
+                                              ),
+                                              child: SupButton(
+                                                  onTap: () {},
+                                                  title: "edit".tr(), height:context .height/10,),
+
                                         ),
+                                          ),
                                         heightSpace(context.width / 60),
                                       ],
                                     ))

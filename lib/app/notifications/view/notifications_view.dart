@@ -45,11 +45,16 @@ class NotificationScreen extends StatelessWidget {
                       child: Row(
                         children: [
                           Container(
+
+                            decoration: BoxDecoration(
+                              color: ColorManager.primaryColor,
+                              borderRadius: BorderRadius.circular(15),
+                            ),
                               height: context.height / 10,
                               width: context.width / 6,
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 8),
-                              color: ColorManager.primaryColor,
+
                               child: Image.asset(
                                 "assets/images/date-reminder-icon.png",
                                 fit: BoxFit.contain,
