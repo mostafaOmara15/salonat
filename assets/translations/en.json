@@ -46,5 +46,10 @@
   "clientName": "Client Name",
   "photoNumber": "Photo Number",
   "time": "Time",
-  "reservationAmount": "Reservation Amount"
+  "reservationAmount": "Reservation Amount",
+  "more_details": "More details",
+  "date": "Date",
+  "client_name": "Client Name",
+  "reservation_amount": "Reservation amount",
+  "staff_name": "Staff Name"
 }

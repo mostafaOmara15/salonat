@@ -46,5 +46,13 @@
   "clientName": "اسم العميل",
   "photoNumber": "رقم الهاتف",
   "time": "الوقت",
-  "reservationAmount": "مبلغ الحجز"
+  "reservationAmount": "مبلغ الحجز",
+  "more_details": "التفاصيل",
+  "date": "التاريخ",
+  "client_name": "اسم العميل",
+  "reservation_amount": "مبلغ الحجز",
+  "staff_name": "اسم الموظف"
+
+
+
 }
