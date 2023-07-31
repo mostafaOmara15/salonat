@@ -43,7 +43,13 @@
   "add_offer_desc": "وصف العرض",
   "notifications": "الاشعارات",
   "bookings": "الحجوزات",
-  "more_details": "التفاصيل"
+  "more_details": "التفاصيل",
+  "date": "التاريخ",
+  "time": "الوقت",
+  "client_name": "اسم العميل",
+  "reservation_amount": "مبلغ الحجز",
+  "staff_name": "اسم الموظف"
+
 
 
 }

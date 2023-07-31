@@ -43,6 +43,10 @@
   "add_offer_desc": "Add offer description",
   "notifications": "NOTIFICATIONS",
   "bookings": "BOOKINGS",
-  "more_details": "More details"
-
+  "more_details": "More details",
+  "date": "Date",
+  "time": "Time",
+  "client_name": "Client Name",
+  "reservation_amount": "Reservation amount",
+  "staff_name": "Staff Name"
 }

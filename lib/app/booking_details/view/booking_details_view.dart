@@ -20,7 +20,8 @@ class BookingDetailsView extends StatelessWidget {
         body: ListView(
           children: [
             Container(
-              padding: EdgeInsets.symmetric(vertical: context.height/80,horizontal: 8),
+              padding: EdgeInsets.symmetric(
+                  vertical: context.height / 80, horizontal: 8),
               margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
               decoration: BoxDecoration(
                 border: Border.all(color: ColorManager.blackColor),
@@ -38,22 +39,22 @@ class BookingDetailsView extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           mediumBody(
-                            "Client Name",
+                            "client_name".tr(),
                             ColorManager.blackColor,
                             false,
                           ),
                           mediumBody(
-                            "Date",
+                            "date".tr(),
                             ColorManager.blackColor,
                             false,
                           ),
                           mediumBody(
-                            "Time",
+                            "time".tr(),
                             ColorManager.blackColor,
                             false,
                           ),
                           mediumBody(
-                            "Reservation amount",
+                            "reservation_amount".tr(),
                             ColorManager.blackColor,
                             false,
                           ),
@@ -99,6 +100,7 @@ class BookingDetailsView extends StatelessWidget {
             Container(
               margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
               decoration: BoxDecoration(
+                color: ColorManager.white200Color,
                 border: Border.all(color: ColorManager.blackColor),
                 borderRadius: BorderRadius.circular(15),
               ),
@@ -106,65 +108,68 @@ class BookingDetailsView extends StatelessWidget {
                 children: [
                   heightSpace(10),
                   Center(
-                    child: mediumTitle("Service", ColorManager.greyColor200, true),
+                    child:
+                        mediumTitle("Service", ColorManager.greyColor200, true),
                   ),
                   ListView.builder(
                     padding: EdgeInsets.symmetric(vertical: 10),
-
                     shrinkWrap: true,
                     itemBuilder: (context, index) {
-                    return     ListTile(
-                      title: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          mediumBody(
-                            "Nirvana Acne/Oily Skin 60",
-                            ColorManager.blackColor,
-                            false,
-                          ),
-                          mediumBody(
-                            "SAR 630.00",
-                            ColorManager.blackColor,
-                            false,
-                          ),
-                        ],
-                      ),
-                      subtitle: mediumBody(
-                        "Acne and oily skin can be addressed with deep-pore and deep-tissue cleansing to rid the skins excess oils and stimulate the circulation.",
-                        ColorManager.greyColor200,
-                        false,
-                      ),
-                    )
-                  ;},
-                  itemCount: 2,),
+                      return ListTile(
+                        title: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            mediumBody(
+                              "Nirvana Acne/Oily Skin 60",
+                              ColorManager.blackColor,
+                              false,
+                            ),
+                            mediumBody(
+                              "SAR 630.00",
+                              ColorManager.blackColor,
+                              false,
+                            ),
+                          ],
+                        ),
+                        subtitle: mediumBody(
+                          "Acne and oily skin can be addressed with deep-pore and deep-tissue cleansing to rid the skins excess oils and stimulate the circulation.",
+                          ColorManager.greyColor200,
+                          false,
+                        ),
+                      );
+                    },
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: 2,
+                  ),
                   heightSpace(10),
                   const Divider(),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8.0,vertical: 20),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 8.0, vertical: 20),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
-                      children: [   Expanded(
-
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                          child: mediumBody(
-                            "Staff Name",
-                            ColorManager.blackColor,
-                            false,
+                      children: [
+                        Expanded(
+                          child: Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 8.0),
+                            child: mediumBody(
+                              "staff_name".tr(),
+                              ColorManager.blackColor,
+                              false,
+                            ),
                           ),
                         ),
-                      ),
-
                         Expanded(
                           child: mediumBody(
                             "example",
                             ColorManager.greyColor200,
                             false,
                           ),
-                        ),],
+                        ),
+                      ],
                     ),
                   ),
-
                 ],
               ),
             ),

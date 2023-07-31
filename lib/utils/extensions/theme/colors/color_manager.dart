@@ -12,6 +12,8 @@ class ColorManager{
   static Color blackColor = Colors.black;
   static Color opacityBlackColor = Colors.black.withOpacity(0.56);
   static Color greyColor = const Color(0xffD9D9D9);
+  static Color white200Color = const Color(0xffF2F0F0);
+
   static Color greyColor100 = const Color(0xffB4B2B2);
   static Color greyColor200 = const Color(0xff585656);
 
