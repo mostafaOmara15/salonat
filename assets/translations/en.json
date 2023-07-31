@@ -51,5 +51,6 @@
   "date": "Date",
   "client_name": "Client Name",
   "reservation_amount": "Reservation amount",
-  "staff_name": "Staff Name"
+  "staff_name": "Staff Name",
+  "phoneNumber" : "Phone Number"
 }
