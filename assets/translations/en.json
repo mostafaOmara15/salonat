@@ -9,6 +9,7 @@
   "warningService": "Are you sure you want to delete this Service ?",
   "warningMember": "Are you sure you want to delete this Member ?",
   "removeStaff": "Remove Staff",
+  "add" : "+Add",
   "remove": "Remove",
   "cancel" : "Cancel",
   "delete" : "Delete",

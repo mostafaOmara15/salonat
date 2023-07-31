@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:salonat/app/add_staff/widgets/specialize_radio.dart';
 import 'package:salonat/utils/extensions/media_query/media_query.dart';
 import 'package:salonat/utils/extensions/on_tap/on_tap.dart';
-import '../../utils/common_widgets/app_button.dart';
-import '../../utils/common_widgets/texts.dart';
-import '../../utils/extensions/theme/colors/color_manager.dart';
-import '../../utils/spaces.dart';
-import 'widgets/staff_field.dart';
+import '../../../utils/common_widgets/app_button.dart';
+import '../../../utils/common_widgets/texts.dart';
+import '../../../utils/extensions/theme/colors/color_manager.dart';
+import '../../../utils/spaces.dart';
+import '../widgets/staff_field.dart';
 
 class AddStaff extends StatefulWidget {
   const AddStaff({Key? key}) : super(key: key);
@@ -82,27 +82,21 @@ class _AddStaffState extends State<AddStaff> {
                   value: "Massage",
                   groupValue: specialize,
                   onChanged: (value) {
-                    setState(() {
-                      print(specialize);
-                    });
+                    setState(() {});
                   },
                 ),
                 SpecializationRad(
                   value: "Facials Female",
                   groupValue: specialize,
                   onChanged: (value) {
-                    setState(() {
-                      print(specialize);
-                    });
+                    setState(() {});
                   },
                 ),
                 SpecializationRad(
                   value: "Body Treatment",
                   groupValue: specialize,
                   onChanged: (value) {
-                    setState(() {
-                      print(specialize);
-                    });
+                    setState(() {});
                   },
                 ),
                 heightSpace(context.height * 0.1),

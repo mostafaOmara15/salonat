@@ -1,10 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:salonat/utils/common_widgets/app_button.dart';
-import 'package:salonat/utils/common_widgets/texts.dart';
 import 'package:salonat/utils/extensions/media_query/media_query.dart';
 import 'package:salonat/utils/spaces.dart';
-import '../../../utils/extensions/theme/colors/color_manager.dart';
 import '../widgets/time_field.dart';
 
 class OpeningTimeScreen extends StatefulWidget {
@@ -58,8 +56,6 @@ class _OpeningTimeScreenState extends State<OpeningTimeScreen> {
                           onPressed: (){
                             setState((){
                               currentDay = widget.openingTime.keys.elementAt(index).tr();
-                              print(currentDay);
-                              print(widget.openingTime[currentDay]?.elementAt(0));
                               for(int i = 0; i < widget.isSelected.length; i++){
                                 if(i == index){
                                   widget.isSelected[i] = true;

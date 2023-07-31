@@ -5,7 +5,6 @@ import 'package:salonat/utils/common_widgets/sup_button.dart';
 import 'package:salonat/utils/common_widgets/warning_alert.dart';
 import 'package:salonat/utils/extensions/media_query/media_query.dart';
 import 'package:salonat/utils/extensions/navigation/navigation.dart';
-import '../../../utils/common_widgets/dialog_button.dart';
 import '../../../utils/common_widgets/texts.dart';
 import '../../../utils/extensions/theme/colors/color_manager.dart';
 

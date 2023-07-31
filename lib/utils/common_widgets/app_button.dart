@@ -2,7 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:salonat/utils/common_widgets/texts.dart';
 import 'package:salonat/utils/extensions/media_query/media_query.dart';
-import '../../app/services/widgets/service_textfield.dart';
+import '../../app/services/widgets/service_text-field.dart';
 import '../extensions/theme/colors/color_manager.dart';
 import '../spaces.dart';
 
