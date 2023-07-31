@@ -62,11 +62,12 @@ class _OffersViewState extends State<OffersView> {
                                 child: IconButton(
                                     onPressed: () {},
                                     icon: CircleAvatar(
-                                        maxRadius: 15,
+                                        maxRadius: 12,
                                         backgroundColor: ColorManager.greyColor,
                                         child: const Icon(
                                           Icons.clear,
-                                        )))),
+                                        ))),
+                            ),
                             Positioned(
                               left: 0,
                               right: 0,
@@ -93,7 +94,7 @@ class _OffersViewState extends State<OffersView> {
                                         Expanded(
                                           flex: 2,
                                           child: Container(
-                                            
+
                                             padding: EdgeInsets.symmetric(
                                               horizontal: context.width / 30,
                                             ),
