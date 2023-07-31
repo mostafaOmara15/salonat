@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:salonat/app/booking/cubit/booking_cubit.dart';
 import 'package:salonat/app/booking/cubit/booking_states.dart';
+import 'package:salonat/app/booking/widget/book_history_card.dart';
 import 'package:salonat/app/booking_details/view/booking_details_view.dart';
 import 'package:salonat/utils/common_widgets/texts.dart';
 import 'package:salonat/utils/extensions/media_query/media_query.dart';
@@ -112,77 +113,7 @@ class _BookingScreenState extends State<BookingScreen> {
                     physics: const NeverScrollableScrollPhysics(),
                     itemCount: 3,
                     itemBuilder: (BuildContext context, int index) {
-                      return Padding(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: context.width * 0.04,
-                            vertical: context.height * 0.01),
-                        child: Container(
-                          width: context.width,
-                          height: context.height * 0.15,
-                          padding: EdgeInsets.only(
-                              right: context.width * 0.04,
-                              left: context.width * 0.04,
-                              top: context.height * 0.01,
-                              bottom: context.width * 0.003),
-                          margin: EdgeInsets.all(context.width * 0.01),
-                          decoration: BoxDecoration(
-                              border:
-                                  Border.all(color: const Color(0xffA9A2A2)),
-                              borderRadius: BorderRadius.circular(10)),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Row(
-                                children: [
-                                  Column(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      mediumBody("clientName".tr(),
-                                          ColorManager.blackColor, false),
-                                      mediumBody("phoneNumber".tr(),
-                                          ColorManager.blackColor, false),
-                                      mediumBody("time".tr(),
-                                          ColorManager.blackColor, false),
-                                      mediumBody("reservationAmount".tr(),
-                                          ColorManager.blackColor, false),
-                                    ],
-                                  ),
-                                  widthSpace(context.width * 0.15),
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      mediumBody("Example",
-                                          ColorManager.blackColor, false),
-                                      mediumBody("01111111111",
-                                          ColorManager.blackColor, false),
-                                      mediumBody("11:00",
-                                          ColorManager.blackColor, false),
-                                      mediumBody("SAR 1233",
-                                          ColorManager.blackColor, false),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  mediumBody("More details ->",
-                                          ColorManager.blackColor, false)
-                                      .onTap(() {
-                                    context.push(const BookingDetailsView());
-                                  }),
-                                ],
-                              )
-                            ],
-                          ),
-                        ),
-                      );
+                      return BookHistoryCard();
                     },
                   ),
                 ),

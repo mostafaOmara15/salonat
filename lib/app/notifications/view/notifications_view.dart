@@ -18,6 +18,7 @@ class NotificationScreen extends StatelessWidget {
         centerTitle: true,
       ),
       body: ListView.builder(
+        padding: EdgeInsets.all(context.width * 0.03),
           shrinkWrap: true,
           itemBuilder: (context, index) {
             return ListView(
