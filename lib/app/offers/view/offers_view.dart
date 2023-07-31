@@ -47,13 +47,7 @@ class _OffersViewState extends State<OffersView> {
                     height: context.height / 2.1,
                     child: Column(
                       children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            IconButton(
-                                onPressed: () {}, icon: const Icon(Icons.clear))
-                          ],
-                        ),
+
                         heightSpace(context.height / 50),
                         Stack(
                           children: [
@@ -61,6 +55,17 @@ class _OffersViewState extends State<OffersView> {
                                 fit: BoxFit.fill,
                                 width: double.infinity,
                                 height: context.height / 2.8),
+                            Positioned(
+                                right: 0,
+                                top: 0,
+                                child: IconButton(
+                                    onPressed: () {},
+                                    icon: CircleAvatar(
+                                        maxRadius: 15,
+                                        backgroundColor: ColorManager.greyColor,
+                                        child: const Icon(
+                                          Icons.clear,
+                                        )))),
                             Positioned(
                               left: 0,
                               right: 0,

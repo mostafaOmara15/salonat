@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:salonat/app/booking/view/booking_screen.dart';
-import 'package:salonat/app/notifications/view/notifications_screen.dart';
+import 'package:salonat/app/notifications/view/notifications_view.dart';
 import 'package:salonat/app/offers/cubit/offer_cubit.dart';
 import 'package:salonat/app/offers/view/offers_view.dart';
 import 'package:salonat/utils/extensions/media_query/media_query.dart';
