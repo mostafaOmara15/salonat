@@ -42,7 +42,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         if(state is SalonSuccessState){
           print("success");
           print(DateFormat.E().format(DateTime.now()));
-          print(profileCubit.salon.openingTime);
+          // print(profileCubit.salon.openingTime);
         }
       },
       builder: (context, state) {
@@ -129,6 +129,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         heightSpace(context.height * 0.01),
                         profileCubit.showReview == false
                             ? SalonInfo(
+                          openingtime:profileCubit.salon.openingtime ,
                             info: profileCubit.salon.about,
                             address: profileCubit.salon.address,
                         )

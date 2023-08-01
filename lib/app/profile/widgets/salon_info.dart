@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:salonat/app/profile/model/salon_model.dart';
 import 'package:salonat/utils/common_widgets/sup_button.dart';
 import 'package:salonat/utils/extensions/media_query/media_query.dart';
 import 'package:salonat/utils/extensions/navigation/navigation.dart';
@@ -12,8 +13,10 @@ import 'about_salon.dart';
 class SalonInfo extends StatelessWidget {
   String? info;
   String? address;
+  List<OpeningTime>? openingtime;
+
   String currentDay = DateFormat.E().format(DateTime.now());
-  SalonInfo({super.key, required this.info, required this.address});
+  SalonInfo({super.key, required this.info, required this.address,required this.openingtime});
 
   @override
   Widget build(BuildContext context) {
@@ -35,8 +38,8 @@ class SalonInfo extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            smallTitle("${"openFrom".tr()}  -} ", ColorManager.blackColor, false),
-            SupButton(height: context.height * 0.03, title: "edit".tr(), onTap:() {context.push(OpeningTimeScreen());})
+            smallTitle("${"openFrom".tr()} ${(openingtime!.where((element) => element.day==currentDay).toList())[0].open!} - ${(openingtime!.where((element) => element.day==currentDay).toList())[0].close!} ", ColorManager.blackColor, false),
+            SupButton(height: context.height * 0.03, title: "edit".tr(), onTap:() {context.push(OpeningTimeScreen(openingtime:openingtime!,));})
           ],
         ),
       ],
