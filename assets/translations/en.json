@@ -52,5 +52,12 @@
   "client_name": "Client Name",
   "reservation_amount": "Reservation amount",
   "staff_name": "Staff Name",
-  "phoneNumber" : "Phone Number"
+  "phoneNumber" : "Phone Number",
+  "user_not_found": "No user found for that email",
+  "wrong_password": "Wrong password",
+  "try_again": "something error please try again",
+  "enter_password": "Please enter password",
+  "enter_valid_mail": "Please enter valid email",
+  "enter_mail": "Please enter email"
+
 }

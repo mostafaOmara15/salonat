@@ -18,7 +18,7 @@ class LoginFormField extends StatelessWidget {
   (
     {
       super.key,
-      this.validate,
+      required this.validate,
       required this.fieldCtrl,
       required this.withIcon,
       required this.fieldIcon,

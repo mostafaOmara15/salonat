@@ -1,13 +1,11 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:salonat/app/layout/view/app_layout.dart';
 import 'package:salonat/app/login/cubit/login_cubit.dart';
 import 'package:salonat/app/login/cubit/login_states.dart';
 import 'package:salonat/app/login/widgets/login_button.dart';
 import 'package:salonat/app/login/widgets/login_form_field.dart';
 import 'package:salonat/utils/common_widgets/loading_indecator.dart';
-import 'package:salonat/utils/extensions/navigation/navigation.dart';
 import 'package:salonat/utils/extensions/theme/colors/color_manager.dart';
 import 'package:salonat/utils/common_widgets/logo_victor.dart';
 import 'package:salonat/utils/extensions/media_query/media_query.dart';
@@ -45,6 +43,7 @@ class LoginView extends StatelessWidget {
                                   ColorManager.whiteColor, true),
                               heightSpace(context.width * 0.15),
                               LoginFormField(
+                                validate: loginCubit.emailValidator(),
                                 fieldCtrl: loginCubit.userNameCtrl,
                                 withIcon: false,
                                 fieldIcon: Icons.email_outlined,
@@ -54,6 +53,7 @@ class LoginView extends StatelessWidget {
                               ),
                               heightSpace(context.width * 0.05),
                               LoginFormField(
+                                validate: loginCubit.passwordValidator(),
                                 fieldCtrl: loginCubit.passwordCtrl,
                                 fieldIcon: Icons.lock_outline_rounded,
                                 fieldHint: "Password",

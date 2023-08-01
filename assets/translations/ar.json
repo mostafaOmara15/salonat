@@ -52,5 +52,11 @@
   "client_name": "اسم العميل",
   "reservation_amount": "مبلغ الحجز",
   "staff_name": "اسم الموظف",
-  "phoneNumber" : "رقم الهاتف"
+  "phoneNumber" : "رقم الهاتف",
+  "user_not_found": "البريد الالكتوني غير صحيح",
+  "wrong_password": "كلمة المرور غير صحيحة",
+  "try_again": "حدث خطأ ما الرجاء المحاولة مرة اخرى",
+  "enter_password": "الرجاء ادخال كلمة المرور",
+  "enter_valid_mail": "الرجاء ادخال بريد الكتروني صالح",
+  "enter_mail": "الرجاء ادخال بريد الكتروني"
 }
