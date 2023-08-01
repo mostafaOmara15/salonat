@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "951617145388",
+    "project_id": "salons-e6547",
+    "storage_bucket": "salons-e6547.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:951617145388:android:73b2208b0203061cfcdf89",
+        "android_client_info": {
+          "package_name": "com.example.salonat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "951617145388-3qs75kalt9goovenca2f6fhr2r8aacaf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCZzjZ98kqRPipg2hXyrXcWRdBc0QonlpY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "951617145388-3qs75kalt9goovenca2f6fhr2r8aacaf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
