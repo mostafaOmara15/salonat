@@ -29,6 +29,7 @@ class LoginCubit extends Cubit<LoginStates> {
 
   login({required BuildContext context}) async {
     try {
+      emit(LoginLoadingState());
       UserCredential userCredential = await _auth.signInWithEmailAndPassword(
         email: userNameCtrl.text,
         password: passwordCtrl.text,
@@ -37,8 +38,12 @@ class LoginCubit extends Cubit<LoginStates> {
       prefs.saveBoolean(isUserLogin, true);
       print("uid======================> ${userCredential.user!.uid}");
       context.pushReplacement(AppLayout());
+      emit(LoginInitialState());
+
 
     } on FirebaseAuthException catch (e) {
+      emit(LoginErrorState());
+
       if (e.code == 'user-not-found') {
         print('No user found for that email.');
       } else if (e.code == 'wrong-password') {

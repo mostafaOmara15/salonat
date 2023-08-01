@@ -1,6 +1,8 @@
 import 'package:carousel_slider/carousel_controller.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:salonat/services/locator.dart';
+import 'package:salonat/services/shared_pref.dart';
 import 'package:salonat/utils/common_widgets/dialog_button.dart';
 import 'package:salonat/utils/common_widgets/texts.dart';
 import 'package:salonat/utils/common_widgets/warning_alert.dart';
@@ -17,7 +19,6 @@ class ImagesSlider extends StatefulWidget {
 }
 
 class _ImagesSliderState extends State<ImagesSlider> {
-
   List<String> imagesUrl = [
     "https://www.rd.com/wp-content/uploads/2020/06/GettyImages-1139132195.jpg?resize=2048,1367",
     "https://cdn.concreteplayground.com/content/uploads/2022/04/Telleish-Pic-1.jpg-Salon-1920x1080.jpeg",
@@ -32,8 +33,7 @@ class _ImagesSliderState extends State<ImagesSlider> {
     return SizedBox(
       width: context.width,
       height: context.height * 0.275,
-      child: Stack(
-          alignment: AlignmentDirectional.centerEnd, children: [
+      child: Stack(alignment: AlignmentDirectional.centerEnd, children: [
         Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -45,14 +45,14 @@ class _ImagesSliderState extends State<ImagesSlider> {
                 items: imagesUrl.map((e) {
                   return Container(
                     decoration: BoxDecoration(
-                      image: DecorationImage(fit: BoxFit.cover, image: NetworkImage(e))
-                    ),
+                        image: DecorationImage(
+                            fit: BoxFit.cover, image: NetworkImage(e))),
                   );
                 }).toList(),
                 options: CarouselOptions(
-                  autoPlay: true,
-                  initialPage: 0,
-                  viewportFraction: 1,
+                    autoPlay: true,
+                    initialPage: 0,
+                    viewportFraction: 1,
                     onPageChanged: (index, _) {
                       setState(() {
                         _currentIndex = index;
@@ -64,14 +64,13 @@ class _ImagesSliderState extends State<ImagesSlider> {
               activeIndex: _currentIndex,
               count: imagesUrl.length,
               effect: SlideEffect(
-                spacing: 3,
-                radius: 5,
-                dotWidth: context.width * 0.05,
-                dotHeight: 3,
-                paintStyle: PaintingStyle.fill,
-                dotColor: ColorManager.greyColor,
-                activeDotColor: ColorManager.primaryColor
-              ),
+                  spacing: 3,
+                  radius: 5,
+                  dotWidth: context.width * 0.05,
+                  dotHeight: 3,
+                  paintStyle: PaintingStyle.fill,
+                  dotColor: ColorManager.greyColor,
+                  activeDotColor: ColorManager.primaryColor),
             ),
           ],
         ),
@@ -88,8 +87,7 @@ class _ImagesSliderState extends State<ImagesSlider> {
                     return WarningAlert(
                         title: "",
                         supTitle: "warningImage".tr(),
-                        action: (){}
-                    );
+                        action: () {});
                   },
                 );
               },
@@ -102,19 +100,31 @@ class _ImagesSliderState extends State<ImagesSlider> {
                 decoration: BoxDecoration(
                     color: ColorManager.greyColor.withOpacity(0.67),
                     borderRadius: BorderRadius.circular(50)),
-                child: const Icon(Icons.close_sharp,size: 18,),
+                child: const Icon(
+                  Icons.close_sharp,
+                  size: 18,
+                ),
               ),
             ),
             IconButton(
-              onPressed: () {},
+              onPressed: () {
+                /// Todo clear this
+                var prefs = locator<SharedPrefServices>();
+                prefs.clearPrefs();
+              },
               icon: Container(
                 alignment: Alignment.center,
                 // backgroundColor: ColorManager.primaryColor,
                 // radius: context.height * 0.018,
                 width: 25,
                 height: 25,
-                decoration: BoxDecoration(color:ColorManager.primaryColor, borderRadius: BorderRadius.circular(50)),
-                child: const Icon(Icons.add,size: 18,),
+                decoration: BoxDecoration(
+                    color: ColorManager.primaryColor,
+                    borderRadius: BorderRadius.circular(50)),
+                child: const Icon(
+                  Icons.add,
+                  size: 18,
+                ),
               ),
             ),
           ],
