@@ -30,8 +30,13 @@ class OpeningTimeScreen extends StatefulWidget {
 class _OpeningTimeScreenState extends State<OpeningTimeScreen> {
   TextEditingController fromTimeCtrl = TextEditingController();
   TextEditingController toTimeCtrl = TextEditingController();
-  String currentDay = "Sat".tr();
-
+  String ?currentDay;
+@override
+  void initState() {
+  currentDay= widget.openingtime[0].day.toString();
+    // TODO: implement initState
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     // print(widget.openingtime)
