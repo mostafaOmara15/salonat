@@ -12,18 +12,19 @@ import '../../../utils/extensions/theme/colors/color_manager.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
 class ImagesSlider extends StatefulWidget {
-  const ImagesSlider({super.key});
+  List<dynamic>? imagesUrl;
+  ImagesSlider({super.key, this.imagesUrl});
 
   @override
   State<ImagesSlider> createState() => _ImagesSliderState();
 }
 
 class _ImagesSliderState extends State<ImagesSlider> {
-  List<String> imagesUrl = [
-    "https://www.rd.com/wp-content/uploads/2020/06/GettyImages-1139132195.jpg?resize=2048,1367",
-    "https://cdn.concreteplayground.com/content/uploads/2022/04/Telleish-Pic-1.jpg-Salon-1920x1080.jpeg",
-    "https://res.cloudinary.com/conferences-and-exhibitions-pvt-ltd/image/upload/v1655285681/Salon-Management/2022/June/Men/Lead_e305ap.jpg"
-  ];
+  // List<String> imagesUrl = [
+  //   "https://www.rd.com/wp-content/uploads/2020/06/GettyImages-1139132195.jpg?resize=2048,1367",
+  //   "https://cdn.concreteplayground.com/content/uploads/2022/04/Telleish-Pic-1.jpg-Salon-1920x1080.jpeg",
+  //   "https://res.cloudinary.com/conferences-and-exhibitions-pvt-ltd/image/upload/v1655285681/Salon-Management/2022/June/Men/Lead_e305ap.jpg"
+  // ];
   final indicatorController = PageController();
   final CarouselController _controller = CarouselController();
   int _currentIndex = 0;
@@ -42,7 +43,7 @@ class _ImagesSliderState extends State<ImagesSlider> {
               height: context.height * 0.26,
               child: CarouselSlider(
                 carouselController: _controller,
-                items: imagesUrl.map((e) {
+                items: widget.imagesUrl?.map((e) {
                   return Container(
                     decoration: BoxDecoration(
                         image: DecorationImage(
@@ -62,7 +63,7 @@ class _ImagesSliderState extends State<ImagesSlider> {
             ),
             AnimatedSmoothIndicator(
               activeIndex: _currentIndex,
-              count: imagesUrl.length,
+              count: widget.imagesUrl!.length,
               effect: SlideEffect(
                   spacing: 3,
                   radius: 5,

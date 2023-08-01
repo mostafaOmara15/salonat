@@ -17,111 +17,134 @@ import 'package:salonat/utils/spaces.dart';
 import '../../services/view/services_screen.dart';
 import '../../staff/view/staff_screen.dart';
 
-class ProfileScreen extends StatelessWidget {
+class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);
 
   @override
+  State<ProfileScreen> createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
+  late ProfileCubit profileCubit;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    profileCubit = ProfileCubit.get(context);
+    profileCubit.getSalonData();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => ProfileCubit(),
-      child: BlocConsumer<ProfileCubit, ProfileStates>(
-        listener: (context, state) {},
-        builder: (context, state) {
-          ProfileCubit profileCubit = ProfileCubit.get(context);
+    return BlocConsumer<ProfileCubit, ProfileStates>(
+      listener: (context, state) {
+        if(state is SalonSuccessState){
+          print("success");
+          print(DateFormat.E().format(DateTime.now()));
+          print(profileCubit.salon.openingTime);
+        }
+      },
+      builder: (context, state) {
+        if(state is SalonLoadingState){
+          return Center(child: CircularProgressIndicator(color: ColorManager.primaryColor));
+        }else if(state is SalonErrorState){
+          return const Center(child: Text("Error"));
+        }else{
           return Scaffold(
             appBar: AppBar(title: LogoVictor(size: 0.05), centerTitle: true),
             body: Padding(
               padding: EdgeInsets.all(context.width * 0.022),
               child: ListView(
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const ImagesSlider(),
-                      Row(
-                        children: [
-                          widthSpace(context.width * 0.025),
-                          mediumTitle("NIRVANA", ColorManager.darkBrownColor, false),
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          widthSpace(context.width * 0.045),
-                          Image.asset("assets/images/5_stars.png", width: context.width * 0.15),
-                          widthSpace(context.width * 0.03),
-                          mediumTitle("5.0", ColorManager.blackColor, false),
-                        ],
-                      ),
-                      heightSpace(context.height * 0.015),
-                      Row(
-                        children: [
-                          widthSpace(context.width * 0.025),
-                          CircleAvatar(
-                            backgroundColor: ColorManager.primaryColor,
-                            radius: context.width * 0.025,
-                            child: Image.asset("assets/icons/eye_icon.png", height: context.width * 0.025)
-                          ),
-                          widthSpace(context.width * 0.02),
-                          smallTitle("98 ${"viewed your profile".tr()}", ColorManager.darkGreyColor, false),
-                        ],
-                      ),
-                      heightSpace(context.height * 0.01),
-                      Row(
-                        children: [
-                          widthSpace(context.width * 0.025),
-                          mediumTitle(
-                            "about".tr(),
-                            profileCubit.showReview == false ? ColorManager.blackColor : ColorManager.darkGreyColor,
-                            false
-                          ).onTap((){profileCubit.showSalonInfo();}),
-                          SizedBox(
-                            height: context.height * 0.03,
-                            child: VerticalDivider(color: ColorManager.greyColor, thickness: 1.5, indent: 5, width: 15),
-                          ),
-
-                          RichText(
-                            text: TextSpan(
-                              style: GoogleFonts.fraunces(
-                                textStyle: TextStyle(
-                                  color: profileCubit.showReview ? ColorManager.blackColor : ColorManager.darkGreyColor,
-                                  letterSpacing: 0.5
-                                )
-                              ),
-                              children: <TextSpan>[
-                                TextSpan(
-                                  text: "reviews".tr(),
-                                  style: GoogleFonts.fraunces(
-                                      textStyle: const TextStyle(fontSize: 16, decoration: TextDecoration.underline)),
-                                ),
-                                TextSpan(
-                                  text: ' ( 57 ${"comment".tr()})',
-                                  style: GoogleFonts.fraunces(textStyle: const TextStyle(fontSize: 10)),
-                                )
-                              ],
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        ImagesSlider(imagesUrl: profileCubit.salon.images),
+                        Row(
+                          children: [
+                            widthSpace(context.width * 0.025),
+                            mediumTitle(profileCubit.salon.name?.toUpperCase(), ColorManager.darkBrownColor, false),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            widthSpace(context.width * 0.045),
+                            Image.asset("assets/images/5_stars.png", width: context.width * 0.15),
+                            widthSpace(context.width * 0.03),
+                            mediumTitle("5.0", ColorManager.blackColor, false),
+                          ],
+                        ),
+                        heightSpace(context.height * 0.015),
+                        Row(
+                          children: [
+                            widthSpace(context.width * 0.025),
+                            CircleAvatar(
+                                backgroundColor: ColorManager.primaryColor,
+                                radius: context.width * 0.025,
+                                child: Image.asset("assets/icons/eye_icon.png", height: context.width * 0.025)
                             ),
-                          ).onTap((){profileCubit.showSalonReview();}),
-                        ],
-                      ),
+                            widthSpace(context.width * 0.02),
+                            smallTitle("${profileCubit.salon.views} ${"viewed your profile".tr()}", ColorManager.darkGreyColor, false),
+                          ],
+                        ),
+                        heightSpace(context.height * 0.01),
+                        Row(
+                          children: [
+                            widthSpace(context.width * 0.025),
+                            mediumTitle(
+                                "about".tr(),
+                                profileCubit.showReview == false ? ColorManager.blackColor : ColorManager.darkGreyColor,
+                                false
+                            ).onTap((){profileCubit.showSalonInfo();}),
+                            SizedBox(
+                              height: context.height * 0.03,
+                              child: VerticalDivider(color: ColorManager.greyColor, thickness: 1.5, indent: 5, width: 15),
+                            ),
 
-                      heightSpace(context.height * 0.01),
-                      profileCubit.showReview == false
-                        ? SalonInfo(
-                          info: 'Nirvana Spa is a luxurious space with 6 treatment rooms for women and 4 for men, offering a full range of body treatments, facials and massages. At Nirvana Spa, we have a modern and fully equipped Fitness Centre, along with a Health Club that offers jacuzzi, sauna, steam.',
-                          address: "at Grand Hyatt al khobar hotel and residences"
+                            RichText(
+                              text: TextSpan(
+                                style: GoogleFonts.fraunces(
+                                    textStyle: TextStyle(
+                                        color: profileCubit.showReview ? ColorManager.blackColor : ColorManager.darkGreyColor,
+                                        letterSpacing: 0.5
+                                    )
+                                ),
+                                children: <TextSpan>[
+                                  TextSpan(
+                                    text: "reviews".tr(),
+                                    style: GoogleFonts.fraunces(
+                                        textStyle: const TextStyle(fontSize: 16, decoration: TextDecoration.underline)),
+                                  ),
+                                  TextSpan(
+                                    text: ' ( 57 ${"comment".tr()})',
+                                    style: GoogleFonts.fraunces(textStyle: const TextStyle(fontSize: 10)),
+                                  )
+                                ],
+                              ),
+                            ).onTap((){profileCubit.showSalonReview();}),
+                          ],
+                        ),
+
+                        heightSpace(context.height * 0.01),
+                        profileCubit.showReview == false
+                            ? SalonInfo(
+                            info: profileCubit.salon.about,
+                            address: profileCubit.salon.address,
                         )
-                        : SalonReviews(reviews: profileCubit.reviews),
+                            : SalonReviews(reviews: profileCubit.reviews),
                         heightSpace(context.height * 0.01),
 
                         ProfileTile(title: "services".tr(), navigatedScreen: const ServicesScreen()),
                         ProfileTile(title: "staff".tr(), navigatedScreen: const StaffScreen()),
-                    ],
-                  ),
-                ]
+                      ],
+                    ),
+                  ]
               ),
             ),
           );
-        },
-      ),
+        }
+      },
     );
   }
 }

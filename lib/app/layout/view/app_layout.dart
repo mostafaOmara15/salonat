@@ -5,6 +5,7 @@ import 'package:salonat/app/booking/view/booking_view.dart';
 import 'package:salonat/app/notifications/view/notifications_view.dart';
 import 'package:salonat/app/offers/cubit/offer_cubit.dart';
 import 'package:salonat/app/offers/view/offers_view.dart';
+import 'package:salonat/app/profile/view_model/cubit/profile_cubit.dart';
 import 'package:salonat/utils/extensions/media_query/media_query.dart';
 import 'package:salonat/utils/extensions/theme/colors/color_manager.dart';
 import '../../profile/view/profile_screen.dart';
@@ -15,7 +16,10 @@ class AppLayout extends StatelessWidget {
   final PersistentTabController _controller = PersistentTabController(initialIndex: 0);
   List<Widget> _buildScreens() {
     return [
-      const ProfileScreen(),
+      BlocProvider<ProfileCubit>(
+        create: (context) => ProfileCubit(),
+        child: const ProfileScreen(),
+      ),
       BlocProvider<OfferCubit>(
         create: (context) => OfferCubit(),
         child: const OffersView(),

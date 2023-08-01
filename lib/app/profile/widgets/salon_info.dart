@@ -10,15 +10,18 @@ import '../../opening/view/opening_screen.dart';
 import 'about_salon.dart';
 
 class SalonInfo extends StatelessWidget {
-  String info;
-  String address;
+  String? info;
+  String? address;
+  String currentDay = DateFormat.E().format(DateTime.now());
   SalonInfo({super.key, required this.info, required this.address});
 
   @override
   Widget build(BuildContext context) {
+    print(currentDay);
+
     return Column(
       children: [
-        AboutTheSalon(text: info),
+        AboutTheSalon(text: info!),
         heightSpace(context.height * 0.01),
         Row(
           children: [
@@ -32,7 +35,7 @@ class SalonInfo extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            smallTitle("${"openFrom".tr()} 09:00am - 10:00pm ", ColorManager.blackColor, false),
+            smallTitle("${"openFrom".tr()}  -} ", ColorManager.blackColor, false),
             SupButton(height: context.height * 0.03, title: "edit".tr(), onTap:() {context.push(OpeningTimeScreen());})
           ],
         ),
