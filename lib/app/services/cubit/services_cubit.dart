@@ -19,7 +19,6 @@ class ServicesCubit extends Cubit<ServicesState> {
   List<MainServicesModel> mainServices = [];
   var prefs = locator<SharedPrefServices>();
   int mainServiceIndex=0;
-  List<List<SubServicesModel>> subServicesModel = [];
   TextEditingController serviceNameCtrl = TextEditingController();
   TextEditingController serviceDurationCtrl = TextEditingController();
   TextEditingController serviceDescriptionCtrl = TextEditingController();
