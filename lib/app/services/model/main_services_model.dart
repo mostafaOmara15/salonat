@@ -1,10 +1,13 @@
+import 'package:salonat/app/services/model/sub_services_model.dart';
+
 class MainServicesModel {
   MainServicesModel({
       this.image, 
       this.titleen, 
       this.id, 
       this.salonsid, 
-      this.titlear,});
+      this.titlear,
+  });
 
   MainServicesModel.fromJson(dynamic json) {
     image = json['image'].toString();
@@ -18,6 +21,7 @@ class MainServicesModel {
   String? id;
   List<String>? salonsid;
   String? titlear;
+  List<SubServicesModel>subServicesModel=[];
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};

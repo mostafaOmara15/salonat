@@ -18,7 +18,7 @@ class ServicesCubit extends Cubit<ServicesState> {
   ServicesCubit() : super(ServicesInitial());
   List<MainServicesModel> mainServices = [];
   var prefs = locator<SharedPrefServices>();
- List<List<SubServicesModel>> subServicesModel=[];
+  List<List<SubServicesModel>> subServicesModel = [];
   TextEditingController serviceNameCtrl = TextEditingController();
   TextEditingController serviceDurationCtrl = TextEditingController();
   TextEditingController serviceDescriptionCtrl = TextEditingController();
@@ -30,9 +30,10 @@ class ServicesCubit extends Cubit<ServicesState> {
       await FirebaseFirestore.instance
           .collection("main-services")
           .get()
-          .then((QuerySnapshot querySnapshot) {
+          .then((QuerySnapshot querySnapshot) async {
         for (var doc in querySnapshot.docs) {
           mainServices.add(MainServicesModel.fromJson(doc.data()));
+          await getSubServices(mainServiceId: doc.id.toString());
         }
         emit(ServicesLoaded());
       });
@@ -51,7 +52,13 @@ class ServicesCubit extends Cubit<ServicesState> {
           .get()
           .then((QuerySnapshot querySnapshot) {
         for (var doc in querySnapshot.docs) {
-         // subServicesModel.
+          (mainServices.where((element) => element.id == mainServices)
+              .toList())[0].subServicesModel.add(
+              SubServicesModel.fromJson(doc.data()));
+
+          print((mainServices.where((element) => element.id == mainServices)
+              .toList())[0].subServicesModel[0].titlear);
+          // subServicesModel.
           //  mainServices.add(MainServicesModel.fromJson(doc.data()));
         }
       });
