@@ -55,7 +55,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    ImagesSlider(imagesUrl: profileCubit.salon.images),
+                    ImagesSlider(imagesUrl: profileCubit.salon.coverimages),
                     Row(
                       children: [
                         widthSpace(context.width * 0.025),

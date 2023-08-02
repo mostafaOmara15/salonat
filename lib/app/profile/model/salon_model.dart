@@ -1,66 +1,74 @@
 class SalonModel {
   SalonModel({
+    this.subscriptionjoindate,
     this.openingtime,
-    this.images,
+    this.coverimages,
     this.address,
     this.devicetoken,
-    this.name,
     this.subscriptionenddate,
-    this.about,
+    this.name,
     this.location,
-    this.id,
     this.views,
+    this.about,
     this.email,
   });
 
   SalonModel.fromJson(dynamic json) {
+    final map = <String, dynamic>{};
+    subscriptionjoindate = json['subscription-join-date'];
     if (json['opening-time'] != null) {
       openingtime = [];
       json['opening-time'].forEach((v) {
         openingtime?.add(OpeningTime.fromJson(v));
       });
     }
-    images = json['images'] != null ? json['images'].cast<String>() : [];
-    address = json['address'];
-    devicetoken = json['device-token'];
-    name = json['name'];
-    subscriptionenddate = json['subscription-end-date'];
-    about = json['about'];
-    location =
-        json['location'] != null ? Location.fromJson(json['location']) : null;
-    id = json['id'];
+    if (location != null) {
+      map['location'] = location?.toJson();
+    }
     views = json['views'];
+
+    coverimages =
+        json['cover-images'] != null ? json['cover-images'].cast<String>() : [];
+    devicetoken =
+        json['device-token'] != null ? json['device-token'].cast<String>() : [];
+    address = json['address'];
+    subscriptionenddate = json['subscription-end-date'];
+    name = json['name'];
+    about = json['about'];
+
     email = json['email'];
   }
 
+  String? subscriptionjoindate;
   List<OpeningTime>? openingtime;
-  List<String>? images;
+  List<String>? coverimages;
   String? address;
-  String? devicetoken;
-  String? name;
+  List<dynamic>? devicetoken;
   String? subscriptionenddate;
-  String? about;
-  Location? location;
-  String? id;
+  String? name;
   num? views;
+  Location? location;
+  String? about;
   String? email;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
+    map['subscription-join-date'] = subscriptionjoindate;
     if (openingtime != null) {
       map['opening-time'] = openingtime?.map((v) => v.toJson()).toList();
     }
-    map['images'] = images;
-    map['address'] = address;
-    map['device-token'] = devicetoken;
-    map['name'] = name;
-    map['subscription-end-date'] = subscriptionenddate;
-    map['about'] = about;
     if (location != null) {
       map['location'] = location?.toJson();
     }
-    map['id'] = id;
     map['views'] = views;
+    map['cover-images'] = coverimages;
+    map['address'] = address;
+    if (devicetoken != null) {
+      map['device-token'] = devicetoken?.map((v) => v.toJson()).toList();
+    }
+    map['subscription-end-date'] = subscriptionenddate;
+    map['name'] = name;
+    map['about'] = about;
     map['email'] = email;
     return map;
   }
@@ -90,25 +98,25 @@ class Location {
 
 class OpeningTime {
   OpeningTime({
-    this.day,
     this.close,
+    this.day,
     this.open,
   });
 
   OpeningTime.fromJson(dynamic json) {
-    day = json['day'];
     close = json['close'];
+    day = json['day'];
     open = json['open'];
   }
 
-  String? day;
   String? close;
+  String? day;
   String? open;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
-    map['day'] = day;
     map['close'] = close;
+    map['day'] = day;
     map['open'] = open;
     return map;
   }
