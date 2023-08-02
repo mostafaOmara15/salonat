@@ -8,13 +8,14 @@ import 'package:salonat/app/profile/widgets/images_slider.dart';
 import 'package:salonat/app/profile/widgets/profile_tile.dart';
 import 'package:salonat/app/profile/widgets/salon_info.dart';
 import 'package:salonat/app/profile/widgets/salon_reviews.dart';
+import 'package:salonat/app/services/cubit/services_cubit.dart';
 import 'package:salonat/utils/common_widgets/logo_victor.dart';
 import 'package:salonat/utils/common_widgets/texts.dart';
 import 'package:salonat/utils/extensions/media_query/media_query.dart';
 import 'package:salonat/utils/extensions/on_tap/on_tap.dart';
 import 'package:salonat/utils/extensions/theme/colors/color_manager.dart';
 import 'package:salonat/utils/spaces.dart';
-import '../../services/view/services_screen.dart';
+import '../../services/view/services_view.dart';
 import '../../staff/view/staff_screen.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -148,7 +149,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     heightSpace(context.height * 0.01),
                     ProfileTile(
                         title: "services".tr(),
-                        navigatedScreen: const ServicesScreen()),
+                        navigatedScreen:
+                        BlocProvider<ServicesCubit>(
+                          create:  (context) => ServicesCubit(),
+                          child: const ServicesView(),
+                        )
+                      ),
                     ProfileTile(
                         title: "staff".tr(),
                         navigatedScreen: const StaffScreen()),

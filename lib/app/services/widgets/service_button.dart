@@ -5,9 +5,9 @@ import '../../../utils/extensions/theme/colors/color_manager.dart';
 
 class ServiceButton extends StatelessWidget {
   String title;
-  bool active;
-
-  ServiceButton({super.key, required this.title, required this.active});
+  bool active=false;
+  Function()?onTap;
+  ServiceButton({super.key, required this.title, required this.active, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +17,7 @@ class ServiceButton extends StatelessWidget {
           style: ElevatedButton.styleFrom(
               backgroundColor: active ? ColorManager.primaryColor :ColorManager.greyColor,
               elevation: 0),
-          onPressed: (){},
+          onPressed: onTap,
           child: smallTitle(title, ColorManager.opacityBlackColor, false)
       ),
     );
