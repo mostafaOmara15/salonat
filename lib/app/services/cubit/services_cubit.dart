@@ -18,6 +18,7 @@ class ServicesCubit extends Cubit<ServicesState> {
   ServicesCubit() : super(ServicesInitial());
   List<MainServicesModel> mainServices = [];
   var prefs = locator<SharedPrefServices>();
+  int mainServiceIndex=0;
   List<List<SubServicesModel>> subServicesModel = [];
   TextEditingController serviceNameCtrl = TextEditingController();
   TextEditingController serviceDurationCtrl = TextEditingController();
@@ -52,14 +53,19 @@ class ServicesCubit extends Cubit<ServicesState> {
           .get()
           .then((QuerySnapshot querySnapshot) {
         for (var doc in querySnapshot.docs) {
-          (mainServices.where((element) => element.id == mainServices)
+          // print(doc.data());
+          if((mainServices.where((element) => element.id == mainServiceId)
+              .toList()).isNotEmpty) {
+            (mainServices.where((element) => element.id == mainServiceId)
               .toList())[0].subServicesModel.add(
               SubServicesModel.fromJson(doc.data()));
 
-          print((mainServices.where((element) => element.id == mainServices)
+
+          print((mainServices.where((element) => element.id == mainServiceId)
               .toList())[0].subServicesModel[0].titlear);
           // subServicesModel.
           //  mainServices.add(MainServicesModel.fromJson(doc.data()));
+        }
         }
       });
       emit(ServicesLoaded());

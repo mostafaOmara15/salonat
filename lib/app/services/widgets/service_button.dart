@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:salonat/utils/extensions/media_query/media_query.dart';
+import 'package:salonat/utils/extensions/on_tap/on_tap.dart';
 import '../../../utils/common_widgets/texts.dart';
 import '../../../utils/extensions/theme/colors/color_manager.dart';
 
 class ServiceButton extends StatelessWidget {
   String title;
   bool active=false;
-  Function()?onTap;
-  ServiceButton({super.key, required this.title, required this.active, required this.onTap});
-
+  ServiceButton({super.key, required this.title, required this.active,required onTap});
+  void Function() ?onTap;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -17,7 +17,7 @@ class ServiceButton extends StatelessWidget {
           style: ElevatedButton.styleFrom(
               backgroundColor: active ? ColorManager.primaryColor :ColorManager.greyColor,
               elevation: 0),
-          onPressed: onTap,
+          onPressed:onTap,
           child: smallTitle(title, ColorManager.opacityBlackColor, false)
       ),
     );

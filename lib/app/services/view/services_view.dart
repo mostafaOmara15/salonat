@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:salonat/app/services/cubit/services_cubit.dart';
 import 'package:salonat/app/services/widgets/service_bottom-sheet.dart';
-import 'package:salonat/app/services/widgets/service_button.dart';
 import 'package:salonat/app/services/widgets/service_tile.dart';
 import 'package:salonat/utils/common_widgets/app_button.dart';
 import 'package:salonat/utils/common_widgets/loading_indecator.dart';
@@ -48,27 +47,21 @@ class _ServicesViewState extends State<ServicesView> {
                         itemCount: cubit.mainServices.length,
                         itemBuilder: (context, index) {
                           return
-                            ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                    backgroundColor:  ColorManager.primaryColor ,
-                                    elevation: 0),
-                                onPressed: (){
-                                  cubit.getSubServices(mainServiceId:cubit.mainServices[index].id );
-                                },
-                                child: smallTitle( "current_language_iso".tr() == "en"
-                                ? cubit.mainServices[index].titleen!
-                                : cubit.mainServices[index].titlear!, ColorManager.opacityBlackColor, false)
+                            Padding(
+                              padding: EdgeInsets.symmetric(vertical: context.height * 0.03, horizontal: context.width * 0.02),
+                              child: ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                      backgroundColor: cubit.mainServiceIndex==index?ColorManager.greyColor: ColorManager.primaryColor ,
+                                      elevation: 0),
+                                  onPressed: (){
+                                      cubit.mainServiceIndex=index;
+                                      cubit.emit(ServicesLoaded());
+                                  },
+                                  child: smallTitle( "current_language_iso".tr() == "en"
+                                  ? cubit.mainServices[index].titleen!
+                                  : cubit.mainServices[index].titlear!, ColorManager.opacityBlackColor, false)
+                              ),
                             );
-                          //   ServiceButton(
-                          //   title: "current_language_iso".tr() == "en"
-                          //       ? cubit.mainServices[index].titleen!
-                          //       : cubit.mainServices[index].titlear!,
-                          //   active: false,
-                          //   onTap: (){
-                          //     cubit.getSubServices(mainServiceId:cubit.mainServices[index] );
-                          //
-                          //   },
-                          // );
                         },
                       ),
                     ),
@@ -78,14 +71,14 @@ class _ServicesViewState extends State<ServicesView> {
               Expanded(
                 child: SizedBox(
                   child: ListView.builder(
-                    itemCount: 6,
+                    itemCount: cubit.mainServices[cubit.mainServiceIndex].subServicesModel.length,
                     itemBuilder: (context, index) {
                       return ServiceTile(
-                          serviceTitle: "Nirvana Acne/Oily Skin 60",
+                          serviceTitle:cubit.mainServices[cubit.mainServiceIndex].subServicesModel[index].titleen!,
                           price: "SAR 630.00",
-                          duration: "60 MINUTES",
+                          duration: cubit.mainServices[cubit.mainServiceIndex].subServicesModel[index].duration!,
                           details:
-                              "Acne and oily skin can be addressed with deep-pore and deep-tissue cleansing to rid the skins excess oils and stimulate the circulation.");
+                          cubit.mainServices[cubit.mainServiceIndex].subServicesModel[index].descriptionen!);
                     },
                   ),
                 ),
