@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:salonat/app/login/cubit/login_cubit.dart';
 import 'package:salonat/app/splash/cubit/splash_cubit.dart';
-import 'package:salonat/app/splash/view/splash_screen.dart';
+import 'package:salonat/app/splash/view/splash_view.dart';
 import 'package:salonat/services/locator.dart';
 import 'package:salonat/utils/block_observer.dart';
 import 'package:salonat/utils/extensions/theme/colors/color_manager.dart';
@@ -31,7 +31,6 @@ Future<void> main() async {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
@@ -62,7 +61,7 @@ class MyApp extends StatelessWidget {
           ),
           home: BlocProvider<SplashCubit>(
             create: (context) => SplashCubit(),
-            child: const SplashScreen(),
+            child: const SplashView(),
           )),
     );
   }

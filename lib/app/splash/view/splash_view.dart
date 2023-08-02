@@ -9,14 +9,14 @@ import 'package:salonat/utils/common_widgets/logo_victor.dart';
 import 'package:salonat/utils/extensions/media_query/media_query.dart';
 import '../../../utils/spaces.dart';
 
-class SplashScreen extends StatefulWidget {
-  const SplashScreen({super.key});
+class SplashView extends StatefulWidget {
+  const SplashView({super.key});
 
   @override
-  State<SplashScreen> createState() => _SplashScreenState();
+  State<SplashView> createState() => _SplashViewState();
 }
 
-class _SplashScreenState extends State<SplashScreen> {
+class _SplashViewState extends State<SplashView> {
   late SplashCubit cubit;
 
   @override
