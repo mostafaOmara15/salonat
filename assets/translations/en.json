@@ -59,6 +59,16 @@
   "try_again": "something error please try again",
   "enter_password": "Please enter password",
   "enter_valid_mail": "Please enter valid email",
-  "enter_mail": "Please enter email"
+  "enter_mail": "Please enter email",
+  "service_name_en": "Service name",
+  "service_name_ar": "Service name arabic",
+"sar": "SAR",
+  "service_des_ar": "Service Description arabic",
+  "service_des_en": "Service Description",
+  "service_duration": "Service duration",
+  "service_price": "SAR 000",
+  "no_service": "No services added yet"
+
+
 
 }

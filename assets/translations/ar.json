@@ -59,5 +59,14 @@
   "try_again": "حدث خطأ ما الرجاء المحاولة مرة اخرى",
   "enter_password": "الرجاء ادخال كلمة المرور",
   "enter_valid_mail": "الرجاء ادخال بريد الكتروني صالح",
-  "enter_mail": "الرجاء ادخال بريد الكتروني"
+  "enter_mail": "الرجاء ادخال بريد الكتروني",
+  "service_name_en": "اسم الخدمة",
+  "service_name_ar": "اسم الخدمة عربي",
+  "sar": "ريال",
+  "service_des_ar": "وصف الخدمة عربي",
+  "service_des_en": "وصف الخدمة",
+  "service_duration": "مدة الخدمة",
+  "service_price": "000 ريال",
+  "no_service": "لايوجد خدمات"
+
 }

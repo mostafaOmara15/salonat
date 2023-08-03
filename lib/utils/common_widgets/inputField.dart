@@ -9,7 +9,7 @@ class InputField extends StatefulWidget {
   String hint;
   bool enable;
   bool enableIcon;
-
+  String language;
   final validator;
   Function()? onChange;
   FocusNode? focusNode;
@@ -24,6 +24,7 @@ class InputField extends StatefulWidget {
     this.isPassword = false,
     this.enableIcon = false,
     this.maxLine = 1,
+    this.language = '',
     this.enable = true,
     this.onChange,
     this.focusNode,
@@ -40,6 +41,11 @@ class _InputFieldState extends State<InputField> {
   Widget build(BuildContext context) {
     return Center(
       child: TextFormField(
+        textDirection: widget.language.isEmpty
+            ? null
+            : widget.language == "ar"
+                ? TextDirection.rtl
+                : TextDirection.ltr,
         maxLines: widget.maxLine,
         focusNode: widget.focusNode ?? FocusNode(),
         enabled: widget.enable,
@@ -61,10 +67,16 @@ class _InputFieldState extends State<InputField> {
           isDense: true,
           alignLabelWithHint: false,
           hintText: widget.hint,
-
-          hintStyle:  TextStyle(color: Colors.black26.withOpacity(0.3)),
+          hintTextDirection: widget.language.isEmpty
+              ? null
+              : widget.language == "ar"
+                  ? TextDirection.rtl
+                  : TextDirection.ltr,
+          hintStyle: TextStyle(
+            color: Colors.black26.withOpacity(0.3),
+          ),
           filled: true,
-          fillColor:Colors.transparent,
+          fillColor: Colors.transparent,
           labelStyle: TextStyle(
             color: Theme.of(context).colorScheme.primaryContainer,
           ),

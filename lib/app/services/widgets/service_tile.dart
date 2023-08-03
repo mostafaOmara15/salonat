@@ -1,10 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:salonat/app/edit_service/view/edit_service_screen.dart';
 import 'package:salonat/utils/common_widgets/sup_button.dart';
 import 'package:salonat/utils/common_widgets/warning_alert.dart';
 import 'package:salonat/utils/extensions/media_query/media_query.dart';
-import 'package:salonat/utils/extensions/navigation/navigation.dart';
 import '../../../utils/common_widgets/texts.dart';
 import '../../../utils/extensions/theme/colors/color_manager.dart';
 
@@ -14,8 +12,11 @@ class ServiceTile extends StatelessWidget {
   String price;
   String duration;
   String details;
+  dynamic Function() onTapEdit;
+  dynamic Function()  onTapDelete;
 
-  ServiceTile({super.key, required this.serviceTitle, required this.price, required this.duration, required this.details});
+
+  ServiceTile({super.key, required this.serviceTitle, required this.price, required this.duration, required this.details,required this.onTapEdit,required this.onTapDelete});
 
   @override
   Widget build(BuildContext context) {
@@ -33,9 +34,9 @@ class ServiceTile extends StatelessWidget {
                     barrierDismissible: false,
                     builder: (BuildContext context) {
                       return WarningAlert(
-                          title: "${"remove".tr()} ( Nirvana Anti Aging 90 )",
+                          title: "${"remove".tr()} $serviceTitle",
                           supTitle: "warningService".tr(),
-                          action: (){}
+                          action: onTapDelete
                       );
                     },
                   );
@@ -61,7 +62,7 @@ class ServiceTile extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                SupButton(height: context.height * 0.03, title: "edit".tr(), onTap: (){context.push(EditServiceScreen());}),
+                SupButton(height: context.height * 0.03, title: "edit".tr(), onTap: onTapEdit),
               ],
             )
           ],
