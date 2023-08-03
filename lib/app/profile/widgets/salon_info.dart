@@ -20,7 +20,6 @@ class SalonInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(currentDay);
     return Column(
       children: [
         AboutTheSalon(text: info!),
