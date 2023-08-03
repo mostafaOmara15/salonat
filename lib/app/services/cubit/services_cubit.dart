@@ -1,9 +1,6 @@
-import 'dart:convert';
 import 'dart:developer';
-
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 import 'package:salonat/app/services/model/main_services_model.dart';
@@ -11,7 +8,6 @@ import 'package:salonat/app/services/model/sub_services_model.dart';
 import 'package:salonat/services/locator.dart';
 import 'package:salonat/services/shared_pref.dart';
 import 'package:salonat/utils/strings/const_strings.dart';
-
 part 'services_state.dart';
 
 class ServicesCubit extends Cubit<ServicesState> {
@@ -52,18 +48,11 @@ class ServicesCubit extends Cubit<ServicesState> {
           .get()
           .then((QuerySnapshot querySnapshot) {
         for (var doc in querySnapshot.docs) {
-          // print(doc.data());
           if((mainServices.where((element) => element.id == mainServiceId)
               .toList()).isNotEmpty) {
             (mainServices.where((element) => element.id == mainServiceId)
               .toList())[0].subServicesModel.add(
               SubServicesModel.fromJson(doc.data()));
-
-
-          print((mainServices.where((element) => element.id == mainServiceId)
-              .toList())[0].subServicesModel[0].titlear);
-          // subServicesModel.
-          //  mainServices.add(MainServicesModel.fromJson(doc.data()));
         }
         }
       });
