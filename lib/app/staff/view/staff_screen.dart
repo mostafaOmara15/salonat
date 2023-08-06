@@ -1,5 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:salonat/app/add_staff/cubit/add_staff_cubit.dart';
 import 'package:salonat/app/add_staff/view/add_staff_screen.dart';
 import 'package:salonat/app/staff/widgets/staff_tile.dart';
 import 'package:salonat/utils/common_widgets/app_button.dart';
@@ -34,8 +36,13 @@ class StaffScreen extends StatelessWidget {
             ),
             AppButton(
               title: "addStaff".tr(),
-              onTap: (){
-                context.push(const AddStaff());
+              onTap: () {
+                context.push(
+                  BlocProvider<AddStaffCubit>(
+                    create: (context) => AddStaffCubit(),
+                    child: const AddStaff(),
+                  ),
+                );
               },
             ),
             heightSpace(context.height * 0.05),

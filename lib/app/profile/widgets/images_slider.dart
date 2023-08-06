@@ -1,10 +1,6 @@
 import 'package:carousel_slider/carousel_controller.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:salonat/services/locator.dart';
-import 'package:salonat/services/shared_pref.dart';
-import 'package:salonat/utils/common_widgets/dialog_button.dart';
-import 'package:salonat/utils/common_widgets/texts.dart';
 import 'package:salonat/utils/common_widgets/warning_alert.dart';
 import 'package:salonat/utils/extensions/media_query/media_query.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
