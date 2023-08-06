@@ -1,6 +1,8 @@
 import 'package:carousel_slider/carousel_controller.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
+import 'package:salonat/app/login/view/login_view.dart';
 import 'package:salonat/services/locator.dart';
 import 'package:salonat/services/shared_pref.dart';
 import 'package:salonat/utils/common_widgets/dialog_button.dart';
@@ -112,6 +114,12 @@ class _ImagesSliderState extends State<ImagesSlider> {
                 /// Todo clear this
                 var prefs = locator<SharedPrefServices>();
                 prefs.clearPrefs();
+                PersistentNavBarNavigator.pushNewScreen(
+                  context,
+                  screen: const LoginView(),
+                  withNavBar: false, // OPTIONAL VALUE. True by default.
+                  pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                );
               },
               icon: Container(
                 alignment: Alignment.center,
