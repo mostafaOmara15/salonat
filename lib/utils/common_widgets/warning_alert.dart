@@ -11,7 +11,8 @@ class WarningAlert extends StatelessWidget {
   String supTitle;
   Function() action;
 
-  WarningAlert({required this.title, required this.supTitle, required this.action});
+  WarningAlert(
+      {required this.title, required this.supTitle, required this.action});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +22,7 @@ class WarningAlert extends StatelessWidget {
       insetPadding: EdgeInsets.only(bottom: context.height * 0.35),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       contentPadding: EdgeInsets.symmetric(horizontal: context.width * 0.05),
-      titlePadding:  EdgeInsets.all(context.width * 0.05),
+      titlePadding: EdgeInsets.all(context.width * 0.05),
       actionsPadding: const EdgeInsets.all(0),
       title: SizedBox(
         height: 20,
@@ -37,7 +38,8 @@ class WarningAlert extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Center(child: mediumBody(supTitle, ColorManager.buttonColor,true)),
+              Center(
+                  child: mediumBody(supTitle, ColorManager.buttonColor, true)),
             ],
           ),
         ),
@@ -49,8 +51,16 @@ class WarningAlert extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                AlertButton(title: "cancel".tr(), onTap: () => context.pop(),),
-                AlertButton(title: "delete".tr(),onTap: action),
+                AlertButton(
+                  title: "cancel".tr(),
+                  onTap: () => context.pop(),
+                ),
+                AlertButton(
+                    title: "delete".tr(),
+                    onTap: () {
+                      context.pop();
+                      action();
+                    }),
               ],
             ),
           ],

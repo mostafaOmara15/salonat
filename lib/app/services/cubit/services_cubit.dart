@@ -61,6 +61,8 @@ class ServicesCubit extends Cubit<ServicesState> {
                 .add(SubServicesModel.fromJson(doc.data()));
           }
         }
+        emit(ServicesLoaded());
+
       });
     } catch (e) {
       log("getMainServices error :$e");
