@@ -67,6 +67,7 @@
   "service_des_en": "وصف الخدمة",
   "service_duration": "مدة الخدمة",
   "service_price": "000 ريال",
-  "no_service": "لايوجد خدمات"
+  "no_service": "لايوجد خدمات",
+  "service_added": ""
 
 }
