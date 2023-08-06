@@ -6,7 +6,7 @@ import 'package:salonat/utils/extensions/theme/colors/color_manager.dart';
 import 'package:salonat/utils/spaces.dart';
 
 class SpecializationRad extends StatelessWidget {
-  String value;
+  String? value;
   List groupValue;
 
   final ValueChanged<String> onChanged;
@@ -52,7 +52,7 @@ class SpecializationRad extends StatelessWidget {
             else {
               groupValue.add(value);
             }
-            onChanged(value);
+            onChanged(value!);
           }
       ),
     );

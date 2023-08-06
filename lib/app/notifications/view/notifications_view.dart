@@ -51,7 +51,7 @@ class NotificationScreen extends StatelessWidget {
                               color: ColorManager.primaryColor,
                               borderRadius: BorderRadius.circular(15),
                             ),
-                              height: context.height /15,
+                              height: context.height /12,
                               width: context.width / 7,
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 8),

@@ -9,7 +9,8 @@ class SubServicesModel {
       this.createdat, 
       this.mainserviceid, 
       this.id, 
-      this.titlear,});
+      this.titlear,
+ });
 
   SubServicesModel.fromJson(dynamic json) {
     descriptionen = json['description-en'];
@@ -33,6 +34,7 @@ class SubServicesModel {
   String? mainserviceid;
   String? id;
   String? titlear;
+  bool  isSelected=false;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};

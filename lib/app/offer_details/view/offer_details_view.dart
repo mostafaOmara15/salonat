@@ -29,12 +29,7 @@ class _OffersDetailsViewState extends State<OffersDetailsView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: ColorManager.primaryColor,
-        title: Text("offers".tr(),
-            style: const TextStyle(fontSize: 22, color: Colors.white)),
-        centerTitle: true,
-      ),
+      appBar: AppBar(title: Text('offers'.tr().toUpperCase())),
       body: BlocBuilder<OfferDetailsCubit, OffDetailsState>(
         builder: (context, state) {
           return ListView(
@@ -46,8 +41,7 @@ class _OffersDetailsViewState extends State<OffersDetailsView> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     heightSpace(context.height / 50),
-                    mediumTitle(
-                        "add_offer".tr(), ColorManager.greyColor100, false),
+                    mediumTitle("add_offer".tr(), ColorManager.greyColor100, false),
                     heightSpace(context.height / 50),
                     Stack(
                       children: [
