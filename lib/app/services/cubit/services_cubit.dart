@@ -69,12 +69,26 @@ class ServicesCubit extends Cubit<ServicesState> {
     }
   }
 
-  deleteSubService({required String subServiceID}) async {
+  deleteSubService({required String mainServiceID,required String subServiceID,required int subServiceLength}) async {
+    String salId = await prefs.getString(salonId);
+
     try {
       await FirebaseFirestore.instance
           .collection("sub-services")
           .doc(subServiceID)
-          .delete();
+          .delete().then((value) async {
+            if(subServiceLength==1){
+              await FirebaseFirestore.instance
+                  .collection("main-services")
+                  .doc(mainServiceID)
+                  .set(
+                {
+                  "salons-id": FieldValue.arrayRemove([salId])
+                },
+                SetOptions(merge: true),
+              );
+            }
+      });
     } catch (e) {
       log("deleteSubService $e");
     }

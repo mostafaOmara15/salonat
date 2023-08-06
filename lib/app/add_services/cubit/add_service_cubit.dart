@@ -40,7 +40,18 @@ class AddServiceCubit extends Cubit<AddServiceState> {
           .doc(subServicesModel.id)
           .set(
             subServicesModel.toJson(),
-          );
+          )
+          .then((value) async {
+        await FirebaseFirestore.instance
+            .collection("main-services")
+            .doc(mainServiceID)
+            .set(
+          {
+            "salons-id": FieldValue.arrayUnion([salId])
+          },
+          SetOptions(merge: true),
+        );
+      });
     } catch (e) {
       log("addService $e");
     }

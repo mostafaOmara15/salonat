@@ -94,6 +94,13 @@ class _ServicesViewState extends State<ServicesView> {
                             return ServiceTile(
                               onTapDelete: () async {
                                 await cubit.deleteSubService(
+                                    mainServiceID: cubit
+                                        .mainServices[cubit.mainServiceIndex].id
+                                        .toString(),
+                                    subServiceLength: cubit
+                                        .mainServices[cubit.mainServiceIndex]
+                                        .subServicesModel
+                                        .length,
                                     subServiceID: cubit
                                         .mainServices[cubit.mainServiceIndex]
                                         .subServicesModel[index]
