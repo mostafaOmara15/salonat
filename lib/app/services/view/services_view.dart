@@ -92,59 +92,58 @@ class _ServicesViewState extends State<ServicesView> {
                               .subServicesModel.length,
                           itemBuilder: (context, index) {
                             return ServiceTile(
-                                onTapDelete: () async {
-                                  await cubit.deleteSubService(
-                                      subServiceID: cubit
-                                          .mainServices[cubit.mainServiceIndex]
-                                          .subServicesModel[index]
-                                          .id
-                                          .toString());
-                                  cubit.mainServiceIndex = 0;
-                                  cubit.mainServices.clear();
-                                  await cubit.getMainServices();
-                                },
-                                onTapEdit: () async {
-                                  var result = await Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) =>
-                                            BlocProvider<EditServiceCubit>(
-                                          create: (context) =>
-                                              EditServiceCubit(),
-                                          child: EditServicesView(
-                                            mainServicesModel:
-                                                cubit.mainServices[
-                                                    cubit.mainServiceIndex],
-                                            subServicesModel: cubit
-                                                .mainServices[
-                                                    cubit.mainServiceIndex]
-                                                .subServicesModel[index],
-                                          ),
-                                        ),
-                                      ));
-                                  if (result == true) {
-                                    cubit.mainServiceIndex = 0;
-                                    cubit.mainServices.clear();
-                                    cubit.getMainServices();
-                                  }
-                                },
-                                serviceTitle: cubit
-                                    .mainServices[cubit.mainServiceIndex]
-                                    .subServicesModel[index]
-                                    .titleen!,
-                                price: cubit
+                              onTapDelete: () async {
+                                await cubit.deleteSubService(
+                                    subServiceID: cubit
                                         .mainServices[cubit.mainServiceIndex]
                                         .subServicesModel[index]
-                                        .price! +
-                                    "sar".tr(),
-                                duration: cubit
-                                    .mainServices[cubit.mainServiceIndex]
-                                    .subServicesModel[index]
-                                    .duration!,
-                                details: cubit
-                                    .mainServices[cubit.mainServiceIndex]
-                                    .subServicesModel[index]
-                                    .descriptionen!);
+                                        .id
+                                        .toString());
+                                cubit.mainServiceIndex = 0;
+                                cubit.mainServices.clear();
+                                await cubit.getMainServices();
+                              },
+                              onTapEdit: () async {
+                                var result = await Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          BlocProvider<EditServiceCubit>(
+                                        create: (context) => EditServiceCubit(),
+                                        child: EditServicesView(
+                                          mainServicesModel: cubit.mainServices[
+                                              cubit.mainServiceIndex],
+                                          subServicesModel: cubit
+                                              .mainServices[
+                                                  cubit.mainServiceIndex]
+                                              .subServicesModel[index],
+                                        ),
+                                      ),
+                                    ));
+                                if (result == true) {
+                                  cubit.mainServiceIndex = 0;
+                                  cubit.mainServices.clear();
+                                  cubit.getMainServices();
+                                }
+                              },
+                              serviceTitle: "current_language_iso".tr() == "en"
+                                  ? cubit.mainServices[cubit.mainServiceIndex]
+                                      .subServicesModel[index].titleen!
+                                  : cubit.mainServices[cubit.mainServiceIndex]
+                                      .subServicesModel[index].titlear!,
+                              price: cubit.mainServices[cubit.mainServiceIndex]
+                                      .subServicesModel[index].price! +
+                                  "sar".tr(),
+                              duration: cubit
+                                  .mainServices[cubit.mainServiceIndex]
+                                  .subServicesModel[index]
+                                  .duration!,
+                              details: "current_language_iso".tr() == "en"
+                                  ? cubit.mainServices[cubit.mainServiceIndex]
+                                      .subServicesModel[index].descriptionen!
+                                  : cubit.mainServices[cubit.mainServiceIndex]
+                                      .subServicesModel[index].descriptionar!,
+                            );
                           },
                         ),
                 ),
