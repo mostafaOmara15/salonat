@@ -6,6 +6,7 @@ import 'package:salonat/app/profile/widgets/images_slider.dart';
 import 'package:salonat/app/profile/widgets/profile_tile.dart';
 import 'package:salonat/app/reviews/view/reviews_view.dart';
 import 'package:salonat/app/services/cubit/services_cubit.dart';
+import 'package:salonat/app/staff/cubit/staff_cubit.dart';
 import 'package:salonat/utils/common_widgets/loading_indecator.dart';
 import 'package:salonat/utils/common_widgets/logo_victor.dart';
 import 'package:salonat/utils/common_widgets/texts.dart';
@@ -133,7 +134,12 @@ class _ProfileViewState extends State<ProfileView> {
                     ),
                     ProfileTile(
                         title: "staff".tr(),
-                        navigatedScreen: const StaffScreen(),
+                        navigatedScreen:
+                        BlocProvider<StaffCubit >(
+                          create:(context) => StaffCubit(),
+                          child: const StaffScreen(),
+
+                        ),
                         withIcon: true,
                     ),
                     ProfileTile(
