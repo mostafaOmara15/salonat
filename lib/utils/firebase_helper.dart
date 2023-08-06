@@ -28,6 +28,11 @@ class FirebaseHelper {
     return snapshot.exists ? snapshot.data() as Map<String, dynamic> : null;
   }
 
+  Future<List<QueryDocumentSnapshot>> getAllData(String collection) async {
+    final querySnapshot = await fireStore.collection(collection).get();
+    return querySnapshot.docs;
+  }
+
   Future<void> updateData(String collection, String? updateKey, Map<String, dynamic> data) async {
     QuerySnapshot<Map<String, dynamic>> querySnapshot = await FirebaseFirestore.instance
         .collection(collection)

@@ -64,7 +64,13 @@ class StaffTile extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       mediumBody(name, ColorManager.darkBrownColor, true),
-                      Image.asset(rate, width: context.width * 0.112,),
+                      Row(
+                        children: [
+                          Image.asset(rate, width: context.width * 0.112,),
+                          widthSpace(context.width * 0.02),
+                          mediumBody("4.0", ColorManager.darkBrownColor, false)
+                        ],
+                      ),
                       mediumBody(specialization, ColorManager.darkBrownColor, false)
                     ],
                   ),

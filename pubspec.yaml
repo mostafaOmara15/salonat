@@ -54,6 +54,8 @@ dependencies:
   cloud_firestore: ^4.8.4
   firebase_storage: ^11.2.5
   get_it: ^7.2.0
+  time_picker_spinner: ^0.0.1
+  flutter_datetime_picker_plus: ^2.0.1
 
 
 

@@ -2,44 +2,39 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:salonat/app/profile/model/salon_model.dart';
 import 'package:salonat/utils/common_widgets/app_button.dart';
+import 'package:salonat/utils/common_widgets/texts.dart';
 import 'package:salonat/utils/extensions/media_query/media_query.dart';
+import 'package:salonat/utils/extensions/on_tap/on_tap.dart';
+import 'package:salonat/utils/extensions/theme/colors/color_manager.dart';
 import 'package:salonat/utils/spaces.dart';
 import '../widgets/time_field.dart';
 
-class OpeningTimeScreen extends StatefulWidget {
-  List<OpeningTime> openingtime;
+class OpeningTimeView extends StatefulWidget {
+  List<OpeningTime>? openingtime;
 
-  OpeningTimeScreen({super.key, required this.openingtime});
-
-  // Map<String, List<String>> openingTime = {
-  //   "Sat".tr() : ["01:00 a.m", "10:00 p.m"],
-  //   "Sun".tr() : ["02:00 a.m", "10:00 p.m"],
-  //   "Mon".tr() : ["03:00 a.m", "10:00 p.m"],
-  //   "Tue".tr() : ["04:00 a.m", "10:00 p.m"],
-  //   "Wed".tr() : ["05:00 a.m", "10:00 p.m"],
-  //   "Thu".tr() : ["06:00 a.m", "10:00 p.m"],
-  //   "Fri".tr() : ["07:00 a.m", "10:00 p.m"],
-  // };
+  OpeningTimeView({super.key, required this.openingtime});
 
   List<bool> isSelected = [true, false, false, false, false, false, false];
 
   @override
-  State<OpeningTimeScreen> createState() => _OpeningTimeScreenState();
+  State<OpeningTimeView> createState() => _OpeningTimeViewState();
 }
 
-class _OpeningTimeScreenState extends State<OpeningTimeScreen> {
-  TextEditingController fromTimeCtrl = TextEditingController();
-  TextEditingController toTimeCtrl = TextEditingController();
-  String ?currentDay;
+class _OpeningTimeViewState extends State<OpeningTimeView> {
+  String? currentDay;
+
+  TimeOfDay fromSelectedTime = const TimeOfDay(hour: 09, minute: 0);
+  TimeOfDay toSelectedTime = const TimeOfDay(hour: 09, minute: 0);
+  bool timeUpdated = false;
+
 @override
   void initState() {
-  currentDay= widget.openingtime[0].day.toString();
-    // TODO: implement initState
+  currentDay = widget.openingtime?[0].day.toString();
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
-    // print(widget.openingtime)
     return Scaffold(
       appBar: AppBar(title: const Text('Opening Time')),
       body: Column(
@@ -57,7 +52,7 @@ class _OpeningTimeScreenState extends State<OpeningTimeScreen> {
                         padding: EdgeInsets.symmetric(
                             horizontal: context.width * 0.03),
                         child: TextButton(
-                            child: Text(widget.openingtime![index].day!,
+                            child: Text(widget.openingtime![index].day!.tr(),
                                 style: TextStyle(
                                     fontSize: 20,
                                     color: widget.isSelected[index]
@@ -85,27 +80,9 @@ class _OpeningTimeScreenState extends State<OpeningTimeScreen> {
             ],
           ),
           heightSpace(context.height * 0.02),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              TimeField(
-                  title: "from".tr(),
-                  timeCtrl: fromTimeCtrl,
-                  hintText: (widget.openingtime!
-                          .where((element) => element.day == currentDay)
-                          .toList())[0]
-                      .open
-                      .toString()),
-              TimeField(
-                  title: "to".tr(),
-                  timeCtrl: toTimeCtrl,
-                  hintText: (widget.openingtime!
-                          .where((element) => element.day == currentDay)
-                          .toList())[0]
-                      .close
-                      .toString()),
-            ],
-          ),
+          TimeField(title: "from".tr(), selectedTime: fromSelectedTime),
+          TimeField(title: "to".tr(), selectedTime: toSelectedTime),
+
           heightSpace(context.height * 0.05),
           Center(child: AppButton(title: "save".tr(), onTap: () {}))
         ],

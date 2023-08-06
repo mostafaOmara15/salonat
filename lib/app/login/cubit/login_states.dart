@@ -9,3 +9,5 @@ class LoginSuccessState extends LoginStates {}
 class LoginErrorState extends LoginStates {}
 
 class PasswordVisibilityState extends LoginStates {}
+
+class ChangeLanguageState extends LoginStates {}

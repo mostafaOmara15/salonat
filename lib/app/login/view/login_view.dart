@@ -5,6 +5,7 @@ import 'package:salonat/app/login/cubit/login_cubit.dart';
 import 'package:salonat/app/login/cubit/login_states.dart';
 import 'package:salonat/app/login/widgets/login_button.dart';
 import 'package:salonat/app/login/widgets/login_form_field.dart';
+import 'package:salonat/utils/common_widgets/language_buttons.dart';
 import 'package:salonat/utils/common_widgets/loading_indecator.dart';
 import 'package:salonat/utils/extensions/theme/colors/color_manager.dart';
 import 'package:salonat/utils/common_widgets/logo_victor.dart';
@@ -32,7 +33,6 @@ class LoginView extends StatelessWidget {
                   body: Padding(
                     padding: EdgeInsets.all(context.width * 0.05),
                     child: ListView(
-                      physics: const NeverScrollableScrollPhysics(),
                       children: [
                         Column(
                           children: [
@@ -40,7 +40,29 @@ class LoginView extends StatelessWidget {
                             heightSpace(context.height * 0.02),
                             largeTitle(
                                 "tagLine".tr(), ColorManager.whiteColor, true),
-                            heightSpace(context.width * 0.15),
+                            heightSpace(context.width * 0.075),
+                            Row(
+                              children: [
+                                LanguageButtons(
+                                  language: "En",
+                                  active: loginCubit.en,
+                                  onTap: () {
+                                    context.setLocale(const Locale('en'));
+                                    loginCubit.changeToEnglish();
+                                  },
+                                ),
+                                widthSpace(context.width * 0.03),
+                                LanguageButtons(
+                                  language: "Ar",
+                                  active: loginCubit.ar,
+                                  onTap: () {
+                                    context.setLocale(const Locale('ar'));
+                                    loginCubit.changeToArabic();
+                                  },
+                                ),
+                              ],
+                            ),
+                            heightSpace(context.width * 0.075),
                             LoginFormField(
                               validate: loginCubit.emailValidator(),
                               fieldCtrl: loginCubit.userNameCtrl,
@@ -55,7 +77,7 @@ class LoginView extends StatelessWidget {
                               validate: loginCubit.passwordValidator(),
                               fieldCtrl: loginCubit.passwordCtrl,
                               fieldIcon: Icons.lock_outline_rounded,
-                              fieldHint: "Password",
+                              fieldHint: "password".tr(),
                               fieldInput: TextInputType.visiblePassword,
                               isSecured: loginCubit.showPass,
                               withIcon: true,

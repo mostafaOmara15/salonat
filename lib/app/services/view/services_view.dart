@@ -12,6 +12,7 @@ import 'package:salonat/utils/common_widgets/texts.dart';
 import 'package:salonat/utils/extensions/media_query/media_query.dart';
 import 'package:salonat/utils/extensions/theme/colors/color_manager.dart';
 import 'package:salonat/utils/spaces.dart';
+import '../cubit/services_state.dart';
 
 import '../../edit_services/cubit/edit_service_cubit.dart';
 

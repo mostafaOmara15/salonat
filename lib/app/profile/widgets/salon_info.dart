@@ -37,7 +37,7 @@ class SalonInfo extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             smallTitle("${"openFrom".tr()} ${(openingtime!.where((element) => element.day==currentDay).toList())[0].open!} - ${(openingtime!.where((element) => element.day==currentDay).toList())[0].close!} ", ColorManager.blackColor, false),
-            SupButton(height: context.height * 0.03, title: "edit".tr(), onTap:() {context.push(OpeningTimeScreen(openingtime:openingtime!,));})
+            SupButton(height: context.height * 0.03, title: "edit".tr(), onTap:() {context.push(OpeningTimeView(openingtime:openingtime,));})
           ],
         ),
       ],

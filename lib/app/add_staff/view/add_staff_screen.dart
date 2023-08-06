@@ -25,98 +25,79 @@ class _AddStaffState extends State<AddStaff> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('staff'.tr().toUpperCase())),
-      body: ListView(
+      body: Column(
         children: [
-          Padding(
-            padding: EdgeInsets.all(context.width * 0.03),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+          Expanded(
+            child: ListView(
+              shrinkWrap: true,
               children: [
-                heightSpace(context.height * 0.04),
-                SizedBox(
-                  height: context. height *0.1,
-                  child: ListTile(
-                    subtitle: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Stack(
-                            alignment: Alignment.bottomRight,
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: context.width * 0.03, vertical: context.height * 0.005),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      heightSpace(context.height * 0.04),
+                      SizedBox(
+                        height: context. height *0.1,
+                        child: ListTile(
+                          subtitle: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              Image.asset("assets/images/profile.png", height: context.height * 0.1,),
-                              Image.asset("assets/images/plus.png", height: context.height * 0.025,).onTap((){})
-                            ]
-                        ),
-                        widthSpace(context.width * 0.07),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
+                              Stack(
+                                  alignment: Alignment.bottomRight,
+                                  children: [
+                                    Image.asset("assets/images/profile.png", height: context.height * 0.1,),
+                                    Image.asset("assets/images/plus.png", height: context.height * 0.025,).onTap((){})
+                                  ]
+                              ),
+                              widthSpace(context.width * 0.07),
                               mediumBody("name".tr(), ColorManager.darkBrownColor, false),
-                              mediumBody("rate".tr(), ColorManager.darkBrownColor, false),
-                              mediumBody("specialization".tr(), ColorManager.darkBrownColor, false),
+                              widthSpace(context.width * 0.1),
+                              StaffField(hintText: "name", fieldCtrl: nameCtrl, width: 0.5),
                             ],
                           ),
                         ),
-                        widthSpace(context.width * 0.1),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              StaffField(hintText: "name", fieldCtrl: nameCtrl, width: 0.5),
-                              Image.asset("assets/images/5_stars.png", width: context.width * 0.112,),
-                              StaffField(hintText: "specialization", fieldCtrl: nameCtrl, width: 0.5),                        ],
-                          ),
-                        ),
-                      ],
-                    ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(left: context.width * 0.04, top: context.height * 0.04),
+                        child: mediumTitle("selectSupService".tr(), ColorManager.darkBrownColor, false),
+                      ),
+                      ListView.builder(
+                        itemCount: 60,
+                          shrinkWrap: true,
+                          physics: const ClampingScrollPhysics(),
+                          itemBuilder: (context, index) {
+                            return SpecializationRad(
+                              value: "Massage",
+                              groupValue: specialize,
+                              onChanged: (value) {
+                                setState(() {});
+                              },
+                            );
+                          },
+                      ),
+                    ],
                   ),
                 ),
-                Padding(
-                  padding: EdgeInsets.only(left: context.width * 0.04, top: context.height * 0.04),
-                  child: mediumTitle("selectSpecialization".tr(), ColorManager.darkBrownColor, false),
-                ),
-                SpecializationRad(
-                  value: "Massage",
-                  groupValue: specialize,
-                  onChanged: (value) {
-                    setState(() {});
-                  },
-                ),
-                SpecializationRad(
-                  value: "Facials Female",
-                  groupValue: specialize,
-                  onChanged: (value) {
-                    setState(() {});
-                  },
-                ),
-                SpecializationRad(
-                  value: "Body Treatment",
-                  groupValue: specialize,
-                  onChanged: (value) {
-                    setState(() {});
-                  },
-                ),
-                heightSpace(context.height * 0.1),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        AppButton(title: "cancel".tr(), onTap: (){}),
-                        widthSpace(context.width * 0.1),
-                        AppButton(title: "done".tr(), onTap: (){}),
-                      ],
-                    )
-                  ],
-                )
-
               ],
             ),
           ),
+          heightSpace(context.height * 0.01),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  AppButton(title: "cancel".tr(), onTap: (){}),
+                  widthSpace(context.width * 0.1),
+                  AppButton(title: "done".tr(), onTap: (){}),
+                ],
+              )
+            ],
+          ),
+          heightSpace(context.height * 0.03),
         ],
       )
     );

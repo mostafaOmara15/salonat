@@ -23,7 +23,6 @@ class _SplashViewState extends State<SplashView> {
   void initState() {
     cubit = BlocProvider.of<SplashCubit>(context);
     cubit.checkLogin(context: context);
-
     super.initState();
   }
 
@@ -40,6 +39,7 @@ class _SplashViewState extends State<SplashView> {
             heightSpace(context.height * 0.07),
             largeTitle("introSentence".tr(), ColorManager.whiteColor, false),
           ],
-        ));
+        )
+    );
   }
 }

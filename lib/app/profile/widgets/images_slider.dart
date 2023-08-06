@@ -1,8 +1,6 @@
 import 'package:carousel_slider/carousel_controller.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
-import 'package:salonat/app/login/view/login_view.dart';
 import 'package:salonat/services/locator.dart';
 import 'package:salonat/services/shared_pref.dart';
 import 'package:salonat/utils/common_widgets/dialog_button.dart';
@@ -22,11 +20,6 @@ class ImagesSlider extends StatefulWidget {
 }
 
 class _ImagesSliderState extends State<ImagesSlider> {
-  // List<String> imagesUrl = [
-  //   "https://www.rd.com/wp-content/uploads/2020/06/GettyImages-1139132195.jpg?resize=2048,1367",
-  //   "https://cdn.concreteplayground.com/content/uploads/2022/04/Telleish-Pic-1.jpg-Salon-1920x1080.jpeg",
-  //   "https://res.cloudinary.com/conferences-and-exhibitions-pvt-ltd/image/upload/v1655285681/Salon-Management/2022/June/Men/Lead_e305ap.jpg"
-  // ];
   final indicatorController = PageController();
   final CarouselController _controller = CarouselController();
   int _currentIndex = 0;
@@ -49,7 +42,8 @@ class _ImagesSliderState extends State<ImagesSlider> {
                   return Container(
                     decoration: BoxDecoration(
                         image: DecorationImage(
-                            fit: BoxFit.cover, image: NetworkImage(e))),
+                            fit: BoxFit.cover, image: NetworkImage(e))
+                    ),
                   );
                 }).toList(),
                 options: CarouselOptions(
@@ -110,17 +104,7 @@ class _ImagesSliderState extends State<ImagesSlider> {
               ),
             ),
             IconButton(
-              onPressed: () {
-                /// Todo clear this
-                var prefs = locator<SharedPrefServices>();
-                prefs.clearPrefs();
-                PersistentNavBarNavigator.pushNewScreen(
-                  context,
-                  screen: const LoginView(),
-                  withNavBar: false, // OPTIONAL VALUE. True by default.
-                  pageTransitionAnimation: PageTransitionAnimation.cupertino,
-                );
-              },
+              onPressed: () {},
               icon: Container(
                 alignment: Alignment.center,
                 // backgroundColor: ColorManager.primaryColor,

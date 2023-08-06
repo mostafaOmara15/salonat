@@ -18,12 +18,16 @@ class LoginCubit extends Cubit<LoginStates> {
 
   final GlobalKey<FormState> loginKey = GlobalKey<FormState>();
   var prefs = locator<SharedPrefServices>();
+  bool en = true;
+  bool ar = false;
+  String currentLang = "en";
 
   TextEditingController userNameCtrl = TextEditingController();
   TextEditingController passwordCtrl = TextEditingController();
   bool showPass = true;
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final _emailValidator = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
+
   bool validateEmail(String email) {
     return _emailValidator.hasMatch(email);
   }
@@ -38,7 +42,6 @@ class LoginCubit extends Cubit<LoginStates> {
 
     return validator;
   }
-
   FormFieldValidator<String>? emailValidator() {
     validator(value) {
       if (!validateEmail(value)) {
@@ -52,9 +55,21 @@ class LoginCubit extends Cubit<LoginStates> {
 
     return validator;
   }
+
   void changePasswordVisibility() {
     showPass = !showPass;
     emit(PasswordVisibilityState());
+  }
+
+  void changeToEnglish() {
+    en = true;
+    ar = false;
+    emit(ChangeLanguageState());
+  }
+  void changeToArabic() {
+    en = false;
+    ar = true;
+    emit(ChangeLanguageState());
   }
 
   login({required BuildContext context}) async {

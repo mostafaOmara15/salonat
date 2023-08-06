@@ -15,8 +15,9 @@ class StaffField extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: Container(
-        padding: EdgeInsets.symmetric(vertical: context.height * 0.01),
+        padding: EdgeInsets.symmetric(vertical: context.height * 0.02),
         width: context.width * width,
+        height: context.height * 0.08,
         child: TextFormField(
           controller: fieldCtrl,
           style: GoogleFonts.fraunces(

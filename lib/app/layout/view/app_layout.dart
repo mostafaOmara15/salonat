@@ -5,10 +5,10 @@ import 'package:salonat/app/booking/view/booking_view.dart';
 import 'package:salonat/app/notifications/view/notifications_view.dart';
 import 'package:salonat/app/offers/cubit/offer_cubit.dart';
 import 'package:salonat/app/offers/view/offers_view.dart';
-import 'package:salonat/app/profile/view_model/cubit/profile_cubit.dart';
 import 'package:salonat/utils/extensions/media_query/media_query.dart';
 import 'package:salonat/utils/extensions/theme/colors/color_manager.dart';
-import '../../profile/view/profile_screen.dart';
+import '../../profile/cubit/profile_cubit.dart';
+import '../../profile/view/profile_view.dart';
 
 class AppLayout extends StatelessWidget {
   AppLayout({super.key});
@@ -18,7 +18,7 @@ class AppLayout extends StatelessWidget {
     return [
       BlocProvider<ProfileCubit>(
         create: (context) => ProfileCubit(),
-        child: const ProfileScreen(),
+        child: const ProfileView(),
       ),
       BlocProvider<OfferCubit>(
         create: (context) => OfferCubit(),
@@ -28,7 +28,6 @@ class AppLayout extends StatelessWidget {
         create: (context) => OfferCubit(),
         child:  BookingScreen(),
       ),
-      // BookingScreen(),
       const NotificationScreen(),
     ];
   }
@@ -40,28 +39,28 @@ class AppLayout extends StatelessWidget {
         PersistentBottomNavBarItem(
           icon: const Icon(Icons.home_outlined),
           title: ("Profile"),
-          iconSize: context.height * 0.03,
+          iconSize: context.height * 0.025,
           activeColorPrimary: ColorManager.activeColor,
           inactiveColorPrimary: Colors.white,
         ),
         PersistentBottomNavBarItem(
           icon: const Icon(Icons.percent),
           title: ("Offers"),
-          iconSize: context.height * 0.03,
+          iconSize: context.height * 0.025,
           activeColorPrimary: ColorManager.activeColor,
           inactiveColorPrimary: Colors.white,
         ),
         PersistentBottomNavBarItem(
           icon: const Icon(Icons.calendar_today_outlined),
           title: ("Booking"),
-          iconSize: context.height * 0.03,
+          iconSize: context.height * 0.025,
           activeColorPrimary: ColorManager.activeColor,
           inactiveColorPrimary: Colors.white,
         ),
         PersistentBottomNavBarItem(
           icon: const Icon(Icons.notifications_none),
           title: ("Notifications"),
-          iconSize: context.height * 0.035,
+          iconSize: context.height * 0.03,
           activeColorPrimary: ColorManager.activeColor,
           inactiveColorPrimary: Colors.white,
         ),

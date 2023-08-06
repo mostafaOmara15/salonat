@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:salonat/utils/common_widgets/texts.dart';
 import 'package:salonat/utils/extensions/media_query/media_query.dart';
 import 'package:salonat/utils/extensions/theme/colors/color_manager.dart';
-
 import '../../../utils/spaces.dart';
 
 class ReviewTile extends StatelessWidget {
