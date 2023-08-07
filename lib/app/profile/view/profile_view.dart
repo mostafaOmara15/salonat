@@ -124,6 +124,16 @@ class _ProfileViewState extends State<ProfileView> {
                       withIcon: true,
                     ),
                     ProfileTile(
+                      title: "addLocation".tr(),
+                      navigatedScreen: OpeningTimeView(openingtime: profileCubit.salon.openingtime),
+                      withIcon: true,
+                    ),
+                    ProfileTile(
+                      title: "openingTime".tr(),
+                      navigatedScreen: OpeningTimeView(openingtime: profileCubit.salon.openingtime),
+                      withIcon: true,
+                    ),
+                    ProfileTile(
                         title: "services".tr(),
                         navigatedScreen:
                         BlocProvider<ServicesCubit>(
@@ -144,7 +154,7 @@ class _ProfileViewState extends State<ProfileView> {
                     ),
                     ProfileTile(
                         title: "reviews".tr(),
-                        navigatedScreen: OpeningTimeView(openingtime: profileCubit.salon.openingtime),
+                        navigatedScreen: const ReviewsView(),
                         withIcon: true,
                     ),
                     ProfileTile(

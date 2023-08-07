@@ -20,6 +20,7 @@ class BookingScreen extends StatefulWidget {
 
 class _BookingScreenState extends State<BookingScreen> {
   BookingCubit? bookingCubit;
+  List bookings = [1];
   @override
   void initState() {
     bookingCubit = BookingCubit.get(context);
@@ -102,17 +103,20 @@ class _BookingScreenState extends State<BookingScreen> {
                           ColorManager.buttonColor,
                           false),
                     ),
-                    ConstrainedBox(
+                    bookings.isNotEmpty
+                    ? ConstrainedBox(
                       constraints: BoxConstraints(minHeight: context.height * 0.1),
                       child: ListView.builder(
                         shrinkWrap: true,
                         physics: const NeverScrollableScrollPhysics(),
-                        itemCount: 3,
+                        itemCount: bookings.length,
                         itemBuilder: (BuildContext context, int index) {
                           return const BookHistoryCard();
                         },
-                      ),
-                    ),
+                      )
+
+                    )
+                    : Center(child: largeTitle("noAppointmentsToday".tr(), ColorManager.buttonColor, true))
                   ],
                 );
               },

@@ -1,12 +1,14 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:salonat/utils/common_widgets/texts.dart';
 import 'package:salonat/utils/extensions/media_query/media_query.dart';
 import 'package:salonat/utils/extensions/theme/colors/color_manager.dart';
 import 'package:salonat/utils/spaces.dart';
 
 class NotificationScreen extends StatelessWidget {
-  const NotificationScreen({super.key});
+  NotificationScreen({super.key});
+  List notifications = [];
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +19,8 @@ class NotificationScreen extends StatelessWidget {
             style: const TextStyle(fontSize: 22, color: Colors.white)),
         centerTitle: true,
       ),
-      body: ListView.builder(
+      body: notifications.isNotEmpty
+        ? ListView.builder(
         padding: EdgeInsets.all(context.width * 0.03),
           shrinkWrap: true,
           itemBuilder: (context, index) {
@@ -69,11 +72,11 @@ class NotificationScreen extends StatelessWidget {
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
                                   largeBody(
-                                      "New booking", ColorManager.blackColor),
+                                      "New booking", ColorManager.blackColor, false),
                                   heightSpace(8),
                                   largeBody(
                                       "(Client name) is booked in 2/22/2023 at 11:00 am",
-                                      ColorManager.greyColor)
+                                      ColorManager.greyColor, false)
                                 ],
                               ),
                             ),
@@ -87,7 +90,21 @@ class NotificationScreen extends StatelessWidget {
               ],
             );
           },
-          itemCount: 2),
+          itemCount: 2)
+        : Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Lottie.asset(
+                'assets/images/No-Notification.json',
+                width: context.height * 0.4,
+                height: context.height * 0.4,
+                fit: BoxFit.fill,
+              ),
+              largeTitle("noNotifications".tr(), ColorManager.primaryColor, false)
+            ],
+          ),
+        )
     );
   }
 }

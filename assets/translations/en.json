@@ -42,6 +42,8 @@
   "name": "Name",
   "rate": "Rate",
   "add_offer": "Add Offer",
+  "addLocation" : "Add Location",
+  "openingTime": "Opening Time",
   "offers": "Offers",
   "add_pic": "Add picture",
   "add_offer_desc": "Add offer description",
@@ -71,5 +73,11 @@
   "service_duration": "Service duration",
   "service_price": "SAR 000",
   "no_service": "No services added yet",
-  "service_added": "تمت إضافة الخدمة بنجاح"
+  "service_added": "Service added",
+  "startDate" : "Start Date",
+  "endDate" : "End Date",
+  "priceBefore" : "Price Before",
+  "priceAfter" : "Price After",
+  "noNotifications" : "No notifications",
+  "noAppointmentsToday" : "No appointments today"
 }

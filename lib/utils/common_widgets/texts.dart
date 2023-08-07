@@ -23,7 +23,7 @@ Widget mediumTitle(String? text, Color color, bool isBold){
     textAlign: TextAlign.center,
     minFontSize: 16,
     maxFontSize: 20,
-    maxLines: 2,
+    maxLines: 3,
   );
 }
 
@@ -40,19 +40,19 @@ Widget smallTitle(String? text, Color color, bool isBold){
   );
 }
 
-Widget largeBody(String? text, Color color){
+Widget largeBody(String? text, Color color, bool isBold){
   return AutoSizeText(
     text!,
     style: GoogleFonts.fraunces(
       textStyle: TextStyle(
         color: color,
         letterSpacing: 0.5,
-        fontWeight: FontWeight.w600
+        fontWeight: isBold ? FontWeight.w700 : FontWeight.w600
       )
     ),
     maxFontSize: 14,
     minFontSize: 12,
-    maxLines: 1,
+    maxLines: null,
   );
 }
 

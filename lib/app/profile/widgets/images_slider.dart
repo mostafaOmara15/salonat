@@ -1,8 +1,10 @@
 import 'package:carousel_slider/carousel_controller.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:salonat/utils/common_widgets/texts.dart';
 import 'package:salonat/utils/common_widgets/warning_alert.dart';
 import 'package:salonat/utils/extensions/media_query/media_query.dart';
+import 'package:salonat/utils/extensions/on_tap/on_tap.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import '../../../utils/extensions/theme/colors/color_manager.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -32,7 +34,16 @@ class _ImagesSliderState extends State<ImagesSlider> {
             SizedBox(
               width: context.width,
               height: context.height * 0.26,
-              child: CarouselSlider(
+              child: widget.imagesUrl!.isEmpty
+                ? Container(
+                  width: context.width,
+                  height: context.height * 0.26,
+                  color: ColorManager.greyColor,
+                  child: Center(child: largeTitle("add_pic".tr(), ColorManager.greyColor100, false)).onTap(
+                    (){}
+                  ),
+                )
+                : CarouselSlider(
                 carouselController: _controller,
                 items: widget.imagesUrl?.map((e) {
                   return Container(
@@ -53,7 +64,9 @@ class _ImagesSliderState extends State<ImagesSlider> {
                     }),
               ),
             ),
-            AnimatedSmoothIndicator(
+            widget.imagesUrl!.isEmpty
+              ? const SizedBox()
+              : AnimatedSmoothIndicator(
               activeIndex: _currentIndex,
               count: widget.imagesUrl!.length,
               effect: SlideEffect(
@@ -64,10 +77,12 @@ class _ImagesSliderState extends State<ImagesSlider> {
                   paintStyle: PaintingStyle.fill,
                   dotColor: ColorManager.greyColor,
                   activeDotColor: ColorManager.primaryColor),
-            ),
+            )
           ],
         ),
-        Column(
+        widget.imagesUrl!.isEmpty
+        ? const SizedBox()
+        : Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
@@ -117,7 +132,7 @@ class _ImagesSliderState extends State<ImagesSlider> {
               ),
             ),
           ],
-        ),
+        )
       ]),
     );
   }
