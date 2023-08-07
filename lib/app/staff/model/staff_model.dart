@@ -1,3 +1,5 @@
+import 'package:salonat/app/services/model/sub_services_model.dart';
+
 class StaffModel {
   StaffModel({
       this.image, 
@@ -21,6 +23,8 @@ class StaffModel {
   String? name;
   String? createdat;
   String? id;
+  double rate=0;
+
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};

@@ -12,17 +12,25 @@ import 'package:salonat/services/locator.dart';
 import 'package:salonat/services/shared_pref.dart';
 import 'package:salonat/utils/strings/const_strings.dart';
 
-part 'add_staff_state.dart';
+part 'edit_staff_state.dart';
 
-class AddStaffCubit extends Cubit<AddStaffState> {
-  AddStaffCubit() : super(AddStaffInitial());
+class EditStaffCubit extends Cubit<EditStaffState> {
+  EditStaffCubit() : super(EditStaffInitial());
   List<SubServicesModel> subServices = [];
-  List<String> selectedSubServices = [];
+  List<String> finalSelectedSubServices = [];
   var prefs = locator<SharedPrefServices>();
   TextEditingController nameCtrl = TextEditingController();
   String? staffImageUrl;
   final picker = ImagePicker();
   File? image;
+
+  checkSelectedSubService({required List<String> selectedSubServices}) {
+     finalSelectedSubServices = selectedSubServices;
+    for (var id in selectedSubServices) {
+      subServices.where((element) => element.id == id).toList()[0].isSelected =
+          true;
+    }
+  }
 
   Future<void> pickImage() async {
     final pickedFile = await picker.pickImage(source: ImageSource.gallery);
@@ -40,19 +48,19 @@ class AddStaffCubit extends Cubit<AddStaffState> {
   }
 
   void selectSubServices({required String subServiceId}) {
-    if (selectedSubServices.contains(subServiceId)) {
-      selectedSubServices.remove(subServiceId);
+    if (finalSelectedSubServices.contains(subServiceId)) {
+      finalSelectedSubServices.remove(subServiceId);
       emit(SelectSubService());
     } else {
-      selectedSubServices.add(subServiceId);
+      finalSelectedSubServices.add(subServiceId);
       emit(SelectSubService());
     }
   }
 
-  getSubServices() async {
+  getSubServices({required List<String> selectedSubServices}) async {
     String docId = await prefs.getString(salonId);
     try {
-      emit(LoadingSubServices());
+      emit(Loading());
       await FirebaseFirestore.instance
           .collection("sub-services")
           .where("salon-id", isEqualTo: docId)
@@ -62,7 +70,9 @@ class AddStaffCubit extends Cubit<AddStaffState> {
           subServices.add(SubServicesModel.fromJson(doc.data()));
         }
       }).then(
-        (value) {
+        (value) async {
+          await checkSelectedSubService(
+              selectedSubServices: selectedSubServices);
           emit(SuccessSubServices());
         },
       );
@@ -72,21 +82,27 @@ class AddStaffCubit extends Cubit<AddStaffState> {
     }
   }
 
-  addStaff() async {
-    String id = await prefs.getString(salonId);
-    StaffModel staff = StaffModel(
-      id: DateTime.now().millisecondsSinceEpoch.toString(),
-      createdat: DateTime.now().toIso8601String(),
-      image: staffImageUrl ?? "",
-      name: nameCtrl.text,
-      salonid: id,
-      subservices: selectedSubServices,
-    );
+  editStaff({required StaffModel staffModel}) async {
+    print(finalSelectedSubServices.toSet());
+    // StaffModel staff = StaffModel(
+    //   id: staffModel.id,
+    //   createdat: staffModel.createdat,
+    //   image: staffImageUrl ?? staffModel.image,
+    //   name: nameCtrl.text,
+    //   salonid: staffModel.id,
+    //   subservices: finalSelectedSubServices,
+    // );
     try {
       await FirebaseFirestore.instance
           .collection("staff")
-          .doc(staff.id)
-          .set(staff.toJson());
+          .doc(staffModel.id)
+          .set({
+"image":staffImageUrl ?? staffModel.image,
+"name":nameCtrl.text,
+        "sub-services":finalSelectedSubServices.toSet()
+
+
+      }, SetOptions(merge: true));
     } catch (e) {
       log("add Staff error $e");
     }

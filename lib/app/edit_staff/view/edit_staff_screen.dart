@@ -1,7 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:salonat/app/add_staff/cubit/add_staff_cubit.dart';
+import 'package:salonat/app/edit_staff/cubit/edit_staff_cubit.dart';
+import 'package:salonat/app/edit_staff/widgets/staff_field.dart';
+import 'package:salonat/app/staff/model/staff_model.dart';
 import 'package:salonat/utils/common_widgets/loading_indecator.dart';
 import 'package:salonat/utils/extensions/media_query/media_query.dart';
 import 'package:salonat/utils/extensions/on_tap/on_tap.dart';
@@ -9,22 +11,24 @@ import '../../../utils/common_widgets/app_button.dart';
 import '../../../utils/common_widgets/texts.dart';
 import '../../../utils/extensions/theme/colors/color_manager.dart';
 import '../../../utils/spaces.dart';
-import '../widgets/staff_field.dart';
 
-class AddStaff extends StatefulWidget {
-  const AddStaff({Key? key}) : super(key: key);
+class EditStaffView extends StatefulWidget {
+  EditStaffView({Key? key, required this.staffModel}) : super(key: key);
+  StaffModel staffModel;
 
   @override
-  State<AddStaff> createState() => _AddStaffState();
+  State<EditStaffView> createState() => _EditStaffViewState();
 }
 
-class _AddStaffState extends State<AddStaff> {
-  late AddStaffCubit cubit;
+class _EditStaffViewState extends State<EditStaffView> {
+  late EditStaffCubit cubit;
 
   @override
   void initState() {
-    cubit = BlocProvider.of<AddStaffCubit>(context);
-    cubit.getSubServices();
+    cubit = BlocProvider.of<EditStaffCubit>(context);
+    cubit.getSubServices(selectedSubServices: widget.staffModel.subservices!);
+    cubit.nameCtrl.text = widget.staffModel.name!;
+    cubit.staffImageUrl=widget.staffModel.image;
     super.initState();
   }
 
@@ -32,9 +36,9 @@ class _AddStaffState extends State<AddStaff> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('staff'.tr().toUpperCase())),
-      body: BlocBuilder<AddStaffCubit, AddStaffState>(
+      body: BlocBuilder<EditStaffCubit, EditStaffState>(
         builder: (context, state) {
-          if (state is LoadingSubServices) {
+          if (state is Loading) {
             return centerIndicator();
           } else {
             return Column(
@@ -61,7 +65,7 @@ class _AddStaffState extends State<AddStaff> {
                                     Stack(
                                         alignment: Alignment.bottomRight,
                                         children: [
-                                          cubit.staffImageUrl == null
+                                         cubit.staffImageUrl == ""
                                               ? Image.asset(
                                                   "assets/images/profile.png",
                                                   height: context.height * 0.1,
@@ -158,7 +162,8 @@ class _AddStaffState extends State<AddStaff> {
                         AppButton(
                             title: "done".tr(),
                             onTap: () async {
-                              await cubit.addStaff();
+                              await cubit.editStaff(
+                                  staffModel: widget.staffModel);
                               Navigator.pop(context, true);
                             }),
                       ],

@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:salonat/app/services/model/sub_services_model.dart';
 import 'package:salonat/utils/extensions/media_query/media_query.dart';
 import '../../../utils/common_widgets/texts.dart';
 import '../../../utils/common_widgets/warning_alert.dart';
@@ -8,52 +9,69 @@ import '../../../utils/spaces.dart';
 
 class StaffTile extends StatelessWidget {
   String name;
+  String rateImage;
   String rate;
-  String specialization;
-  StaffTile({super.key, required this.name, required this.rate, required this.specialization});
+  Function() onDelete;
+  String? image;
+
+  StaffTile({
+    super.key,
+    required this.name,
+    required this.rateImage,
+    required this.image,
+    required this.rate,
+    required this.onDelete
+  });
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         SizedBox(
-          height: context. height *0.1,
+          height: context.height * 0.1,
           child: ListTile(
-            title: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  IconButton(
-                    onPressed: (){
-                      showDialog(
-                        context: context,
-                        barrierDismissible: false,
-                        builder: (BuildContext context) {
-                          return WarningAlert(
-                              title: "removeStaff".tr(),
-                              supTitle: "warningMember".tr(),
-                              action: (){}
-                          );
-                        },
-                      );
-                    },
-                    icon: Icon(Icons.close, size: context.width * 0.04,)
-                  )
-                ]
-            ),
+            title: Row(mainAxisAlignment: MainAxisAlignment.end, children: [
+              IconButton(
+                  onPressed: () {
+                    showDialog(
+                      context: context,
+                      barrierDismissible: false,
+                      builder: (BuildContext context) {
+                        return WarningAlert(
+                            title: "removeStaff".tr(),
+                            supTitle: "warningMember".tr(),
+                            action: onDelete);
+                      },
+                    );
+                  },
+                  icon: Icon(
+                    Icons.close,
+                    size: context.width * 0.04,
+                  ))
+            ]),
             subtitle: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Image.asset("assets/images/profile.png", height: context.height * 0.1,),
+                image == ""
+                    ? Image.asset(
+                        "assets/images/profile.png",
+                        height: context.height * 0.1,
+                      )
+                    : Image.network(
+                        image!,
+                        height: context.height * 0.1,
+                      ),
                 widthSpace(context.width * 0.07),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      mediumBody("name".tr(), ColorManager.darkBrownColor, false),
-                      mediumBody("rate".tr(), ColorManager.darkBrownColor, false),
-                      mediumBody("specialization".tr(), ColorManager.darkBrownColor, false),
+                      mediumBody(
+                          "name".tr(), ColorManager.darkBrownColor, false),
+                      mediumBody(
+                          "rate".tr(), ColorManager.darkBrownColor, false),
                     ],
                   ),
                 ),
@@ -66,12 +84,14 @@ class StaffTile extends StatelessWidget {
                       mediumBody(name, ColorManager.darkBrownColor, true),
                       Row(
                         children: [
-                          Image.asset(rate, width: context.width * 0.112,),
+                          Image.asset(
+                            rateImage,
+                            width: context.width * 0.112,
+                          ),
                           widthSpace(context.width * 0.02),
-                          mediumBody("4.0", ColorManager.darkBrownColor, false)
+                          mediumBody(rate, ColorManager.darkBrownColor, false)
                         ],
                       ),
-                      mediumBody(specialization, ColorManager.darkBrownColor, false)
                     ],
                   ),
                 ),

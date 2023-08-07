@@ -1,4 +1,4 @@
-import 'dart:convert';
+import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -14,22 +14,49 @@ part 'staff_state.dart';
 class StaffCubit extends Cubit<StaffState> {
   StaffCubit() : super(StaffInitial());
   List<StaffModel> staff = [];
-  List<SubServicesModel>subServices=[];
   var prefs = locator<SharedPrefServices>();
-
+deleteStaff({required String staffId}) async {
+  try{
+    await FirebaseFirestore.instance.collection("staff").doc(staffId).delete();
+  }
+  catch(e){
+    log("deleteStaff $e");
+  }
+}
   getStaff() async {
-    emit(Loading());
-    var docId =await prefs.getString(salonId);
+    double rate = 0;
+    emit(StaffLoading());
+    var docId = await prefs.getString(salonId);
     await FirebaseFirestore.instance
         .collection("staff")
         .where("salon-id", isEqualTo: docId)
         .get()
-        .then((QuerySnapshot querySnapshot) {
-      for (var doc in querySnapshot.docs) {
-        staff.add(StaffModel.fromJson(doc.data()));
+        .then((QuerySnapshot querySnapshot) async {
+      for (int i = 0; i < querySnapshot.docs.length; i++) {
+        staff.add(StaffModel.fromJson(querySnapshot.docs[i].data()));
+        await FirebaseFirestore.instance
+            .collection("staff-rate")
+            .where("staff-id", isEqualTo: staff[i].id)
+            .get()
+            .then((QuerySnapshot querySnapshot) {
+          for (var doc in querySnapshot.docs) {
+            rate += double.parse(doc['rate'].toString());
+            staff[i].rate = (rate / (querySnapshot.docs.length));
+          }
+        });
+        for (var subServiceId in querySnapshot.docs[i]['sub-services']) {
+          await FirebaseFirestore.instance
+              .collection("sub-services")
+              .doc(subServiceId.toString())
+              .get()
+              .then((DocumentSnapshot documentSnapshot) {
+            staff[i]
+                .subservices!
+                .add(documentSnapshot.id);
+          });
+        }
       }
     });
     emit(StaffInitial());
-
   }
 }
