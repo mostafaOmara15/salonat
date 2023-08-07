@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:meta/meta.dart';
 import 'package:salonat/app/services/model/sub_services_model.dart';
 import 'package:salonat/app/staff/model/staff_model.dart';
@@ -15,14 +16,24 @@ class StaffCubit extends Cubit<StaffState> {
   StaffCubit() : super(StaffInitial());
   List<StaffModel> staff = [];
   var prefs = locator<SharedPrefServices>();
-deleteStaff({required String staffId}) async {
-  try{
-    await FirebaseFirestore.instance.collection("staff").doc(staffId).delete();
+
+  deleteStaff({required String staffId, required String staffImage}) async {
+    try {
+      await FirebaseFirestore.instance
+          .collection("staff")
+          .doc(staffId)
+          .delete()
+          .then((value) async {
+        if (staffImage != '') {
+          var imageRef = FirebaseStorage.instance.refFromURL(staffImage);
+          await imageRef.delete();
+        }
+      });
+    } catch (e) {
+      log("deleteStaff $e");
+    }
   }
-  catch(e){
-    log("deleteStaff $e");
-  }
-}
+
   getStaff() async {
     double rate = 0;
     emit(StaffLoading());
@@ -50,9 +61,7 @@ deleteStaff({required String staffId}) async {
               .doc(subServiceId.toString())
               .get()
               .then((DocumentSnapshot documentSnapshot) {
-            staff[i]
-                .subservices!
-                .add(documentSnapshot.id);
+            staff[i].subservices!.add(documentSnapshot.id);
           });
         }
       }

@@ -51,7 +51,9 @@ class _StaffScreenState extends State<StaffScreen> {
                           return StaffTile(
                             onDelete: () async {
                               await cubit.deleteStaff(
-                                  staffId: cubit.staff[index].id!);
+                                  staffId: cubit.staff[index].id!,
+                              staffImage: cubit.staff[index].image??''
+                              );
                               cubit.staff.clear();
                               await cubit.getStaff();
                             },
