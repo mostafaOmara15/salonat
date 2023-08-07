@@ -88,7 +88,13 @@ class _ServicesViewState extends State<ServicesView> {
                       ? Center(
                           child: largeTitle(
                               "no_service".tr(), ColorManager.blackColor, true))
-                      : ListView.builder(
+                      : ListView.separated(
+                          separatorBuilder: (context, index) {
+                            return Padding(
+                              padding: EdgeInsets.symmetric(horizontal: context.width * 0.20),
+                              child: const Divider(),
+                            );
+                          },
                           itemCount: cubit.mainServices[cubit.mainServiceIndex]
                               .subServicesModel.length,
                           itemBuilder: (context, index) {
@@ -156,6 +162,7 @@ class _ServicesViewState extends State<ServicesView> {
                         ),
                 ),
               ),
+              heightSpace(context.height * 0.03),
               AppButton(
                 title: "addService".tr(),
                 onTap: () async {
@@ -173,15 +180,16 @@ class _ServicesViewState extends State<ServicesView> {
                     cubit.mainServiceIndex = 0;
                     cubit.mainServices.clear();
                     cubit.getMainServices();
+                    final snackBar = SnackBar(
+                      content: Text('service_added'.tr()),
+                      backgroundColor: Colors.green,
+                    );
+                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
                   }
-                  final snackBar = SnackBar(
-                    content: Text('service_added'.tr()),
-                    backgroundColor: Colors.green,
-                  );
-                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
+
                 },
               ),
-              heightSpace(context.height * 0.05),
+              heightSpace(context.height * 0.03),
             ],
           );
         } else {

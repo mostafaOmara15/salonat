@@ -74,7 +74,7 @@ class BookHistoryCard extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                mediumBody("More details ->",
+                mediumBody("moreDetails".tr(),
                     ColorManager.blackColor, false)
                     .onTap(() {
                   context.push(const BookingDetailsView());

@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:salonat/app/about/cubit/about_cubit.dart';
+import 'package:salonat/app/location/view/location_view.dart';
 import 'package:salonat/app/profile/widgets/images_slider.dart';
 import 'package:salonat/app/profile/widgets/profile_tile.dart';
 import 'package:salonat/app/reviews/view/reviews_view.dart';
@@ -58,46 +59,52 @@ class _ProfileViewState extends State<ProfileView> {
                   children: [
                     ImagesSlider(imagesUrl: profileCubit.salon.coverimages),
                     heightSpace(context.height * 0.01),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            mediumTitle(profileCubit.salon.name?.toUpperCase(),ColorManager.darkBrownColor, false),
-                            Row(
-                              children: [
-                                widthSpace(context.width * 0.045),
-                                Image.asset("assets/images/5_stars.png",
-                                    width: context.width * 0.15),
-                                widthSpace(context.width * 0.03),
-                                mediumTitle("5.0", ColorManager.blackColor, false),
-                              ],
-                            ),
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            LanguageButtons(
-                              language: "En",
-                              active: profileCubit.en,
-                              onTap: () {
-                                context.setLocale(const Locale('en'));
-                                profileCubit.changeToEnglish();
-                              },
-                            ),
-                            widthSpace(context.width * 0.03),
-                            LanguageButtons(
-                              language: "Ar",
-                              active: profileCubit.ar,
-                              onTap: () {
-                                context.setLocale(const Locale('ar'));
-                                profileCubit.changeToArabic();
-                              },
-                            ),
-                          ],
-                        ),
-                      ],
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                          horizontal: context.width * 0.03,
+                          vertical: context.height * 0.01,
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              mediumTitle(profileCubit.salon.name?.toUpperCase(),ColorManager.darkBrownColor, false),
+                              Row(
+                                children: [
+                                  widthSpace(context.width * 0.045),
+                                  Image.asset("assets/images/5_stars.png",
+                                      width: context.width * 0.15),
+                                  widthSpace(context.width * 0.03),
+                                  mediumTitle("5.0", ColorManager.blackColor, false),
+                                ],
+                              ),
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              LanguageButtons(
+                                language: "En",
+                                active: profileCubit.en,
+                                onTap: () {
+                                  context.setLocale(const Locale('en'));
+                                  profileCubit.changeToEnglish();
+                                },
+                              ),
+                              widthSpace(context.width * 0.03),
+                              LanguageButtons(
+                                language: "Ar",
+                                active: profileCubit.ar,
+                                onTap: () {
+                                  context.setLocale(const Locale('ar'));
+                                  profileCubit.changeToArabic();
+                                },
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
                     heightSpace(context.height * 0.02),
                     Row(
@@ -125,7 +132,7 @@ class _ProfileViewState extends State<ProfileView> {
                     ),
                     ProfileTile(
                       title: "addLocation".tr(),
-                      navigatedScreen: OpeningTimeView(openingtime: profileCubit.salon.openingtime),
+                      navigatedScreen: const LocationView(),
                       withIcon: true,
                     ),
                     ProfileTile(

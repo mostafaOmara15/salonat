@@ -1,5 +1,6 @@
 {
   "current_language_iso": "en",
+  "profile" : "Profile",
   "tagLine": "For our partners",
   "introSentence": "ONE STEP TO BEAUTY",
   "userName": "Username",
@@ -43,12 +44,14 @@
   "rate": "Rate",
   "add_offer": "Add Offer",
   "addLocation" : "Add Location",
+  "location" : "Location",
+  "moreDetails" : "More details ->",
   "openingTime": "Opening Time",
   "offers": "Offers",
   "add_pic": "Add picture",
   "add_offer_desc": "Add offer description",
-  "notifications": "NOTIFICATIONS",
-  "bookings": "BOOKINGS",
+  "notifications": "Notification",
+  "bookings": "Bookings",
   "clientName": "Client Name",
   "photoNumber": "Photo Number",
   "time": "Time",
@@ -70,7 +73,7 @@
   "sar": "SAR",
   "service_des_ar": "Service Description arabic",
   "service_des_en": "Service Description",
-  "service_duration": "Service duration",
+  "service_duration": "Service duration per minute",
   "service_price": "SAR 000",
   "no_service": "No services added yet",
   "service_added": "Service added",
@@ -79,5 +82,6 @@
   "priceBefore" : "Price Before",
   "priceAfter" : "Price After",
   "noNotifications" : "No notifications",
-  "noAppointmentsToday" : "No appointments today"
+  "noAppointmentsToday" : "No appointments today",
+  "closed" : "Closed"
 }

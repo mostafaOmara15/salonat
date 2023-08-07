@@ -92,7 +92,8 @@ class _OffersViewState extends State<OffersView> {
                                               decoration: BoxDecoration(border: Border.all(color: ColorManager.opacityBlackColor, width: 0.5)),
                                               child: Center(child: largeBody("Get 30% off ", ColorManager.blackColor, true)),
                                             ),
-                                            AppButton(title: "edit".tr(), onTap: (){})
+                                            heightSpace(context.height * 0.01),
+                                            Expanded(child: AppButton(title: "edit".tr(), onTap: (){}))
                                           ],
                                         )
                                       ],

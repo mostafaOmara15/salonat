@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
@@ -38,28 +39,28 @@ class AppLayout extends StatelessWidget {
       return [
         PersistentBottomNavBarItem(
           icon: const Icon(Icons.home_outlined),
-          title: ("Profile"),
+          title: ("profile".tr()),
           iconSize: context.height * 0.025,
           activeColorPrimary: ColorManager.activeColor,
           inactiveColorPrimary: Colors.white,
         ),
         PersistentBottomNavBarItem(
           icon: const Icon(Icons.percent),
-          title: ("Offers"),
+          title: ("offers".tr()),
           iconSize: context.height * 0.025,
           activeColorPrimary: ColorManager.activeColor,
           inactiveColorPrimary: Colors.white,
         ),
         PersistentBottomNavBarItem(
           icon: const Icon(Icons.calendar_today_outlined),
-          title: ("Booking"),
+          title: ("bookings".tr()),
           iconSize: context.height * 0.025,
           activeColorPrimary: ColorManager.activeColor,
           inactiveColorPrimary: Colors.white,
         ),
         PersistentBottomNavBarItem(
           icon: const Icon(Icons.notifications_none),
-          title: ("Notifications"),
+          title: ("notifications".tr()),
           iconSize: context.height * 0.03,
           activeColorPrimary: ColorManager.activeColor,
           inactiveColorPrimary: Colors.white,

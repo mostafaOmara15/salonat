@@ -35,20 +35,20 @@ class _AboutViewState extends State<AboutView> {
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(title: Text('about'.tr().toUpperCase())),
-          body: ListView(
+          body: Column(
             children: [
               SizedBox(
-                height: context.height * 0.8 ,
-                child: Column(
+                height: context.height * 0.7,
+                child: ListView(
                   children: [
                     AboutTextField(controller: aboutCubit.englishAbout, hint: "About the Salon...", isAr: false),
                     AboutTextField(controller: aboutCubit.arabicAbout, hint: "...حول الصالون", isAr: true),
-                    const Spacer(),
-                    AppButton(title: "save".tr(), onTap: (){}),
-                  ],
+                  ]
                 ),
               ),
-            ]
+              AppButton(title: "save".tr(), onTap: (){}),
+              heightSpace(context.height * 0.03)
+            ],
           )
         );
       },

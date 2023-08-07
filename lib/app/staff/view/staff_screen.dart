@@ -58,7 +58,7 @@ class _StaffScreenState extends State<StaffScreen> {
                               await cubit.getStaff();
                             },
                             rate: cubit.staff[index].rate.toString(),
-                            image: cubit.staff[index].image,
+                            image: cubit.staff[index].image!,
                             name: cubit.staff[index].name!,
                             rateImage: "assets/images/5_stars.png",
                           ).onTap(() async {

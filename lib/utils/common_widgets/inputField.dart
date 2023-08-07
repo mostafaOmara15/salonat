@@ -5,6 +5,7 @@ class InputField extends StatefulWidget {
   IconData icon;
   TextInputType inputType;
   bool isPassword;
+  String? suffexText;
   TextEditingController controller;
   String hint;
   bool enable;
@@ -22,6 +23,7 @@ class InputField extends StatefulWidget {
     required this.icon,
     required this.validator,
     this.isPassword = false,
+    this.suffexText,
     this.enableIcon = false,
     this.maxLine = 1,
     this.language = '',
@@ -115,34 +117,8 @@ class _InputFieldState extends State<InputField> {
             ),
             gapPadding: 0,
           ),
-          suffixIcon: widget.isPassword
-              ? GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      isHidden = !isHidden;
-                    });
-                  },
-                  child: isHidden == true
-                      ? Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 12.0),
-                          child: Icon(
-                            Icons.visibility_off, // color: blackColor,
-                            size: 22,
-                            color:
-                                Theme.of(context).colorScheme.primaryContainer,
-                          ),
-                        )
-                      : Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 12.0),
-                          child: Icon(
-                            Icons.visibility, // color: blackColor,
-                            size: 22,
-                            color:
-                                Theme.of(context).colorScheme.primaryContainer,
-                          ),
-                        ),
-                )
-              : const SizedBox(),
+          suffixText: widget.suffexText,
+
           suffixIconConstraints: const BoxConstraints(maxHeight: 20),
         ),
       ),

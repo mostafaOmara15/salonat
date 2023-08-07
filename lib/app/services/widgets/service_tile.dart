@@ -23,6 +23,7 @@ class ServiceTile extends StatelessWidget {
     return SizedBox(
       width: context.width,
       child: ListTile(
+        contentPadding: EdgeInsets.symmetric(horizontal: context.width *0.06),
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [

@@ -1,6 +1,8 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:salonat/app/services/model/sub_services_model.dart';
+import 'package:salonat/utils/common_widgets/loading_indecator.dart';
 import 'package:salonat/utils/extensions/media_query/media_query.dart';
 import '../../../utils/common_widgets/texts.dart';
 import '../../../utils/common_widgets/warning_alert.dart';
@@ -12,7 +14,7 @@ class StaffTile extends StatelessWidget {
   String rateImage;
   String rate;
   Function() onDelete;
-  String? image;
+  String image;
 
   StaffTile({
     super.key,
@@ -53,15 +55,36 @@ class StaffTile extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                image == ""
-                    ? Image.asset(
-                        "assets/images/profile.png",
-                        height: context.height * 0.1,
-                      )
-                    : Image.network(
-                        image!,
-                        height: context.height * 0.1,
+                CachedNetworkImage(
+                  imageUrl: image,
+                  imageBuilder: (context, imageProvider) {
+                    return Container(
+                      height: context.height * 0.1,
+                      width: context.height * 0.1,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        image: DecorationImage(
+                          image: imageProvider,
+                          fit: BoxFit.fill
+                        )
                       ),
+                    );
+                  },
+                  height: context.height * 0.1,
+                  placeholder: (context, url) =>  centerIndicator(),
+                  errorWidget: (context, url, error) => Image.asset( "assets/images/profile.png",height: context.height * 0.1,),
+                  fit: BoxFit.fill,
+                ),
+                // CircleAvatar(
+                //   radius: context.width * 0.1,
+                //   backgroundColor: Colors.red,
+                //   child: image == ""
+                //       ? Image.asset( "assets/images/profile.png",height: context.height * 0.1,)
+                //       : Image.network(
+                //     image!,
+                //     height: context.height * 0.1,
+                //   ),
+                // ),
                 widthSpace(context.width * 0.07),
                 Expanded(
                   child: Column(

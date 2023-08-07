@@ -72,7 +72,7 @@ class _AddServicesState extends State<AddServices> {
                 width: context.width / 4,
                 child: InputField(
                     hint: "service_price".tr(),
-                    inputType: TextInputType.text,
+                    inputType: TextInputType.number,
                     controller: cubit.price,
                     icon: Icons.add,
                     validator: (value) {}),
@@ -84,7 +84,8 @@ class _AddServicesState extends State<AddServices> {
             height: context.height / 20,
             child: InputField(
                 hint: "service_duration".tr(),
-                inputType: TextInputType.text,
+                suffexText: "minute".tr(),
+                inputType: TextInputType.number,
                 controller: cubit.duration,
                 icon: Icons.add,
                 validator: (value) {}),

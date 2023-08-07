@@ -49,10 +49,8 @@ class _TimeFieldState extends State<TimeField> {
               ),
               child: Center(
                   child: widget.timeUpdated
-
-                      ?
-                  smallTitle(widget.selectedTime.format(context), ColorManager.blackColor, false)
-                      : smallTitle(widget.selectedTime.format(context), ColorManager.greyColor, false)
+                    ? smallTitle(widget.selectedTime.format(context), ColorManager.blackColor, false)
+                    : smallTitle(widget.selectedTime.format(context), ColorManager.greyColor, false)
               ),
             ).onTap((){showTimePickerDialog();}),
           ),
