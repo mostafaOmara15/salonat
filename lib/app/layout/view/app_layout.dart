@@ -28,7 +28,7 @@ class AppLayout extends StatelessWidget {
         create: (context) => OfferCubit(),
         child:  BookingScreen(),
       ),
-      const NotificationScreen(),
+      NotificationScreen(),
     ];
   }
 

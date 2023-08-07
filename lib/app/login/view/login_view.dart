@@ -42,6 +42,7 @@ class LoginView extends StatelessWidget {
                                 "tagLine".tr(), ColorManager.whiteColor, true),
                             heightSpace(context.width * 0.075),
                             Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
                               children: [
                                 LanguageButtons(
                                   language: "En",

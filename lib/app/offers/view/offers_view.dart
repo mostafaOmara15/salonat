@@ -7,6 +7,7 @@ import 'package:salonat/app/offers/cubit/offer_cubit.dart';
 import 'package:salonat/utils/common_widgets/app_button.dart';
 import 'package:salonat/utils/common_widgets/inputField.dart';
 import 'package:salonat/utils/common_widgets/sup_button.dart';
+import 'package:salonat/utils/common_widgets/texts.dart';
 import 'package:salonat/utils/extensions/media_query/media_query.dart';
 import 'package:salonat/utils/extensions/navigation/navigation.dart';
 import 'package:salonat/utils/spaces.dart';
@@ -25,118 +26,88 @@ class _OffersViewState extends State<OffersView> {
   @override
   void initState() {
     cubit = BlocProvider.of<OfferCubit>(context);
-    cubit!.offerDesc1.text = "Get eyelashes extensions, eyebrows liftin";
+    cubit!.offerDesc1.text = "Get eyelashes extensions, eyebrows lifting";
     cubit!.offerAmount.text = "Get 30% off";
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: ColorManager.primaryColor,
-        title: Text("offers".tr(),
-            style: const TextStyle(fontSize: 22, color: Colors.white)),
-        centerTitle: true,
-      ),
+      appBar: AppBar(title: Text('offers'.tr().toUpperCase())),
       body: Column(
         children: [
           Expanded(
             child: ListView.builder(
-                itemBuilder: (context, index) {
-                  return Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 10),
-                    height: context.height / 2.1,
-                    child: Column(
-                      children: [
-
-                        heightSpace(context.height / 50),
-                        Stack(
+              itemCount: 1,
+              itemBuilder: (context, index) {
+                return Padding(
+                  padding: EdgeInsets.all(context.width * 0.03),
+                  child: Column(
+                    children: [
+                      heightSpace(context.height * 0.025),
+                      Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(5),
+                          image: const DecorationImage(
+                              image: AssetImage("assets/images/offer.png"),
+                              fit: BoxFit.cover
+                          ),
+                        ),
+                        height: context.height * 0.4,
+                        child: Column(
                           children: [
-                            Image.asset("assets/images/offer.png",
-                                fit: BoxFit.fill,
-                                width: double.infinity,
-                                height: context.height / 2.8),
-                            Positioned(
-                                right: 0,
-                                top: 0,
-                                child: IconButton(
-                                    onPressed: () {},
-                                    icon: CircleAvatar(
-                                        maxRadius: 12,
-                                        backgroundColor: ColorManager.greyColor,
-                                        child: const Icon(
-                                          Icons.clear,
-                                        ))),
-                            ),
-                            Positioned(
-                              left: 0,
-                              right: 0,
-                              bottom: context.height / 50,
-                              child: Container(
-                                height: context.height / 8,
-                                color: ColorManager.greyColor.withOpacity(0.8),
-                                child: Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 8.0, vertical: 8),
-                                  child: Row(children: [
-                                    Expanded(
-                                        child: InputField(
-                                      maxLine: 5,
-                                      icon: Icons.percent,
-                                      hint: "",
-                                      inputType: TextInputType.text,
-                                      validator: (value) {},
-                                      controller: cubit!.offerDesc1,
-                                    )),
-                                    Expanded(
-                                        child: Column(
-                                      children: [
-                                        Expanded(
-                                          flex: 2,
-                                          child: Container(
-
-                                            padding: EdgeInsets.symmetric(
-                                              horizontal: context.width / 30,
-                                            ),
-                                            height: context.height / 60,
-                                            child: InputField(
-                                              icon: Icons.percent,
-                                              hint: "",
-                                              inputType: TextInputType.text,
-                                              validator: (value) {},
-                                              controller: cubit!.offerAmount,
-                                            ),
-                                          ),
-                                        ),
-                                        heightSpace(context.width / 60),
-
-
-                                          Expanded(
-                                            flex: 1,
-                                            child: Padding(
-                                              padding: EdgeInsets.symmetric(
-                                                horizontal: context.width / 30,
-                                              ),
-                                              child: SupButton(
-                                                  onTap: () {},
-                                                  title: "edit".tr(), height:context .height/10,),
-
-                                        ),
-                                          ),
-                                        heightSpace(context.width / 60),
-                                      ],
-                                    ))
-                                  ]),
-                                ),
+                            Padding(
+                              padding: EdgeInsets.all(context.width * 0.03),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  Image.asset("assets/icons/delete_icon.png", width: context.width * 0.07,),
+                                ],
                               ),
                             ),
+                            const Spacer(),
+                            Container(
+                                height: context.height * 0.14,
+                                color: ColorManager.greyColor.withOpacity(0.8),
+                                child: Padding(
+                                    padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8),
+                                    child: Row(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Container(
+                                          height: context.height * 0.12,
+                                          width: context.width * 0.55,
+                                          padding: EdgeInsets.all(3),
+                                          decoration: BoxDecoration(border: Border.all(color: ColorManager.opacityBlackColor, width: 0.5)),
+                                          child: largeBody("Get eyelashes extensions, eyebrows lifting", ColorManager.whiteColor, true),
+                                        ),
+                                        Column(
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Container(
+                                              width: context.width * 0.3,
+                                              height: context.height * 0.05,
+                                              padding: EdgeInsets.all(3),
+                                              decoration: BoxDecoration(border: Border.all(color: ColorManager.opacityBlackColor, width: 0.5)),
+                                              child: Center(child: largeBody("Get 30% off ", ColorManager.blackColor, true)),
+                                            ),
+                                            AppButton(title: "edit".tr(), onTap: (){})
+                                          ],
+                                        )
+                                      ],
+                                    )
+                                )
+                            ),
+                            heightSpace(context.width * 0.05),
                           ],
                         ),
-                      ],
-                    ),
-                  );
-                },
-                itemCount: 1),
+                      ),
+                    ],
+                  ),
+                );
+              },
+            ),
           ),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 10),

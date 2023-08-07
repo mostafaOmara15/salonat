@@ -71,6 +71,12 @@
   "service_duration": "مدة الخدمة",
   "service_price": "000 ريال",
   "no_service": "لايوجد خدمات",
-  "service_added": ""
-
+  "service_added": "تمت إضافة الخدمة بنجاح",
+  "addLocation" : "اضف موقع",
+  "openingTime": "مواعيد العمل",
+  "startDate" : "تاريخ البدء",
+  "endDate" : "تاريخ الانتهاء",
+  "priceBefore" : "السعر القديم",
+  "noNotifications" : "لا يوجد اشعارات",
+  "noAppointmentsToday" : "لا يوجد حجوزات اليوم"
 }

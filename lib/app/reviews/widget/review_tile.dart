@@ -14,7 +14,7 @@ class ReviewTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(border: Border(top: BorderSide(width: 0.5, color: ColorManager.opacityBlackColor))),
+      decoration: BoxDecoration(border: Border(bottom: BorderSide(width: 0.5, color: ColorManager.opacityBlackColor))),
       child: ListTile(
         title: Row(
           children: [
