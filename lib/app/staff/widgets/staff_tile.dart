@@ -75,16 +75,7 @@ class StaffTile extends StatelessWidget {
                   errorWidget: (context, url, error) => Image.asset( "assets/images/profile.png",height: context.height * 0.1,),
                   fit: BoxFit.fill,
                 ),
-                // CircleAvatar(
-                //   radius: context.width * 0.1,
-                //   backgroundColor: Colors.red,
-                //   child: image == ""
-                //       ? Image.asset( "assets/images/profile.png",height: context.height * 0.1,)
-                //       : Image.network(
-                //     image!,
-                //     height: context.height * 0.1,
-                //   ),
-                // ),
+
                 widthSpace(context.width * 0.07),
                 Expanded(
                   child: Column(

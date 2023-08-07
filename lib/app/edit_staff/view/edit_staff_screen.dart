@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -65,15 +66,35 @@ class _EditStaffViewState extends State<EditStaffView> {
                                     Stack(
                                         alignment: Alignment.bottomRight,
                                         children: [
-                                         cubit.staffImageUrl == ""
-                                              ? Image.asset(
-                                                  "assets/images/profile.png",
-                                                  height: context.height * 0.1,
-                                                )
-                                              : Image.network(
-                                                  cubit.staffImageUrl!,
-                                                  height: context.height * 0.1,
+                                          CachedNetworkImage(
+                                            imageUrl: cubit.staffImageUrl!,
+                                            imageBuilder: (context, imageProvider) {
+                                              return Container(
+                                                height: context.height * 0.1,
+                                                width: context.height * 0.1,
+                                                decoration: BoxDecoration(
+                                                    shape: BoxShape.circle,
+                                                    image: DecorationImage(
+                                                        image: imageProvider,
+                                                        fit: BoxFit.fill
+                                                    )
                                                 ),
+                                              );
+                                            },
+                                            height: context.height * 0.1,
+                                            placeholder: (context, url) =>  centerIndicator(),
+                                            errorWidget: (context, url, error) => Image.asset( "assets/images/profile.png",height: context.height * 0.1,),
+                                            fit: BoxFit.fill,
+                                          ),
+                                         // cubit.staffImageUrl == ""
+                                         //      ? Image.asset(
+                                         //          "assets/images/profile.png",
+                                         //          height: context.height * 0.1,
+                                         //        )
+                                         //      : Image.network(
+                                         //          cubit.staffImageUrl!,
+                                         //          height: context.height * 0.1,
+                                         //        ),
                                           Image.asset(
                                             "assets/images/plus.png",
                                             height: context.height * 0.025,
