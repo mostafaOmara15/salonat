@@ -23,7 +23,7 @@ class AppLayout extends StatelessWidget {
       ),
       BlocProvider<OfferCubit>(
         create: (context) => OfferCubit(),
-        child: const OffersView(),
+        child:  const OffersView(),
       ),
       BlocProvider<OfferCubit>(
         create: (context) => OfferCubit(),
