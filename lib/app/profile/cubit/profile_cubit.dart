@@ -1,7 +1,12 @@
+import 'dart:io';
+
 import 'package:bloc/bloc.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:salonat/app/login/view/login_view.dart';
 import 'package:salonat/app/profile/cubit/profile_states.dart';
@@ -22,8 +27,9 @@ class ProfileCubit extends Cubit<ProfileStates> {
 
   SalonModel salon = SalonModel();
   bool showReview = false;
-  List reviews = [1,2,3,4];
-
+  List reviews = [1, 2, 3, 4];
+  final picker = ImagePicker();
+  File? image;
   bool en = true;
   bool ar = false;
   String currentLang = "en";
@@ -33,22 +39,20 @@ class ProfileCubit extends Cubit<ProfileStates> {
     ar = false;
     emit(ChangeLanguageState());
   }
+
   void changeToArabic() {
     en = false;
     ar = true;
     emit(ChangeLanguageState());
   }
 
-
   void getSalonData() async {
     emit(SalonLoadingState());
     String docId = await prefs.getString(salonId);
-    await firebase.getData("salons", docId).then(
-      (value){
-        emit(SalonSuccessState());
-        salon = SalonModel.fromJson(value);
-      }
-    ).catchError((error){
+    await firebase.getData("salons", docId).then((value) {
+      emit(SalonSuccessState());
+      salon = SalonModel.fromJson(value);
+    }).catchError((error) {
       emit(SalonErrorState());
       print(error.toString());
     });
@@ -56,15 +60,13 @@ class ProfileCubit extends Cubit<ProfileStates> {
 
   void logOut(BuildContext context) async {
     try {
-      await FirebaseAuth.instance.signOut().then((value)
-          {
-            emit(LogOutState());
-            context.pushAndRemoveUntil(const LoginView());
-            prefs.clearPrefs();
-          });
+      await FirebaseAuth.instance.signOut().then((value) {
+        emit(LogOutState());
+        context.pushAndRemoveUntil(const LoginView());
+        prefs.clearPrefs();
+      });
 
-      PersistentNavBarNavigator.pushNewScreen(
-          context,
+      PersistentNavBarNavigator.pushNewScreen(context,
           screen: const LoginView(),
           withNavBar: false, // OPTIONAL VALUE. True by default.
           pageTransitionAnimation: PageTransitionAnimation.cupertino);
@@ -73,5 +75,36 @@ class ProfileCubit extends Cubit<ProfileStates> {
     }
   }
 
+  Future<String> pickImage() async {
+    String imageUrl;
+    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
 
+    if (pickedFile != null) {
+      image = File(pickedFile.path);
+      var refStorage = FirebaseStorage.instance
+          .ref("salons/${DateTime.now().millisecondsSinceEpoch}");
+      await refStorage.putFile(image!);
+      imageUrl = await refStorage.getDownloadURL();
+      return imageUrl;
+    }
+    return '';
+  }
+
+  addCoverImage({required String coverImage}) async {
+    String docId = await prefs.getString(salonId);
+
+    await FirebaseFirestore.instance
+        .collection("salons")
+        .doc(docId)
+        .set({"cover-images": FieldValue.arrayUnion([coverImage])}, SetOptions(merge: true));
+  }
+
+  removeCoverImage({required String coverImage}) async {
+    String docId = await prefs.getString(salonId);
+
+    await FirebaseFirestore.instance
+        .collection("salons")
+        .doc(docId)
+        .set({"cover-images": FieldValue.arrayRemove([coverImage])}, SetOptions(merge: true));
+}
 }

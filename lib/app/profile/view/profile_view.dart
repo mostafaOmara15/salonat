@@ -57,12 +57,25 @@ class _ProfileViewState extends State<ProfileView> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    ImagesSlider(imagesUrl: profileCubit.salon.coverimages),
+                    ImagesSlider(
+                      imagesUrl: profileCubit.salon.coverimages,
+                      onTabAddPic: () async {
+                        await profileCubit.pickImage().then((imageUrl) async {
+                          if (imageUrl.isNotEmpty) {
+                            await profileCubit.addCoverImage(
+                                coverImage: imageUrl);
+                            profileCubit.salon.coverimages?.add(imageUrl);
+                            profileCubit.emit(SalonSuccessState());
+                          }
+                        });
+                      },
+                      onTabDeletePic: () {},
+                    ),
                     heightSpace(context.height * 0.01),
                     Padding(
                       padding: EdgeInsets.symmetric(
-                          horizontal: context.width * 0.03,
-                          vertical: context.height * 0.01,
+                        horizontal: context.width * 0.03,
+                        vertical: context.height * 0.01,
                       ),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -70,14 +83,18 @@ class _ProfileViewState extends State<ProfileView> {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              mediumTitle(profileCubit.salon.name?.toUpperCase(),ColorManager.darkBrownColor, false),
+                              mediumTitle(
+                                  profileCubit.salon.name?.toUpperCase(),
+                                  ColorManager.darkBrownColor,
+                                  false),
                               Row(
                                 children: [
                                   widthSpace(context.width * 0.045),
                                   Image.asset("assets/images/5_stars.png",
                                       width: context.width * 0.15),
                                   widthSpace(context.width * 0.03),
-                                  mediumTitle("5.0", ColorManager.blackColor, false),
+                                  mediumTitle(
+                                      "5.0", ColorManager.blackColor, false),
                                 ],
                               ),
                             ],
@@ -124,14 +141,10 @@ class _ProfileViewState extends State<ProfileView> {
                     ),
                     heightSpace(context.height * 0.01),
                     ProfileTile(
-                        title: "about".tr(),
-                        navigatedScreen: BlocProvider(
+                      title: "about".tr(),
+                      navigatedScreen: BlocProvider(
                           create: (context) => AboutCubit(),
-                            child: AboutView(
-                                aboutAr: profileCubit.salon.aboutAr!,
-                                aboutEn: profileCubit.salon.aboutEn!,
-                            )
-                        ),
+                          child: const AboutView()),
                       withIcon: true,
                     ),
                     ProfileTile(
@@ -141,40 +154,37 @@ class _ProfileViewState extends State<ProfileView> {
                     ),
                     ProfileTile(
                       title: "openingTime".tr(),
-                      navigatedScreen: OpeningTimeView(openingtime: profileCubit.salon.openingtime),
+                      navigatedScreen: OpeningTimeView(
+                          openingtime: profileCubit.salon.openingtime),
                       withIcon: true,
                     ),
                     ProfileTile(
-                        title: "services".tr(),
-                        navigatedScreen:
-                        BlocProvider<ServicesCubit>(
-                          create:  (context) => ServicesCubit(),
-                          child: const ServicesView(),
-                        ),
+                      title: "services".tr(),
+                      navigatedScreen: BlocProvider<ServicesCubit>(
+                        create: (context) => ServicesCubit(),
+                        child: const ServicesView(),
+                      ),
                       withIcon: true,
                     ),
                     ProfileTile(
-                        title: "staff".tr(),
-                        navigatedScreen:
-                        BlocProvider<StaffCubit >(
-                          create:(context) => StaffCubit(),
-                          child: const StaffScreen(),
-
-                        ),
-                        withIcon: true,
+                      title: "staff".tr(),
+                      navigatedScreen: BlocProvider<StaffCubit>(
+                        create: (context) => StaffCubit(),
+                        child: const StaffScreen(),
+                      ),
+                      withIcon: true,
                     ),
                     ProfileTile(
-                        title: "reviews".tr(),
-                        navigatedScreen: const ReviewsView(),
-                        withIcon: true,
+                      title: "reviews".tr(),
+                      navigatedScreen: const ReviewsView(),
+                      withIcon: true,
                     ),
                     ProfileTile(
                         title: "logout".tr(),
                         onTap: () {
                           profileCubit.logOut(context);
                         },
-                        withIcon: false
-                    )
+                        withIcon: false)
                   ],
                 ),
               ]),
