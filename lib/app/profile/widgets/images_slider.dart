@@ -26,8 +26,10 @@ class _ImagesSliderState extends State<ImagesSlider> {
   Widget build(BuildContext context) {
     return SizedBox(
       width: context.width,
-      height: context.height * 0.275,
-      child: Stack(alignment: AlignmentDirectional.centerEnd, children: [
+      height: context.height * 0.28,
+      child: Stack(
+        alignment: AlignmentDirectional.centerEnd,
+        children: [
         Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -39,9 +41,9 @@ class _ImagesSliderState extends State<ImagesSlider> {
                   width: context.width,
                   height: context.height * 0.26,
                   color: ColorManager.greyColor,
-                  child: Center(child: largeTitle("add_pic".tr(), ColorManager.greyColor100, false)).onTap(
-                    (){}
-                  ),
+                  child: Center(
+                      child: largeTitle("add_pic".tr(), ColorManager.greyColor100, false)
+                  ).onTap((){}),
                 )
                 : CarouselSlider(
                 carouselController: _controller,
@@ -49,7 +51,8 @@ class _ImagesSliderState extends State<ImagesSlider> {
                   return Container(
                     decoration: BoxDecoration(
                         image: DecorationImage(
-                            fit: BoxFit.cover, image: NetworkImage(e))
+                            fit: BoxFit.cover, image: NetworkImage(e)
+                        )
                     ),
                   );
                 }).toList(),
@@ -58,10 +61,9 @@ class _ImagesSliderState extends State<ImagesSlider> {
                     initialPage: 0,
                     viewportFraction: 1,
                     onPageChanged: (index, _) {
-                      setState(() {
-                        _currentIndex = index;
-                      });
-                    }),
+                      setState(() {_currentIndex = index;});
+                    }
+                 ),
               ),
             ),
             widget.imagesUrl!.isEmpty
@@ -82,12 +84,16 @@ class _ImagesSliderState extends State<ImagesSlider> {
         ),
         widget.imagesUrl!.isEmpty
         ? const SizedBox()
-        : Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: [
-            IconButton(
-              onPressed: () {
+        : Padding(
+          padding: EdgeInsets.only(right: context.width * 0.03, top: context.height * 0.02),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              Image.asset(
+                "assets/icons/delete.png",
+                width: context.width * 0.06,
+              ).onTap((){
                 showDialog(
                   context: context,
                   barrierDismissible: false,
@@ -95,43 +101,17 @@ class _ImagesSliderState extends State<ImagesSlider> {
                     return WarningAlert(
                         title: "",
                         supTitle: "warningImage".tr(),
-                        action: () {});
+                        action: () {}
+                    );
                   },
                 );
-              },
-              icon: Container(
-                alignment: Alignment.center,
-                // backgroundColor: ColorManager.primaryColor,
-                // radius: context.height * 0.018,
-                width: 25,
-                height: 25,
-                decoration: BoxDecoration(
-                    color: ColorManager.greyColor.withOpacity(0.67),
-                    borderRadius: BorderRadius.circular(50)),
-                child: const Icon(
-                  Icons.close_sharp,
-                  size: 18,
-                ),
-              ),
-            ),
-            IconButton(
-              onPressed: () {},
-              icon: Container(
-                alignment: Alignment.center,
-                // backgroundColor: ColorManager.primaryColor,
-                // radius: context.height * 0.018,
-                width: 25,
-                height: 25,
-                decoration: BoxDecoration(
-                    color: ColorManager.primaryColor,
-                    borderRadius: BorderRadius.circular(50)),
-                child: const Icon(
-                  Icons.add,
-                  size: 18,
-                ),
-              ),
-            ),
-          ],
+              }),
+              Image.asset(
+                "assets/icons/plus_icon.png",
+                width: context.width * 0.08,
+              ).onTap((){}),
+            ],
+          ),
         )
       ]),
     );

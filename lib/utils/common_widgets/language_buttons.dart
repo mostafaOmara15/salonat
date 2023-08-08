@@ -16,7 +16,7 @@ class LanguageButtons extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(context.width * 0.02),
+      padding: EdgeInsets.all(context.width * 0.015),
       decoration: BoxDecoration(
           color: active ? ColorManager.lightPrimaryColor : ColorManager.whiteColor,
           borderRadius: BorderRadius.circular(11),
