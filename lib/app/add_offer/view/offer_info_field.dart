@@ -32,7 +32,7 @@ class _OfferInfoState extends State<OfferInfo> {
     if (picked != null && picked != _selectedDate) {
       setState(() {
         _selectedDate = picked;
-        widget.dateController.text = DateFormat('dd/MM/yyyy').format(picked).toString(); // Format as needed
+        widget.dateController.text = DateFormat('yyyy-MM-dd').format(picked).toString(); // Format as needed
       });
     }
   }

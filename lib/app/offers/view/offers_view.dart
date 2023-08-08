@@ -26,8 +26,7 @@ class _OffersViewState extends State<OffersView> {
   void initState() {
     cubit = BlocProvider.of<OfferCubit>(context);
     cubit!.getOffer();
-    cubit!.offerDesc1.text = "Get eyelashes extensions, eyebrows lifting";
-    cubit!.offerAmount.text = "Get 30% off";
+
   }
 
   @override
@@ -45,7 +44,7 @@ class _OffersViewState extends State<OffersView> {
               children: [
                 Expanded(
                   child: ListView.builder(
-                    itemCount: 1,
+                    itemCount: cubit!.offers.length,
                     itemBuilder: (context, index) {
                       return Padding(
                         padding: EdgeInsets.all(context.width * 0.03),
@@ -100,7 +99,7 @@ class _OffersViewState extends State<OffersView> {
                                                     padding: EdgeInsets.all(3),
                                                     decoration: BoxDecoration(border: Border.all(color: ColorManager.opacityBlackColor, width: 0.5)),
 
-                                                    child: Center(child: largeBody("Get ${((double.parse(cubit!.offers[index].pricebefore!.toString())*100)/double.parse(cubit!.offers[index].priceafter!.toString())).toStringAsFixed(0)} % off ", ColorManager.blackColor, true)),
+                                                    child: Center(child: largeBody("Get ${((double.parse(cubit!.offers[index].priceafter!.toString())*100)/double.parse(cubit!.offers[index].pricebefore!.toString())).toStringAsFixed(0)} % off ", ColorManager.blackColor, true)),
                                                   ),
                                                   heightSpace(context.height * 0.01),
                                                   Expanded(child: AppButton(title: "edit".tr(), onTap: (){}))
@@ -123,11 +122,18 @@ class _OffersViewState extends State<OffersView> {
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 10),
                   child: AppButton(
-                      onTap: () {
-                        context.push(BlocProvider<AddOfferCubit>(
+                      onTap: () async {
+                      var result=  await Navigator.push(context, MaterialPageRoute(builder: (context) => BlocProvider<AddOfferCubit>(
                           create: (context) => AddOfferCubit(),
                           child: const AddOffersView(),
-                        ));
+                        ),));
+
+                      if( result == true ){
+                        cubit!.offers.clear();
+                        cubit!.getOffer();
+
+                      }
+
                       },
                       title: "add_offer".tr()),
                 ),

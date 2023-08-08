@@ -19,13 +19,12 @@ class AddOffersView extends StatefulWidget {
 }
 
 class _AddOffersViewState extends State<AddOffersView> {
-late  AddOfferCubit cubit;
+  late AddOfferCubit cubit;
 
   @override
   void initState() {
     cubit = BlocProvider.of<AddOfferCubit>(context);
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -33,88 +32,120 @@ late  AddOfferCubit cubit;
       appBar: AppBar(title: Text('offers'.tr().toUpperCase())),
       body: BlocBuilder<AddOfferCubit, OffDetailsState>(
         builder: (context, state) {
-          return    ListView(
+          return ListView(
             children: [
               Padding(
                 padding: EdgeInsets.all(context.width * 0.03),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    heightSpace(context.height * 0.01),
-                    largeTitle("add_offer".tr(), ColorManager.greyColor100, false),
-                    heightSpace(context.height * 0.01),
-                    cubit!.image != null
-                        ? Image.file(
-                        cubit!.image!,
-                        fit: BoxFit.fill,
-                        width: double.infinity,
-                        height: context.height / 2.8)
-                        .onTap(() {
-                      cubit!.pickImage();
-                    })
-                        : Container(
-                      color: ColorManager.greyColor,
-                      width: double.infinity,
-                      height: context.height / 2.8,
-                      padding: EdgeInsets.symmetric(
-                          vertical: context.height / 7),
-                      child: Center(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Icon(
-                              Icons.add,
-                              color: ColorManager.greyColor100,
+                child: Form(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      heightSpace(context.height * 0.01),
+                      largeTitle(
+                          "add_offer".tr(), ColorManager.greyColor100, false),
+                      heightSpace(context.height * 0.01),
+                      cubit!.offerImageUrl != null
+                          ? Image.network(cubit!.offerImageUrl!,
+                                  fit: BoxFit.fill,
+                                  width: double.infinity,
+                                  height: context.height / 2.8)
+                              .onTap(() {
+                              cubit!.pickImage();
+                            })
+                          : Container(
+                              color: ColorManager.greyColor,
+                              width: double.infinity,
+                              height: context.height / 2.8,
+                              padding: EdgeInsets.symmetric(
+                                  vertical: context.height / 7),
+                              child: Center(
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Icon(
+                                      Icons.add,
+                                      color: ColorManager.greyColor100,
+                                    ),
+                                    mediumTitle("add_pic".tr(),
+                                        ColorManager.greyColor100, false),
+                                  ],
+                                ).onTap(() {
+                                  cubit!.pickImage();
+                                }),
+                              ),
                             ),
-                            mediumTitle("add_pic".tr(),
-                                ColorManager.greyColor100, false),
-                          ],
-                        ).onTap(() {
-                          cubit!.pickImage();
-                        }),
+                      heightSpace(context.height * 0.02),
+                      largeBody("Add offer description",
+                          ColorManager.greyColor100, false),
+                      OfferDescription(
+                          controller: cubit.enDescription,
+                          hint: "",
+                          isAr: false),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          largeBody("اضف وصف العرض", ColorManager.greyColor100,
+                              false),
+                        ],
                       ),
-                    ),
-                    heightSpace(context.height * 0.02),
-                    largeBody("Add offer description", ColorManager.greyColor100, false),
-                    OfferDescription(controller: cubit.enDescription, hint: "", isAr: false),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        largeBody("اضف وصف العرض", ColorManager.greyColor100, false),
-                      ],
-                    ),
-                    OfferDescription(controller: cubit.arDescription, hint: "", isAr: true),
-                    Row(
-                      children: [
-                        Expanded(child: OfferInfo(title: "startDate".tr(), isDate: true, dateController: cubit.startDateController,)),
-                        widthSpace(context.width * 0.05),
-                        Expanded(child: OfferInfo(title: "endDate".tr(), isDate: true, dateController: cubit.endDateController,)),
-                      ],
-                    ),
-                    heightSpace(context.height * 0.01),
-                    Row(
-                      children: [
-                        Expanded(child: OfferInfo(title: "priceBefore".tr(), isDate: false, dateController: cubit.priceBeforeController)),
-                        widthSpace(context.width * 0.05),
-                        Expanded(child: OfferInfo(title: "priceAfter".tr(), isDate: false, dateController:cubit. priceAfterController)),
-                      ],
-                    ),
-                    heightSpace(context.height * 0.015),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        AppButton(onTap: () {}, title: "cancel".tr()),
-                        widthSpace(context.width / 10),
-                        AppButton(onTap: () {}, title: "done".tr())
-                      ],
-                    ),
-                  ],
+                      OfferDescription(
+                          controller: cubit.arDescription,
+                          hint: "",
+                          isAr: true),
+                      Row(
+                        children: [
+                          Expanded(
+                              child: OfferInfo(
+                            title: "startDate".tr(),
+                            isDate: true,
+                            dateController: cubit.startDateController,
+                          )),
+                          widthSpace(context.width * 0.05),
+                          Expanded(
+                              child: OfferInfo(
+                            title: "endDate".tr(),
+                            isDate: true,
+                            dateController: cubit.endDateController,
+                          )),
+                        ],
+                      ),
+                      heightSpace(context.height * 0.01),
+                      Row(
+                        children: [
+                          Expanded(
+                              child: OfferInfo(
+                                  title: "priceBefore".tr(),
+                                  isDate: false,
+                                  dateController: cubit.priceBeforeController)),
+                          widthSpace(context.width * 0.05),
+                          Expanded(
+                              child: OfferInfo(
+                                  title: "priceAfter".tr(),
+                                  isDate: false,
+                                  dateController: cubit.priceAfterController)),
+                        ],
+                      ),
+                      heightSpace(context.height * 0.015),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          AppButton(onTap: () {}, title: "cancel".tr()),
+                          widthSpace(context.width / 10),
+                          AppButton(
+                              onTap: () async {
+                                await cubit.addOffer();
+                                Navigator.pop(context,true);
+                              },
+                              title: "done".tr())
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ],
           );
-
         },
       ),
     );
