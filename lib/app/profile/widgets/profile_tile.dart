@@ -6,14 +6,12 @@ import '../../../utils/extensions/theme/colors/color_manager.dart';
 
 class ProfileTile extends StatelessWidget {
   String title;
-  Widget? navigatedScreen;
-  Function()? onTap;
+  Function() onTap;
   bool withIcon;
 
   ProfileTile({super.key,
     required this.title,
-    this.navigatedScreen,
-    this.onTap,
+    required this.onTap,
     required this.withIcon
   });
 
@@ -23,7 +21,7 @@ class ProfileTile extends StatelessWidget {
       decoration: BoxDecoration(border: Border(top: BorderSide(color: ColorManager.greyColor))),
       child: ListTile(
         title: largeTitle(title, ColorManager.blackColor, false),
-        onTap: onTap ?? () {context.push(navigatedScreen!);},
+        onTap: onTap,
         trailing: withIcon ? Icon(Icons.arrow_forward_ios_rounded, size: context.width * 0.04) : null,
       ),
     );

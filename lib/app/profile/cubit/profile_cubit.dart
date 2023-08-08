@@ -15,7 +15,7 @@ import 'package:salonat/utils/extensions/navigation/navigation.dart';
 import 'package:salonat/utils/strings/const_strings.dart';
 import '../../../../services/locator.dart';
 import '../../../../services/shared_pref.dart';
-import '../../../../utils/firebase_helper.dart';
+import '../../../services/firebase_helper.dart';
 
 class ProfileCubit extends Cubit<ProfileStates> {
   ProfileCubit() : super(ProfileInitialState());
@@ -46,7 +46,7 @@ class ProfileCubit extends Cubit<ProfileStates> {
     emit(ChangeLanguageState());
   }
 
-  void getSalonData() async {
+  Future<void> getSalonData() async {
     emit(SalonLoadingState());
     String docId = await prefs.getString(salonId);
     await firebase.getData("salons", docId).then((value) {

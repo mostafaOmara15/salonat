@@ -12,7 +12,11 @@ import 'package:salonat/utils/extensions/theme/colors/color_manager.dart';
 import '../../../utils/spaces.dart';
 
 class AboutView extends StatefulWidget {
-  const AboutView({Key? key}) : super(key: key);
+  String aboutAr;
+  String aboutEn;
+
+  AboutView({super.key, required this.aboutAr, required this.aboutEn});
+
 
   @override
   State<AboutView> createState() => _AboutViewState();
@@ -25,6 +29,8 @@ class _AboutViewState extends State<AboutView> {
   void initState() {
     super.initState();
     aboutCubit = AboutCubit.get(context);
+    aboutCubit.englishAbout = TextEditingController(text: widget.aboutEn);
+    aboutCubit.arabicAbout = TextEditingController(text: widget.aboutAr);
   }
 
   @override
@@ -34,28 +40,35 @@ class _AboutViewState extends State<AboutView> {
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(title: Text('about'.tr().toUpperCase())),
-          body: Column(
-            children: [
-              SizedBox(
-                height: context.height * 0.7,
-                child: ListView(
-                  children: [
-                    AboutTextField(
-                      controller: aboutCubit.englishAbout,
-                      hint: "About the Salon...",
-                      isAr: false
-                    ),
-                    AboutTextField(
-                      controller: aboutCubit.arabicAbout,
-                      hint: "...حول الصالون",
-                      isAr: true
-                    ),
-                  ]
+          body: SingleChildScrollView(
+            child: Column(
+              children: [
+                SizedBox(
+                  height: context.height * 0.7,
+                  child: ListView(
+                    children: [
+                      AboutTextField(
+                        controller: aboutCubit.englishAbout,
+                        hint: "About the Salon...",
+                        isAr: false
+                      ),
+                      AboutTextField(
+                        controller: aboutCubit.arabicAbout,
+                        hint: "...حول الصالون",
+                        isAr: true
+                      ),
+                    ]
+                  ),
                 ),
-              ),
-              AppButton(title: "save".tr(), onTap: (){}),
-              heightSpace(context.height * 0.03)
-            ],
+                AppButton(
+                    title: "save".tr(), 
+                    onTap: () async {
+                      await aboutCubit.updateAbout().then((value) => Navigator.pop(context, true));
+                    }
+                ),
+                heightSpace(context.height * 0.03)
+              ],
+            ),
           )
         );
       },

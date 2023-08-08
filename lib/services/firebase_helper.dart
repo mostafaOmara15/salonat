@@ -43,17 +43,6 @@ class FirebaseHelper {
     });
   }
 
-  Future<void> deleteData(String collection, String? deleteKey) async {
-    QuerySnapshot<Map<String, dynamic>> querySnapshot = await FirebaseFirestore.instance
-        .collection(collection)
-        .where('nationalId', isEqualTo: deleteKey)
-        .get();
-    querySnapshot.docs.forEach((doc) async {
-      await FirebaseFirestore.instance.collection('patients').doc(doc.id).delete();
-
-    });
-  }
-
   Future<String?> uploadImage(File? imageFile) async {
     if (imageFile == null) {
       return null;
@@ -62,7 +51,7 @@ class FirebaseHelper {
     final storageRef = FirebaseStorage.instance.ref().child('images/${DateTime.now().toString()}');
 
     // upload the image to Firebase Storage
-    final uploadTask = storageRef.putFile(imageFile!);
+    final uploadTask = storageRef.putFile(imageFile);
     final snapshot = await uploadTask.whenComplete(() {});
 
     // retrieve the download URL for the uploaded image
