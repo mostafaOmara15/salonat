@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:salonat/app/edit_staff/cubit/edit_staff_cubit.dart';
 import 'package:salonat/app/edit_staff/widgets/staff_field.dart';
 import 'package:salonat/app/staff/model/staff_model.dart';
-import 'package:salonat/utils/common_widgets/loading_indecator.dart';
+import 'package:salonat/utils/common_widgets/loading_indicator.dart';
 import 'package:salonat/utils/extensions/media_query/media_query.dart';
 import 'package:salonat/utils/extensions/on_tap/on_tap.dart';
 import '../../../utils/common_widgets/app_button.dart';

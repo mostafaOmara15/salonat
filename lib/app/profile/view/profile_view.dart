@@ -8,7 +8,7 @@ import 'package:salonat/app/profile/widgets/profile_tile.dart';
 import 'package:salonat/app/reviews/view/reviews_view.dart';
 import 'package:salonat/app/services/cubit/services_cubit.dart';
 import 'package:salonat/app/staff/cubit/staff_cubit.dart';
-import 'package:salonat/utils/common_widgets/loading_indecator.dart';
+import 'package:salonat/utils/common_widgets/loading_indicator.dart';
 import 'package:salonat/utils/common_widgets/logo_victor.dart';
 import 'package:salonat/utils/common_widgets/texts.dart';
 import 'package:salonat/utils/extensions/media_query/media_query.dart';

@@ -7,6 +7,7 @@ import 'package:salonat/app/login/cubit/login_cubit.dart';
 import 'package:salonat/app/profile/cubit/profile_cubit.dart';
 import 'package:salonat/app/splash/cubit/splash_cubit.dart';
 import 'package:salonat/app/splash/view/splash_view.dart';
+import 'package:salonat/firebase_options.dart';
 import 'package:salonat/services/locator.dart';
 import 'package:salonat/utils/block_observer.dart';
 import 'package:salonat/utils/extensions/theme/colors/color_manager.dart';
@@ -16,18 +17,23 @@ import 'app/booking/cubit/booking_cubit.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 
   Bloc.observer = MyBlocObserver();
   await EasyLocalization.ensureInitialized();
   setupLocator();
 
-  runApp(EasyLocalization(
+  runApp(
+    EasyLocalization(
       path: 'assets/translations',
       supportedLocales: const [Locale('en'), Locale('ar')],
       fallbackLocale: const Locale('en'),
       startLocale: const Locale('en'),
-      child: const MyApp()));
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {

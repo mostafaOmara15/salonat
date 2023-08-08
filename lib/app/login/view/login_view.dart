@@ -6,7 +6,7 @@ import 'package:salonat/app/login/cubit/login_states.dart';
 import 'package:salonat/app/login/widgets/login_button.dart';
 import 'package:salonat/app/login/widgets/login_form_field.dart';
 import 'package:salonat/utils/common_widgets/language_buttons.dart';
-import 'package:salonat/utils/common_widgets/loading_indecator.dart';
+import 'package:salonat/utils/common_widgets/loading_indicator.dart';
 import 'package:salonat/utils/extensions/theme/colors/color_manager.dart';
 import 'package:salonat/utils/common_widgets/logo_victor.dart';
 import 'package:salonat/utils/extensions/media_query/media_query.dart';
