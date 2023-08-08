@@ -50,7 +50,14 @@ class _BookingScreenState extends State<BookingScreen> {
                               bottomLeft: Radius.circular(35),
                               bottomRight: Radius.circular(35))),
                       child: CalendarDatePicker2(
+
                           config: CalendarDatePicker2Config(
+                            disabledDayTextStyle: TextStyle(
+                              color: ColorManager.greyColor
+                            ),
+                            currentDate: DateTime.now(),
+                            firstDate: DateTime(DateTime.now().year,DateTime.now().month-1,DateTime.now().day),
+                            lastDate:DateTime(DateTime.now().year,DateTime.now().month,DateTime.now().day+15) ,
                             selectedDayHighlightColor: ColorManager.primaryColor,
                             calendarType: CalendarDatePicker2Type.single,
                             weekdayLabels: [
