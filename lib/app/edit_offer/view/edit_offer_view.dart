@@ -1,7 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:salonat/app/add_offer/view/offer_info_field.dart';
 import 'package:salonat/app/edit_offer/cubit/edit_offer_cubit.dart';
 import 'package:salonat/app/offers/model/offer_model.dart';
 import 'package:salonat/utils/common_widgets/app_button.dart';
@@ -10,6 +9,7 @@ import 'package:salonat/utils/extensions/on_tap/on_tap.dart';
 import 'package:salonat/utils/spaces.dart';
 import '../../../utils/common_widgets/texts.dart';
 import '../../../utils/extensions/theme/colors/color_manager.dart';
+import '../../add_offer/widget/offer_info_field.dart';
 import '../widget/offer_description.dart';
 
 class EditOfferView extends StatefulWidget {
@@ -91,7 +91,8 @@ class _EditOfferViewState extends State<EditOfferView> {
                       OfferDescription(
                           controller: cubit.enDescription,
                           hint: "",
-                          isAr: false),
+                          isAr: false
+                      ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
@@ -109,14 +110,14 @@ class _EditOfferViewState extends State<EditOfferView> {
                               child: OfferInfo(
                             title: "startDate".tr(),
                             isDate: true,
-                            dateController: cubit.startDateController,
+                            dateController: cubit.startDateController, validator: null,
                           )),
                           widthSpace(context.width * 0.05),
                           Expanded(
                               child: OfferInfo(
                             title: "endDate".tr(),
                             isDate: true,
-                            dateController: cubit.endDateController,
+                            dateController: cubit.endDateController, validator: null,
                           )),
                         ],
                       ),
@@ -127,13 +128,13 @@ class _EditOfferViewState extends State<EditOfferView> {
                               child: OfferInfo(
                                   title: "priceBefore".tr(),
                                   isDate: false,
-                                  dateController: cubit.priceBeforeController)),
+                                  dateController: cubit.priceBeforeController, validator: null,)),
                           widthSpace(context.width * 0.05),
                           Expanded(
                               child: OfferInfo(
                                   title: "priceAfter".tr(),
                                   isDate: false,
-                                  dateController: cubit.priceAfterController)),
+                                  dateController: cubit.priceAfterController, validator: null,)),
                         ],
                       ),
                       heightSpace(context.height * 0.015),

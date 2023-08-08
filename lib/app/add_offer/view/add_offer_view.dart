@@ -2,13 +2,13 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:salonat/app/add_offer/cubit/add_offer_cubit.dart';
-import 'package:salonat/app/add_offer/view/offer_info_field.dart';
 import 'package:salonat/utils/common_widgets/app_button.dart';
 import 'package:salonat/utils/extensions/media_query/media_query.dart';
 import 'package:salonat/utils/extensions/on_tap/on_tap.dart';
 import 'package:salonat/utils/spaces.dart';
 import '../../../utils/common_widgets/texts.dart';
 import '../../../utils/extensions/theme/colors/color_manager.dart';
+import '../../edit_offer/view/offer_info_field.dart';
 import '../widget/offer_description.dart';
 
 class AddOffersView extends StatefulWidget {
@@ -105,13 +105,14 @@ class _AddOffersViewState extends State<AddOffersView> {
                             title: "startDate".tr(),
                             isDate: true,
                             dateController: cubit.startDateController,
+                                validator: cubit.textValidator(),
                           )),
                           widthSpace(context.width * 0.05),
                           Expanded(
                               child: OfferInfo(
                             title: "endDate".tr(),
                             isDate: true,
-                            dateController: cubit.endDateController,
+                            dateController: cubit.endDateController, validator: cubit.textValidator(),
                           )),
                         ],
                       ),
@@ -122,13 +123,13 @@ class _AddOffersViewState extends State<AddOffersView> {
                               child: OfferInfo(
                                   title: "priceBefore".tr(),
                                   isDate: false,
-                                  dateController: cubit.priceBeforeController)),
+                                  dateController: cubit.priceBeforeController, validator: cubit.textValidator(),)),
                           widthSpace(context.width * 0.05),
                           Expanded(
                               child: OfferInfo(
                                   title: "priceAfter".tr(),
                                   isDate: false,
-                                  dateController: cubit.priceAfterController)),
+                                  dateController: cubit.priceAfterController, validator: cubit.textValidator(),)),
                         ],
                       ),
                       heightSpace(context.height * 0.015),

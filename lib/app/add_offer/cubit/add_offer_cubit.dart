@@ -73,11 +73,10 @@ class AddOfferCubit extends Cubit<OffDetailsState> {
   FormFieldValidator<String>? textValidator() {
     validator(value) {
       if (value == null || value.isEmpty) {
-        return tr('enter_your_building_number');
+        return tr('emptyWarning');
       }
       return null;
     }
-
     return validator;
   }
 }
