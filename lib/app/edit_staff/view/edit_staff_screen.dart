@@ -29,7 +29,7 @@ class _EditStaffViewState extends State<EditStaffView> {
     cubit = BlocProvider.of<EditStaffCubit>(context);
     cubit.getSubServices(selectedSubServices: widget.staffModel.subservices!);
     cubit.nameCtrl.text = widget.staffModel.name!;
-    cubit.staffImageUrl=widget.staffModel.image;
+    cubit.staffImageUrl = widget.staffModel.image;
     super.initState();
   }
 
@@ -66,35 +66,52 @@ class _EditStaffViewState extends State<EditStaffView> {
                                     Stack(
                                         alignment: Alignment.bottomRight,
                                         children: [
-                                          CachedNetworkImage(
-                                            imageUrl: cubit.staffImageUrl!,
-                                            imageBuilder: (context, imageProvider) {
-                                              return Container(
-                                                height: context.height * 0.1,
-                                                width: context.height * 0.1,
-                                                decoration: BoxDecoration(
-                                                    shape: BoxShape.circle,
-                                                    image: DecorationImage(
-                                                        image: imageProvider,
-                                                        fit: BoxFit.fill
-                                                    )
+                                          cubit.staffImageUrl == ""
+                                              ? Image.asset(
+                                                  "assets/images/profile.png",
+                                                  height: context.height * 0.1,
+                                                )
+                                              : CachedNetworkImage(
+                                                  imageUrl:
+                                                      cubit.staffImageUrl!,
+                                                  imageBuilder:
+                                                      (context, imageProvider) {
+                                                    return Container(
+                                                      height:
+                                                          context.height * 0.1,
+                                                      width:
+                                                          context.height * 0.1,
+                                                      decoration: BoxDecoration(
+                                                          shape:
+                                                              BoxShape.circle,
+                                                          image: DecorationImage(
+                                                              image:
+                                                                  imageProvider,
+                                                              fit:
+                                                                  BoxFit.fill)),
+                                                    );
+                                                  },
+                                                  height: context.height * 0.1,
+                                                  placeholder: (context, url) =>
+                                                      centerIndicator(),
+                                                  errorWidget:
+                                                      (context, url, error) =>
+                                                          Image.asset(
+                                                    "assets/images/profile.png",
+                                                    height:
+                                                        context.height * 0.1,
+                                                  ),
+                                                  fit: BoxFit.fill,
                                                 ),
-                                              );
-                                            },
-                                            height: context.height * 0.1,
-                                            placeholder: (context, url) =>  centerIndicator(),
-                                            errorWidget: (context, url, error) => Image.asset( "assets/images/profile.png",height: context.height * 0.1,),
-                                            fit: BoxFit.fill,
-                                          ),
-                                         // cubit.staffImageUrl == ""
-                                         //      ? Image.asset(
-                                         //          "assets/images/profile.png",
-                                         //          height: context.height * 0.1,
-                                         //        )
-                                         //      : Image.network(
-                                         //          cubit.staffImageUrl!,
-                                         //          height: context.height * 0.1,
-                                         //        ),
+                                          // cubit.staffImageUrl == ""
+                                          //      ? Image.asset(
+                                          //          "assets/images/profile.png",
+                                          //          height: context.height * 0.1,
+                                          //        )
+                                          //      : Image.network(
+                                          //          cubit.staffImageUrl!,
+                                          //          height: context.height * 0.1,
+                                          //        ),
                                           Image.asset(
                                             "assets/images/plus.png",
                                             height: context.height * 0.025,
