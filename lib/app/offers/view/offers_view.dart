@@ -147,7 +147,6 @@ class _OffersViewState extends State<OffersView> {
                                                             ,));
                                                           if(result ==true){
                                                             cubit!.offers.clear();
-                                                            cubit!.emit(OfferLoading());
                                                             cubit!.getOffer();
                                                             print("result ===================> $result");
 
