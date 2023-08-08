@@ -3,7 +3,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:salonat/app/add_staff/cubit/add_staff_cubit.dart';
-import 'package:salonat/utils/common_widgets/loading_indecator.dart';
+import 'package:salonat/utils/common_widgets/loading_indicator.dart';
 import 'package:salonat/utils/extensions/media_query/media_query.dart';
 import 'package:salonat/utils/extensions/on_tap/on_tap.dart';
 import '../../../utils/common_widgets/app_button.dart';

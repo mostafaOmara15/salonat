@@ -85,6 +85,6 @@
   "noAppointmentsToday" : "No appointments today",
   "closed" : "Closed",
   "aboutUpdateMessage" : "Salon info updated successfully",
-  "errorAboutUpdateMessage" : "Error updating salon information"
-
+  "errorAboutUpdateMessage" : "Error updating salon information",
+  "emptyWarning" : "It must not be empty"
 }

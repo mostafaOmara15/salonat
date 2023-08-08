@@ -1,18 +1,19 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:salonat/app/services/model/sub_services_model.dart';
-import 'package:salonat/utils/common_widgets/loading_indecator.dart';
+import 'package:salonat/utils/common_widgets/loading_indicator.dart';
 import 'package:salonat/utils/extensions/media_query/media_query.dart';
 import '../../../utils/common_widgets/texts.dart';
 import '../../../utils/common_widgets/warning_alert.dart';
 import '../../../utils/extensions/theme/colors/color_manager.dart';
 import '../../../utils/spaces.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+
 
 class StaffTile extends StatelessWidget {
   String name;
   String rateImage;
-  String rate;
+  double rate;
   Function() onDelete;
   String image;
 
@@ -92,7 +93,7 @@ class StaffTile extends StatelessWidget {
                     ],
                   ),
                 ),
-                widthSpace(context.width * 0.1),
+                widthSpace(context.width * 0.05),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -101,12 +102,24 @@ class StaffTile extends StatelessWidget {
                       mediumBody(name, ColorManager.darkBrownColor, true),
                       Row(
                         children: [
-                          Image.asset(
-                            rateImage,
-                            width: context.width * 0.112,
+                          RatingBar.builder(
+                            initialRating: rate,
+                            minRating: 0,
+                            direction: Axis.horizontal,
+                            allowHalfRating: true,
+                            itemCount: 5,
+                            itemSize: context.width * 0.03,
+                            itemPadding: const EdgeInsets.symmetric(horizontal: 1),
+                            itemBuilder: (context, _) => const Icon(
+                              Icons.star,
+                              color: Colors.amber,
+                            ),
+                            onRatingUpdate: (rating) {
+                              print(rating);
+                            },
                           ),
                           widthSpace(context.width * 0.02),
-                          mediumBody(rate, ColorManager.darkBrownColor, false)
+                          mediumBody(rate.toString(), ColorManager.darkBrownColor, false)
                         ],
                       ),
                     ],
