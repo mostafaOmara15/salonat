@@ -63,15 +63,17 @@ class _StaffScreenState extends State<StaffScreen> {
                           var result = await Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) =>
-                                  BlocProvider<EditStaffCubit>(
-                                    create: (context) => EditStaffCubit(),
-                                    child: EditStaffView(
-                                      staffModel: cubit.staff[index],
-                                    ),
+                              builder: (context) {
+                                return BlocProvider<EditStaffCubit>(
+                                  create: (context) => EditStaffCubit(),
+                                  child: EditStaffView(
+                                    staffModel: cubit.staff[index],
                                   ),
+                                );
+                              },
                             ),
                           );
+
                           if (result == true) {
                             cubit.staff.clear();
                             await cubit.getStaff();

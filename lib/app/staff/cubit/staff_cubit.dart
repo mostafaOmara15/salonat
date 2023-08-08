@@ -1,15 +1,12 @@
 import 'dart:developer';
-
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:meta/meta.dart';
-import 'package:salonat/app/services/model/sub_services_model.dart';
 import 'package:salonat/app/staff/model/staff_model.dart';
 import 'package:salonat/services/locator.dart';
 import 'package:salonat/services/shared_pref.dart';
 import 'package:salonat/utils/strings/const_strings.dart';
-
 part 'staff_state.dart';
 
 class StaffCubit extends Cubit<StaffState> {
@@ -28,6 +25,8 @@ class StaffCubit extends Cubit<StaffState> {
           var imageRef = FirebaseStorage.instance.refFromURL(staffImage);
           await imageRef.delete();
         }
+      }).then((value){
+        emit(StaffError());
       });
     } catch (e) {
       log("deleteStaff $e");

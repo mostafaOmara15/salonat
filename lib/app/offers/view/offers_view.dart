@@ -6,10 +6,10 @@ import 'package:salonat/app/edit_offer/cubit/edit_offer_cubit.dart';
 import 'package:salonat/app/edit_offer/view/edit_offer_view.dart';
 import 'package:salonat/app/offers/cubit/offer_cubit.dart';
 import 'package:salonat/utils/common_widgets/app_button.dart';
-import 'package:salonat/utils/common_widgets/loading_indecator.dart';
 import 'package:salonat/utils/common_widgets/texts.dart';
 import 'package:salonat/utils/extensions/media_query/media_query.dart';
 import 'package:salonat/utils/spaces.dart';
+import '../../../utils/common_widgets/loading_indicator.dart';
 import '../../../utils/extensions/theme/colors/color_manager.dart';
 import '../../add_offer/cubit/add_offer_cubit.dart';
 

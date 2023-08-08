@@ -76,10 +76,7 @@ class StaffTile extends StatelessWidget {
                   placeholder: (context, url) =>  centerIndicator(),
                   errorWidget: (context, url, error) => Image.asset( "assets/images/profile.png",height: context.height * 0.1,),
                   fit: BoxFit.fill,
-                )
-
-                ,
-
+                ),
                 widthSpace(context.width * 0.07),
                 Expanded(
                   child: Column(
