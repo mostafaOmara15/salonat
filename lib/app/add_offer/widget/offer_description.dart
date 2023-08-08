@@ -8,8 +8,9 @@ class OfferDescription extends StatelessWidget {
   TextEditingController controller;
   String hint;
   bool isAr;
+  final Function? validate;
 
-  OfferDescription({required this.controller, required this.hint, required this.isAr});
+  OfferDescription({required this.controller, required this.hint, required this.isAr, required this.validate});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +20,9 @@ class OfferDescription extends StatelessWidget {
         padding: EdgeInsets.all(0),
         decoration: BoxDecoration(border: Border.all(color: ColorManager.blackColor, width: 0.3)),
         width: double.infinity,
-        child: TextField(
+        child: TextFormField(
+          validator: (p) => validate!(p),
+          // validator: (p) => validate!(p),
           controller: controller,
           keyboardType: TextInputType.multiline,
           style: GoogleFonts.fraunces(textStyle: TextStyle(fontSize: 16 ,color: ColorManager.opacityBlackColor, letterSpacing: 0.5),),
@@ -34,6 +37,7 @@ class OfferDescription extends StatelessWidget {
             focusedBorder: const OutlineInputBorder(
                 borderSide: BorderSide.none
             ),
+            errorBorder: OutlineInputBorder(),
             enabledBorder: const OutlineInputBorder(
                 borderSide: BorderSide.none
             ),

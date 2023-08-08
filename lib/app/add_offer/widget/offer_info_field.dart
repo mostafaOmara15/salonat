@@ -8,10 +8,11 @@ import '../../../utils/extensions/theme/colors/color_manager.dart';
 class OfferInfo extends StatefulWidget {
   String title;
   bool isDate;
+  final Function? validate;
   TextEditingController dateController;
 
 
-  OfferInfo({required this.title, required this.isDate, required this.dateController});
+  OfferInfo({required this.title, required this.isDate, required this.dateController, required this.validate});
 
   @override
   State<OfferInfo> createState() => _OfferInfoState();
@@ -47,13 +48,14 @@ class _OfferInfoState extends State<OfferInfo> {
         Row(
           children: [
             Expanded(
-                child: TextField(
-                  onTap: widget.isDate
-                    ? () async{ await _selectDate(context);}
-                    :null,
+                child: TextFormField(
                   controller: widget.dateController,
+                  validator: (p) => widget.validate!(p),
                   readOnly: widget.isDate,
                   keyboardType: TextInputType.number,
+                  onTap: widget.isDate
+                      ? () async{await _selectDate(context);}
+                      : null,
                   style: GoogleFonts.fraunces(
                     textStyle: TextStyle(
                       fontSize: 14,

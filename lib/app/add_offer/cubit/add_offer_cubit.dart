@@ -27,7 +27,29 @@ class AddOfferCubit extends Cubit<OffDetailsState> {
   String?offerImageUrl;
 
   final picker = ImagePicker();
+  final GlobalKey<FormState> offerKey = GlobalKey<FormState>();
   File? image;
+
+  FormFieldValidator<String>? validator() {
+    FormFieldValidator<String>? validator = (value) {
+      if (value == null || value.isEmpty) {
+
+        return tr('emptyWarning');
+      }
+      return null;
+    };
+    return validator;
+  }
+  //
+  // FormFieldValidator<String>? validator() {
+  //   validator(value) {
+  //     if (value == null || value.isEmpty) {
+  //       return tr('emptyWarning');
+  //     }
+  //     return null;
+  //   }
+  //   return validator;
+  // }
 
   Future<void> pickImage() async {
     final pickedFile = await picker.pickImage(source: ImageSource.gallery);
@@ -35,7 +57,9 @@ class AddOfferCubit extends Cubit<OffDetailsState> {
     if (pickedFile != null) {
       image = File(pickedFile.path);
       var refStorage = FirebaseStorage.instance
-          .ref("Offers/${DateTime.now().millisecondsSinceEpoch}");
+          .ref("Offers/${DateTime
+          .now()
+          .millisecondsSinceEpoch}");
       await refStorage.putFile(image!);
       offerImageUrl = await refStorage.getDownloadURL();
       emit(AddOfferInitial());
@@ -45,14 +69,15 @@ class AddOfferCubit extends Cubit<OffDetailsState> {
   addOffer() async {
     String salonRef = await prefs.getString(salonId);
     OfferModel offerModel = OfferModel(
-      id: DateTime.now().millisecondsSinceEpoch.toString(),
+      id: DateTime
+          .now()
+          .millisecondsSinceEpoch
+          .toString(),
       salonid: salonRef,
       descriptionen: enDescription.text,
       descriptionar: arDescription.text,
-      startdate: DateFormat('yyyy-MM-dd')
-          .format(DateTime.parse(startDateController.text)),
-      enddate: DateFormat('yyyy-MM-dd')
-          .format(DateTime.parse(endDateController.text)),
+      startdate: startDateController.text,
+      enddate: endDateController.text,
       image: offerImageUrl,
       priceafter: priceAfterController.text,
       pricebefore: priceBeforeController.text,
@@ -63,7 +88,7 @@ class AddOfferCubit extends Cubit<OffDetailsState> {
           .doc(offerModel.id)
           .set(offerModel.toJson());
     }
-    catch(e){
+    catch (e) {
       log("add Offer error $e");
     }
   }

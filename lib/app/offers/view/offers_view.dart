@@ -4,10 +4,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:salonat/app/add_offer/view/add_offer_view.dart';
 import 'package:salonat/app/offers/cubit/offer_cubit.dart';
 import 'package:salonat/utils/common_widgets/app_button.dart';
-import 'package:salonat/utils/common_widgets/loading_indecator.dart';
+import 'package:salonat/utils/common_widgets/loading_indicator.dart';
 import 'package:salonat/utils/common_widgets/texts.dart';
 import 'package:salonat/utils/extensions/media_query/media_query.dart';
-import 'package:salonat/utils/extensions/navigation/navigation.dart';
 import 'package:salonat/utils/spaces.dart';
 import '../../../utils/extensions/theme/colors/color_manager.dart';
 import '../../add_offer/cubit/add_offer_cubit.dart';
@@ -86,7 +85,7 @@ class _OffersViewState extends State<OffersView> {
                                               Container(
                                                 height: context.height * 0.12,
                                                 width: context.width * 0.55,
-                                                padding: EdgeInsets.all(3),
+                                                padding: const EdgeInsets.all(3),
                                                 decoration: BoxDecoration(border: Border.all(color: ColorManager.opacityBlackColor, width: 0.5)),
                                                 child: largeBody("current_language_iso".tr()=="en"?cubit!.offers[index].descriptionen:cubit!.offers[index].descriptionar, ColorManager.whiteColor, true),
                                               ),
@@ -96,7 +95,7 @@ class _OffersViewState extends State<OffersView> {
                                                   Container(
                                                     width: context.width * 0.3,
                                                     height: context.height * 0.05,
-                                                    padding: EdgeInsets.all(3),
+                                                    padding: const EdgeInsets.all(3),
                                                     decoration: BoxDecoration(border: Border.all(color: ColorManager.opacityBlackColor, width: 0.5)),
 
                                                     child: Center(child: largeBody("Get ${((double.parse(cubit!.offers[index].priceafter!.toString())*100)/double.parse(cubit!.offers[index].pricebefore!.toString())).toStringAsFixed(0)} % off ", ColorManager.blackColor, true)),
@@ -123,24 +122,23 @@ class _OffersViewState extends State<OffersView> {
                   padding: const EdgeInsets.symmetric(vertical: 10),
                   child: AppButton(
                       onTap: () async {
-                      var result=  await Navigator.push(context, MaterialPageRoute(builder: (context) => BlocProvider<AddOfferCubit>(
-                          create: (context) => AddOfferCubit(),
-                          child: const AddOffersView(),
-                        ),));
+                        var result=  await Navigator.push(context, MaterialPageRoute(builder: (context) => BlocProvider<AddOfferCubit>(
+                            create: (context) => AddOfferCubit(),
+                            child: const AddOffersView(),
+                          ),));
 
-                      if( result == true ){
-                        cubit!.offers.clear();
-                        cubit!.getOffer();
-
-                      }
-
+                        if( result == true ){
+                          cubit!.offers.clear();
+                          cubit!.getOffer();
+                        }
                       },
-                      title: "add_offer".tr()),
+                      title: "add_offer".tr()
+                  ),
                 ),
               ],
             );
 
-        }
+          }
         },
       )
 
