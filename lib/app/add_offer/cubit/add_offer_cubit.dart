@@ -23,8 +23,9 @@ class AddOfferCubit extends Cubit<OffDetailsState> {
   TextEditingController priceAfterController = TextEditingController();
   TextEditingController enDescription = TextEditingController();
   TextEditingController arDescription = TextEditingController();
+  var formKey = GlobalKey<FormState>();
   var prefs = locator<SharedPrefServices>();
-  String?offerImageUrl;
+  String? offerImageUrl;
 
   final picker = ImagePicker();
   File? image;
@@ -43,28 +44,40 @@ class AddOfferCubit extends Cubit<OffDetailsState> {
   }
 
   addOffer() async {
-    String salonRef = await prefs.getString(salonId);
-    OfferModel offerModel = OfferModel(
-      id: DateTime.now().millisecondsSinceEpoch.toString(),
-      salonid: salonRef,
-      descriptionen: enDescription.text,
-      descriptionar: arDescription.text,
-      startdate: DateFormat('yyyy-MM-dd')
-          .format(DateTime.parse(startDateController.text)),
-      enddate: DateFormat('yyyy-MM-dd')
-          .format(DateTime.parse(endDateController.text)),
-      image: offerImageUrl,
-      priceafter: priceAfterController.text,
-      pricebefore: priceBeforeController.text,
-    );
-    try {
-      await FirebaseFirestore.instance
-          .collection("offers")
-          .doc(offerModel.id)
-          .set(offerModel.toJson());
+    if (formKey.currentState!.validate()) {
+      String salonRef = await prefs.getString(salonId);
+      OfferModel offerModel = OfferModel(
+        id: DateTime.now().millisecondsSinceEpoch.toString(),
+        salonid: salonRef,
+        descriptionen: enDescription.text,
+        descriptionar: arDescription.text,
+        startdate: DateFormat('yyyy-MM-dd')
+            .format(DateTime.parse(startDateController.text)),
+        enddate: DateFormat('yyyy-MM-dd')
+            .format(DateTime.parse(endDateController.text)),
+        image: offerImageUrl,
+        priceafter: priceAfterController.text,
+        pricebefore: priceBeforeController.text,
+      );
+      try {
+        await FirebaseFirestore.instance
+            .collection("offers")
+            .doc(offerModel.id)
+            .set(offerModel.toJson());
+      } catch (e) {
+        log("add Offer error $e");
+      }
     }
-    catch(e){
-      log("add Offer error $e");
+  }
+
+  FormFieldValidator<String>? textValidator() {
+    validator(value) {
+      if (value == null || value.isEmpty) {
+        return tr('enter_your_building_number');
+      }
+      return null;
     }
+
+    return validator;
   }
 }

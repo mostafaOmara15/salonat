@@ -37,6 +37,7 @@ class _AddOffersViewState extends State<AddOffersView> {
               Padding(
                 padding: EdgeInsets.all(context.width * 0.03),
                 child: Form(
+                  key: cubit.formKey,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -44,13 +45,13 @@ class _AddOffersViewState extends State<AddOffersView> {
                       largeTitle(
                           "add_offer".tr(), ColorManager.greyColor100, false),
                       heightSpace(context.height * 0.01),
-                      cubit!.offerImageUrl != null
-                          ? Image.network(cubit!.offerImageUrl!,
+                      cubit.offerImageUrl != null
+                          ? Image.network(cubit.offerImageUrl!,
                                   fit: BoxFit.fill,
                                   width: double.infinity,
                                   height: context.height / 2.8)
                               .onTap(() {
-                              cubit!.pickImage();
+                              cubit.pickImage();
                             })
                           : Container(
                               color: ColorManager.greyColor,
@@ -71,7 +72,7 @@ class _AddOffersViewState extends State<AddOffersView> {
                                         ColorManager.greyColor100, false),
                                   ],
                                 ).onTap(() {
-                                  cubit!.pickImage();
+                                  cubit.pickImage();
                                 }),
                               ),
                             ),
@@ -79,9 +80,11 @@ class _AddOffersViewState extends State<AddOffersView> {
                       largeBody("Add offer description",
                           ColorManager.greyColor100, false),
                       OfferDescription(
-                          controller: cubit.enDescription,
-                          hint: "",
-                          isAr: false),
+                        controller: cubit.enDescription,
+                        hint: "",
+                        isAr: false,
+                        validator: cubit.textValidator(),
+                      ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
@@ -90,9 +93,11 @@ class _AddOffersViewState extends State<AddOffersView> {
                         ],
                       ),
                       OfferDescription(
-                          controller: cubit.arDescription,
-                          hint: "",
-                          isAr: true),
+                        controller: cubit.arDescription,
+                        hint: "",
+                        isAr: true,
+                        validator: cubit.textValidator(),
+                      ),
                       Row(
                         children: [
                           Expanded(
@@ -135,7 +140,7 @@ class _AddOffersViewState extends State<AddOffersView> {
                           AppButton(
                               onTap: () async {
                                 await cubit.addOffer();
-                                Navigator.pop(context,true);
+                                // Navigator.pop(context, true);
                               },
                               title: "done".tr())
                         ],

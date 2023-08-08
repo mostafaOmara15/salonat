@@ -8,8 +8,15 @@ class OfferDescription extends StatelessWidget {
   TextEditingController controller;
   String hint;
   bool isAr;
+  final validator;
 
-  OfferDescription({required this.controller, required this.hint, required this.isAr});
+  OfferDescription({
+    super.key,
+    required this.controller,
+    required this.hint,
+    required this.isAr,
+    required this.validator,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -17,12 +24,19 @@ class OfferDescription extends StatelessWidget {
       padding: EdgeInsets.symmetric(vertical: context.height * 0.01),
       child: Container(
         padding: EdgeInsets.all(0),
-        decoration: BoxDecoration(border: Border.all(color: ColorManager.blackColor, width: 0.3)),
+        decoration: BoxDecoration(
+            border: Border.all(color: ColorManager.blackColor, width: 0.3)),
         width: double.infinity,
-        child: TextField(
+        child: TextFormField(
+          validator: validator,
           controller: controller,
           keyboardType: TextInputType.multiline,
-          style: GoogleFonts.fraunces(textStyle: TextStyle(fontSize: 16 ,color: ColorManager.opacityBlackColor, letterSpacing: 0.5),),
+          style: GoogleFonts.fraunces(
+            textStyle: TextStyle(
+                fontSize: 16,
+                color: ColorManager.opacityBlackColor,
+                letterSpacing: 0.5),
+          ),
           cursorColor: ColorManager.darkBrownColor,
           textDirection: isAr ? TextDirection.rtl : TextDirection.ltr,
           textAlign: isAr ? TextAlign.right : TextAlign.left,
@@ -30,13 +44,12 @@ class OfferDescription extends StatelessWidget {
           minLines: 2,
           decoration: InputDecoration(
             hintText: hint,
-            hintStyle: TextStyle(color: ColorManager.opacityBlackColor, fontSize: 14),
-            focusedBorder: const OutlineInputBorder(
-                borderSide: BorderSide.none
-            ),
-            enabledBorder: const OutlineInputBorder(
-                borderSide: BorderSide.none
-            ),
+            hintStyle:
+                TextStyle(color: ColorManager.opacityBlackColor, fontSize: 14),
+            focusedBorder:
+                const OutlineInputBorder(borderSide: BorderSide.none),
+            enabledBorder:
+                const OutlineInputBorder(borderSide: BorderSide.none),
           ),
         ),
       ),
