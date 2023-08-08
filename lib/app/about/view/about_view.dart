@@ -40,30 +40,35 @@ class _AboutViewState extends State<AboutView> {
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(title: Text('about'.tr().toUpperCase())),
-          body: Column(
-            children: [
-              SizedBox(
-                height: context.height * 0.7,
-                child: ListView(
-                  children: [
-                    AboutTextField(
-                      controller: aboutCubit.englishAbout,
-                      hint: widget.aboutEn.isNotEmpty ? widget.aboutEn : "About the Salon...",
-                      isAr: false
-                    ),
-                    AboutTextField(
-                      controller: aboutCubit.arabicAbout,
-                      hint: widget.aboutAr.isNotEmpty ? widget.aboutEn : "...حول الصالون",
-                      isAr: true
-                    ),
-                  ]
+          body: SingleChildScrollView(
+            child: Column(
+              children: [
+                SizedBox(
+                  height: context.height * 0.7,
+                  child: ListView(
+                    children: [
+                      AboutTextField(
+                        controller: aboutCubit.englishAbout,
+                        hint: "About the Salon...",
+                        isAr: false
+                      ),
+                      AboutTextField(
+                        controller: aboutCubit.arabicAbout,
+                        hint: "...حول الصالون",
+                        isAr: true
+                      ),
+                    ]
+                  ),
                 ),
-              ),
-              AppButton(title: "save".tr(), onTap: (){
-                aboutCubit.updateAbout();
-              }),
-              heightSpace(context.height * 0.03)
-            ],
+                AppButton(
+                    title: "save".tr(), 
+                    onTap: () async {
+                      await aboutCubit.updateAbout().then((value) => Navigator.pop(context, true));
+                    }
+                ),
+                heightSpace(context.height * 0.03)
+              ],
+            ),
           )
         );
       },

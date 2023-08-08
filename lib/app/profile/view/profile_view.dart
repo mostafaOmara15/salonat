@@ -12,6 +12,7 @@ import 'package:salonat/utils/common_widgets/loading_indecator.dart';
 import 'package:salonat/utils/common_widgets/logo_victor.dart';
 import 'package:salonat/utils/common_widgets/texts.dart';
 import 'package:salonat/utils/extensions/media_query/media_query.dart';
+import 'package:salonat/utils/extensions/navigation/navigation.dart';
 import 'package:salonat/utils/extensions/theme/colors/color_manager.dart';
 import 'package:salonat/utils/spaces.dart';
 import '../../../utils/common_widgets/language_buttons.dart';
@@ -62,8 +63,7 @@ class _ProfileViewState extends State<ProfileView> {
                       onTabAddPic: () async {
                         await profileCubit.pickImage().then((imageUrl) async {
                           if (imageUrl.isNotEmpty) {
-                            await profileCubit.addCoverImage(
-                                coverImage: imageUrl);
+                            await profileCubit.addCoverImage(coverImage: imageUrl);
                             profileCubit.salon.coverimages?.add(imageUrl);
                             profileCubit.emit(SalonSuccessState());
                           }
@@ -142,41 +142,61 @@ class _ProfileViewState extends State<ProfileView> {
                     heightSpace(context.height * 0.01),
                     ProfileTile(
                       title: "about".tr(),
-                      navigatedScreen: BlocProvider(
-                          create: (context) => AboutCubit(),
-                          child: const AboutView()),
+                      onTap: () async {
+                        var result = await Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => BlocProvider(
+                                create: (context) => AboutCubit(),
+                                child:  AboutView(aboutEn: profileCubit.salon.aboutEn!, aboutAr:  profileCubit.salon.aboutAr!,)
+                            ),
+                          )
+                        );
+                        print(result);
+                        if (result == true) {
+                          await profileCubit.getSalonData();
+                        }
+                      },
                       withIcon: true,
                     ),
                     ProfileTile(
                       title: "addLocation".tr(),
-                      navigatedScreen: const LocationView(),
+                      onTap: () {
+                         context.push(const LocationView());
+                      },
                       withIcon: true,
                     ),
                     ProfileTile(
                       title: "openingTime".tr(),
-                      navigatedScreen: OpeningTimeView(
-                          openingtime: profileCubit.salon.openingtime),
+                      onTap: () {
+                        context.push(OpeningTimeView(openingtime: profileCubit.salon.openingtime));
+                      },
                       withIcon: true,
                     ),
                     ProfileTile(
                       title: "services".tr(),
-                      navigatedScreen: BlocProvider<ServicesCubit>(
-                        create: (context) => ServicesCubit(),
-                        child: const ServicesView(),
-                      ),
+                      onTap:() {
+                        context.push(BlocProvider<ServicesCubit>(
+                          create: (context) => ServicesCubit(),
+                          child: const ServicesView(),
+                        ));
+                      },
                       withIcon: true,
                     ),
                     ProfileTile(
                       title: "staff".tr(),
-                      navigatedScreen: BlocProvider<StaffCubit>(
-                        create: (context) => StaffCubit(),
-                        child: const StaffScreen(),
-                      ),
+                      onTap: () {
+                        context.push(BlocProvider<StaffCubit>(
+                          create: (context) => StaffCubit(),
+                          child: const StaffScreen(),
+                        ));
+                      },
                       withIcon: true,
                     ),
                     ProfileTile(
                       title: "reviews".tr(),
-                      navigatedScreen: const ReviewsView(),
+                      onTap: () {
+                        context.push(const ReviewsView());
+                      },
                       withIcon: true,
                     ),
                     ProfileTile(

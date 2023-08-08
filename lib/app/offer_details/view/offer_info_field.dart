@@ -32,7 +32,7 @@ class _OfferInfoState extends State<OfferInfo> {
     if (picked != null && picked != _selectedDate) {
       setState(() {
         _selectedDate = picked;
-        widget.dateController.text = DateFormat.yMd().format(picked).toString(); // Format as needed
+        widget.dateController.text = DateFormat('dd/MM/yyyy').format(picked).toString(); // Format as needed
       });
     }
   }
@@ -49,10 +49,8 @@ class _OfferInfoState extends State<OfferInfo> {
             Expanded(
                 child: TextField(
                   onTap: widget.isDate
-                      ? () async{
-                        await _selectDate(context);
-                      }
-                  :null,
+                    ? () async{ await _selectDate(context);}
+                    :null,
                   controller: widget.dateController,
                   readOnly: widget.isDate,
                   keyboardType: TextInputType.number,
@@ -65,13 +63,13 @@ class _OfferInfoState extends State<OfferInfo> {
                     ),
                   ),
                   decoration: InputDecoration(
-                    focusedBorder: OutlineInputBorder( //<-- SEE HERE
+                    focusedBorder: OutlineInputBorder(
                       borderSide: BorderSide(
-                          width: 1, color: ColorManager.greyColor),
+                          width: 1, color: ColorManager.greyColor)
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(
-                          width: 1, color: ColorManager.greyColor), //<-- SEE HERE
+                          width: 1, color: ColorManager.greyColor)
                     ),
                   ),
                 )

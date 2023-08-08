@@ -31,6 +31,8 @@ class _OffersDetailsViewState extends State<OffersDetailsView> {
 
    TextEditingController startDateController = TextEditingController();
    TextEditingController endDateController = TextEditingController();
+   TextEditingController priceBeforeController = TextEditingController();
+   TextEditingController priceAfterController = TextEditingController();
    TextEditingController enDescription = TextEditingController();
    TextEditingController arDescription = TextEditingController();
 
@@ -102,9 +104,9 @@ class _OffersDetailsViewState extends State<OffersDetailsView> {
                     heightSpace(context.height * 0.01),
                     Row(
                       children: [
-                        Expanded(child: OfferInfo(title: "priceBefore".tr(), isDate: false, dateController: startDateController,)),
+                        Expanded(child: OfferInfo(title: "priceBefore".tr(), isDate: false, dateController: priceBeforeController)),
                         widthSpace(context.width * 0.05),
-                        Expanded(child: OfferInfo(title: "priceAfter".tr(), isDate: false, dateController: endDateController,)),
+                        Expanded(child: OfferInfo(title: "priceAfter".tr(), isDate: false, dateController: priceAfterController)),
                       ],
                     ),
                     heightSpace(context.height * 0.015),
