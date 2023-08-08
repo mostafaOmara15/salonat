@@ -9,7 +9,8 @@ class SalonModel {
     this.name,
     this.location,
     this.views,
-    this.about,
+    this.aboutEn,
+    this.aboutAr,
     this.email,
   });
 
@@ -34,8 +35,8 @@ class SalonModel {
     address = json['address'];
     subscriptionenddate = json['subscription-end-date'];
     name = json['name'];
-    about = json['about'];
-
+    aboutEn = json['about-en'];
+    aboutAr = json['about-ar'];
     email = json['email'];
   }
 
@@ -48,7 +49,8 @@ class SalonModel {
   String? name;
   num? views;
   Location? location;
-  String? about;
+  String? aboutEn;
+  String? aboutAr;
   String? email;
 
   Map<String, dynamic> toJson() {
@@ -68,7 +70,8 @@ class SalonModel {
     }
     map['subscription-end-date'] = subscriptionenddate;
     map['name'] = name;
-    map['about'] = about;
+    map['about-en'] = aboutEn;
+    map['about-ar'] = aboutAr;
     map['email'] = email;
     return map;
   }

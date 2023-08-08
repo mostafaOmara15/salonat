@@ -23,7 +23,6 @@ class _AboutViewState extends State<AboutView> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     aboutCubit = AboutCubit.get(context);
   }
@@ -41,8 +40,16 @@ class _AboutViewState extends State<AboutView> {
                 height: context.height * 0.7,
                 child: ListView(
                   children: [
-                    AboutTextField(controller: aboutCubit.englishAbout, hint: "About the Salon...", isAr: false),
-                    AboutTextField(controller: aboutCubit.arabicAbout, hint: "...حول الصالون", isAr: true),
+                    AboutTextField(
+                      controller: aboutCubit.englishAbout,
+                      hint: "About the Salon...",
+                      isAr: false
+                    ),
+                    AboutTextField(
+                      controller: aboutCubit.arabicAbout,
+                      hint: "...حول الصالون",
+                      isAr: true
+                    ),
                   ]
                 ),
               ),
