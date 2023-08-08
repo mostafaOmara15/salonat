@@ -83,5 +83,7 @@
   "priceAfter" : "السعر الجديد",
   "noNotifications" : "لا يوجد اشعارات",
   "noAppointmentsToday" : "لا يوجد حجوزات اليوم",
-  "closed" : "مغلق"
+  "closed" : "مغلق",
+  "aboutUpdateMessage" : "تم تحديث ملومات الصالون بنجاح",
+  "errorAboutUpdateMessage" : "خطأ في تحديث معلومات الصالون"
 }

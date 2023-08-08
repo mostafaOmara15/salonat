@@ -83,5 +83,8 @@
   "priceAfter" : "Price After",
   "noNotifications" : "No notifications",
   "noAppointmentsToday" : "No appointments today",
-  "closed" : "Closed"
+  "closed" : "Closed",
+  "aboutUpdateMessage" : "Salon info updated successfully",
+  "errorAboutUpdateMessage" : "Error updating salon information"
+
 }

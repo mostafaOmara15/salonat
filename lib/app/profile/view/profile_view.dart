@@ -127,7 +127,11 @@ class _ProfileViewState extends State<ProfileView> {
                         title: "about".tr(),
                         navigatedScreen: BlocProvider(
                           create: (context) => AboutCubit(),
-                            child: const AboutView()),
+                            child: AboutView(
+                                aboutAr: profileCubit.salon.aboutAr!,
+                                aboutEn: profileCubit.salon.aboutEn!,
+                            )
+                        ),
                       withIcon: true,
                     ),
                     ProfileTile(

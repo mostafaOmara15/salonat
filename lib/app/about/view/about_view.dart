@@ -12,7 +12,11 @@ import 'package:salonat/utils/extensions/theme/colors/color_manager.dart';
 import '../../../utils/spaces.dart';
 
 class AboutView extends StatefulWidget {
-  const AboutView({Key? key}) : super(key: key);
+  String aboutAr;
+  String aboutEn;
+
+  AboutView({super.key, required this.aboutAr, required this.aboutEn});
+
 
   @override
   State<AboutView> createState() => _AboutViewState();
@@ -25,6 +29,8 @@ class _AboutViewState extends State<AboutView> {
   void initState() {
     super.initState();
     aboutCubit = AboutCubit.get(context);
+    aboutCubit.englishAbout = TextEditingController(text: widget.aboutEn);
+    aboutCubit.arabicAbout = TextEditingController(text: widget.aboutAr);
   }
 
   @override
@@ -42,18 +48,20 @@ class _AboutViewState extends State<AboutView> {
                   children: [
                     AboutTextField(
                       controller: aboutCubit.englishAbout,
-                      hint: "About the Salon...",
+                      hint: widget.aboutEn.isNotEmpty ? widget.aboutEn : "About the Salon...",
                       isAr: false
                     ),
                     AboutTextField(
                       controller: aboutCubit.arabicAbout,
-                      hint: "...حول الصالون",
+                      hint: widget.aboutAr.isNotEmpty ? widget.aboutEn : "...حول الصالون",
                       isAr: true
                     ),
                   ]
                 ),
               ),
-              AppButton(title: "save".tr(), onTap: (){}),
+              AppButton(title: "save".tr(), onTap: (){
+                aboutCubit.updateAbout();
+              }),
               heightSpace(context.height * 0.03)
             ],
           )
