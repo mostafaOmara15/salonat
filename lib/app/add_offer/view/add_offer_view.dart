@@ -145,7 +145,7 @@ class _AddOffersViewState extends State<AddOffersView> {
                           widthSpace(context.width / 10),
                           AppButton(
                               onTap: () async {
-                                await cubit.addOffer().then(() {
+                                await cubit.addOffer().then((value) {
                                   Navigator.pop(context, true);
                                 });
                               },
