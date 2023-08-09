@@ -26,8 +26,6 @@ class ProfileCubit extends Cubit<ProfileStates> {
   var prefs = locator<SharedPrefServices>();
 
   SalonModel salon = SalonModel();
-  bool showReview = false;
-  List reviews = [1, 2, 3, 4];
   final picker = ImagePicker();
   File? image;
   bool en = true;
@@ -75,10 +73,9 @@ class ProfileCubit extends Cubit<ProfileStates> {
     }
   }
 
-  Future<String> pickImage() async {
+  Future<String> pickImageFromGallery() async {
     String imageUrl;
     final pickedFile = await picker.pickImage(source: ImageSource.gallery);
-
     if (pickedFile != null) {
       image = File(pickedFile.path);
       var refStorage = FirebaseStorage.instance
@@ -90,13 +87,22 @@ class ProfileCubit extends Cubit<ProfileStates> {
     return '';
   }
 
-  addCoverImage({required String coverImage}) async {
+  uploadCoverImage({required String coverImage}) async {
     String docId = await prefs.getString(salonId);
-
     await FirebaseFirestore.instance
         .collection("salons")
         .doc(docId)
         .set({"cover-images": FieldValue.arrayUnion([coverImage])}, SetOptions(merge: true));
+  }
+
+  addCoverImage() async {
+    await pickImageFromGallery().then((imageUrl) async {
+      if (imageUrl.isNotEmpty) {
+        await uploadCoverImage(coverImage: imageUrl);
+        salon.coverimages?.add(imageUrl);
+        emit(SalonSuccessState());
+      }
+    });
   }
 
   removeCoverImage({required String coverImage}) async {
@@ -106,5 +112,5 @@ class ProfileCubit extends Cubit<ProfileStates> {
         .collection("salons")
         .doc(docId)
         .set({"cover-images": FieldValue.arrayRemove([coverImage])}, SetOptions(merge: true));
-}
+  }
 }

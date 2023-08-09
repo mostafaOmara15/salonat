@@ -17,13 +17,12 @@ import '../../../utils/strings/const_strings.dart';
 class ImagesSlider extends StatefulWidget {
   List<dynamic>? imagesUrl;
   Function? onTabAddPic;
-  dynamic Function() onTabDeletePic;
 
-  ImagesSlider(
-      {super.key,
-      this.imagesUrl,
-      required this.onTabAddPic,
-      required this.onTabDeletePic});
+  ImagesSlider({
+    super.key,
+    this.imagesUrl,
+    required this.onTabAddPic,
+  });
 
   @override
   State<ImagesSlider> createState() => _ImagesSliderState();
@@ -48,16 +47,15 @@ class _ImagesSliderState extends State<ImagesSlider> {
               width: context.width,
               height: context.height * 0.26,
               child: widget.imagesUrl!.isEmpty
-                  ? Container(
-                      width: context.width,
-                      height: context.height * 0.26,
-                      color: ColorManager.greyColor,
-                      child: Center(
-                              child: largeTitle("add_pic".tr(),
-                                  ColorManager.greyColor100, false))
-                          .onTap(widget.onTabAddPic),
-                    )
-                  : CarouselSlider(
+                ? Container(
+                    width: context.width,
+                    height: context.height * 0.26,
+                    color: ColorManager.greyColor,
+                    child: Center(
+                      child: largeTitle("add_pic".tr(),ColorManager.greyColor100, false))
+                        .onTap(widget.onTabAddPic),
+                  )
+                : CarouselSlider(
                       carouselController: _controller,
                       items: widget.imagesUrl?.map((e) {
                         return Container(
