@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:salonat/app/about/cubit/about_cubit.dart';
 import 'package:salonat/app/location/view/location_view.dart';
 import 'package:salonat/app/profile/widgets/images_slider.dart';
@@ -54,47 +55,48 @@ class _ProfileViewState extends State<ProfileView> {
             appBar: AppBar(title: LogoVictor(size: 0.05), centerTitle: true),
             body: Padding(
               padding: EdgeInsets.all(context.width * 0.022),
-              child: ListView(children: [
-                Column(
+              child: ListView(
+                children: [
+                  Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    ImagesSlider(
-                      imagesUrl: profileCubit.salon.coverimages,
-                      onTabAddPic: () async {
-                        await profileCubit.pickImage().then((imageUrl) async {
-                          if (imageUrl.isNotEmpty) {
-                            await profileCubit.addCoverImage(coverImage: imageUrl);
-                            profileCubit.salon.coverimages?.add(imageUrl);
-                            profileCubit.emit(SalonSuccessState());
-                          }
-                        });
-                      },
-                      onTabDeletePic: () {},
+                    BlocProvider<ProfileCubit>(
+                      create: (context) => ProfileCubit(),
+                      child: ImagesSlider(
+                        imagesUrl: profileCubit.salon.coverimages,
+                        onTabAddPic: () async {
+                          profileCubit.addCoverImage();
+                        },
+                      ),
                     ),
                     heightSpace(context.height * 0.01),
                     Padding(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: context.width * 0.03,
-                        vertical: context.height * 0.01,
-                      ),
+                      padding: EdgeInsets.symmetric(horizontal: context.width * 0.03, vertical: context.height * 0.01),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              mediumTitle(
-                                  profileCubit.salon.name?.toUpperCase(),
-                                  ColorManager.darkBrownColor,
-                                  false),
+                              mediumTitle(profileCubit.salon.name?.toUpperCase(),ColorManager.darkBrownColor,false),
                               Row(
                                 children: [
-                                  widthSpace(context.width * 0.045),
-                                  Image.asset("assets/images/5_stars.png",
-                                      width: context.width * 0.15),
+                                  widthSpace(context.width * 0.035),
+                                  RatingBar.builder(
+                                    initialRating: 0,
+                                    direction: Axis.horizontal,
+                                    allowHalfRating: true,
+                                    itemCount: 5,
+                                    itemSize: context.width * 0.035,
+                                    itemPadding: const EdgeInsets.symmetric(horizontal: 0.5),
+                                    itemBuilder: (context, _) => const Icon(
+                                      Icons.star,
+                                      color: Colors.amber,
+                                    ),
+                                    onRatingUpdate: (rating) {print(rating);},
+                                  ),
                                   widthSpace(context.width * 0.03),
-                                  mediumTitle(
-                                      "5.0", ColorManager.blackColor, false),
+                                  mediumTitle("5.0", ColorManager.blackColor, false),
                                 ],
                               ),
                             ],
@@ -128,15 +130,15 @@ class _ProfileViewState extends State<ProfileView> {
                       children: [
                         widthSpace(context.width * 0.025),
                         CircleAvatar(
-                            backgroundColor: ColorManager.primaryColor,
-                            radius: context.width * 0.025,
-                            child: Image.asset("assets/icons/eye_icon.png",
-                                height: context.width * 0.025)),
+                          backgroundColor: ColorManager.primaryColor,
+                          radius: context.width * 0.025,
+                          child: Image.asset("assets/icons/eye_icon.png",height: context.width * 0.025)
+                        ),
                         widthSpace(context.width * 0.02),
-                        smallTitle(
-                            "${profileCubit.salon.views} ${"viewed your profile".tr()}",
-                            ColorManager.darkGreyColor,
-                            false),
+                        smallTitle("${profileCubit.salon.views} ${"viewed your profile".tr()}",
+                          ColorManager.darkGreyColor,
+                          false
+                        ),
                       ],
                     ),
                     heightSpace(context.height * 0.01),
@@ -144,33 +146,26 @@ class _ProfileViewState extends State<ProfileView> {
                       title: "about".tr(),
                       onTap: () async {
                         var result = await Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => BlocProvider(
-                                create: (context) => AboutCubit(),
-                                child:  AboutView(aboutEn: profileCubit.salon.aboutEn!, aboutAr:  profileCubit.salon.aboutAr!,)
-                            ),
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => BlocProvider(
+                              create: (context) => AboutCubit(),
+                              child:  AboutView(aboutEn: profileCubit.salon.aboutEn!, aboutAr:  profileCubit.salon.aboutAr!,)
+                            )
                           )
                         );
-                        print(result);
                         if (result == true) {
                           await profileCubit.getSalonData();
                         }
                       },
-                      withIcon: true,
                     ),
                     ProfileTile(
                       title: "addLocation".tr(),
-                      onTap: () {
-                         context.push(const LocationView());
-                      },
-                      withIcon: true,
+                      onTap: () {context.push(const LocationView());},
                     ),
                     ProfileTile(
                       title: "openingTime".tr(),
-                      onTap: () {
-                        context.push(OpeningTimeView(openingtime: profileCubit.salon.openingtime));
-                      },
-                      withIcon: true,
+                      onTap: () {context.push(OpeningTimeView(openingtime: profileCubit.salon.openingtime));},
                     ),
                     ProfileTile(
                       title: "services".tr(),
@@ -180,7 +175,6 @@ class _ProfileViewState extends State<ProfileView> {
                           child: const ServicesView(),
                         ));
                       },
-                      withIcon: true,
                     ),
                     ProfileTile(
                       title: "staff".tr(),
@@ -190,24 +184,21 @@ class _ProfileViewState extends State<ProfileView> {
                           child: const StaffScreen(),
                         ));
                       },
-                      withIcon: true,
                     ),
                     ProfileTile(
                       title: "reviews".tr(),
                       onTap: () {
                         context.push(const ReviewsView());
                       },
-                      withIcon: true,
                     ),
                     ProfileTile(
-                        title: "logout".tr(),
-                        onTap: () {
-                          profileCubit.logOut(context);
-                        },
-                        withIcon: false)
+                      title: "logout".tr(),
+                      onTap: () {profileCubit.logOut(context);},
+                    )
                   ],
                 ),
-              ]),
+                ]
+              ),
             ),
           );
         }

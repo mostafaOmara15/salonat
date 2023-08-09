@@ -7,12 +7,10 @@ import '../../../utils/extensions/theme/colors/color_manager.dart';
 class ProfileTile extends StatelessWidget {
   String title;
   Function() onTap;
-  bool withIcon;
 
   ProfileTile({super.key,
     required this.title,
     required this.onTap,
-    required this.withIcon
   });
 
   @override
@@ -22,7 +20,7 @@ class ProfileTile extends StatelessWidget {
       child: ListTile(
         title: largeTitle(title, ColorManager.blackColor, false),
         onTap: onTap,
-        trailing: withIcon ? Icon(Icons.arrow_forward_ios_rounded, size: context.width * 0.04) : null,
+        trailing: Icon(Icons.arrow_forward_ios_rounded, size: context.width * 0.04)
       ),
     );
   }
