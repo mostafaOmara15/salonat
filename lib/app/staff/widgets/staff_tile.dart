@@ -106,6 +106,7 @@ class StaffTile extends StatelessWidget {
                             direction: Axis.horizontal,
                             allowHalfRating: true,
                             itemCount: 5,
+                            ignoreGestures: true,
                             itemSize: context.width * 0.03,
                             itemPadding: const EdgeInsets.symmetric(horizontal: 1),
                             itemBuilder: (context, _) => const Icon(
