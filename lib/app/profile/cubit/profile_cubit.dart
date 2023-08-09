@@ -1,3 +1,5 @@
+import 'dart:convert';
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:bloc/bloc.dart';
@@ -10,6 +12,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:salonat/app/login/view/login_view.dart';
 import 'package:salonat/app/profile/cubit/profile_states.dart';
+import 'package:salonat/app/profile/model/rate_salon_model.dart';
 import 'package:salonat/app/profile/model/salon_model.dart';
 import 'package:salonat/utils/extensions/navigation/navigation.dart';
 import 'package:salonat/utils/strings/const_strings.dart';
@@ -24,7 +27,8 @@ class ProfileCubit extends Cubit<ProfileStates> {
 
   FirebaseHelper firebase = FirebaseHelper();
   var prefs = locator<SharedPrefServices>();
-
+  List<RateSalonModel> ratesSalonMode = [];
+  double rate = 0;
   SalonModel salon = SalonModel();
   final picker = ImagePicker();
   File? image;
@@ -54,6 +58,24 @@ class ProfileCubit extends Cubit<ProfileStates> {
       emit(SalonErrorState());
       print(error.toString());
     });
+  }
+
+  getSalonRate() async {
+    String docId = await prefs.getString(salonId);
+    try {
+      await FirebaseFirestore.instance
+          .collection("salons-rate")
+          .where("salon-id", isEqualTo: docId.toString())
+          .get()
+          .then((QuerySnapshot querySnapshot) {
+        for (var doc in querySnapshot.docs) {
+          rate += double.parse(doc['rate'].toString());
+        }
+        rate=rate/querySnapshot.docs.length;
+      });
+    } catch (e) {
+      log("get Salon Rate error $e");
+    }
   }
 
   void logOut(BuildContext context) async {
@@ -89,10 +111,9 @@ class ProfileCubit extends Cubit<ProfileStates> {
 
   uploadCoverImage({required String coverImage}) async {
     String docId = await prefs.getString(salonId);
-    await FirebaseFirestore.instance
-        .collection("salons")
-        .doc(docId)
-        .set({"cover-images": FieldValue.arrayUnion([coverImage])}, SetOptions(merge: true));
+    await FirebaseFirestore.instance.collection("salons").doc(docId).set({
+      "cover-images": FieldValue.arrayUnion([coverImage])
+    }, SetOptions(merge: true));
   }
 
   addCoverImage() async {
@@ -108,9 +129,8 @@ class ProfileCubit extends Cubit<ProfileStates> {
   removeCoverImage({required String coverImage}) async {
     String docId = await prefs.getString(salonId);
 
-    await FirebaseFirestore.instance
-        .collection("salons")
-        .doc(docId)
-        .set({"cover-images": FieldValue.arrayRemove([coverImage])}, SetOptions(merge: true));
+    await FirebaseFirestore.instance.collection("salons").doc(docId).set({
+      "cover-images": FieldValue.arrayRemove([coverImage])
+    }, SetOptions(merge: true));
   }
 }

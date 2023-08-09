@@ -36,6 +36,8 @@ class _ProfileViewState extends State<ProfileView> {
     super.initState();
     profileCubit = ProfileCubit.get(context);
     profileCubit.getSalonData();
+    profileCubit.getSalonRate();
+
   }
 
   @override
@@ -77,10 +79,11 @@ class _ProfileViewState extends State<ProfileView> {
                                 children: [
                                   widthSpace(context.width * 0.035),
                                   RatingBar.builder(
-                                    initialRating: 0,
+                                    initialRating: profileCubit.rate,
                                     direction: Axis.horizontal,
                                     allowHalfRating: true,
                                     itemCount: 5,
+                                    ignoreGestures: true,
                                     itemSize: context.width * 0.035,
                                     itemPadding: const EdgeInsets.symmetric(horizontal: 0.5),
                                     itemBuilder: (context, _) => const Icon(
@@ -90,7 +93,7 @@ class _ProfileViewState extends State<ProfileView> {
                                     onRatingUpdate: (rating) {print(rating);},
                                   ),
                                   widthSpace(context.width * 0.03),
-                                  mediumTitle("5.0", ColorManager.blackColor, false),
+                                  mediumTitle(profileCubit.rate.toStringAsFixed(1), ColorManager.blackColor, false),
                                 ],
                               ),
                             ],
