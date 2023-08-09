@@ -21,6 +21,7 @@ class ServicesCubit extends Cubit<ServicesState> {
 
   getMainServices() async {
     emit(Loading());
+    mainServices.clear();
     try {
       await FirebaseFirestore.instance
           .collection("main-services")
