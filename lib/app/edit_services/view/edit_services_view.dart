@@ -10,8 +10,9 @@ import 'package:salonat/app/services/model/sub_services_model.dart';
 import 'package:salonat/utils/common_widgets/app_button.dart';
 import 'package:salonat/utils/common_widgets/inputField.dart';
 import 'package:salonat/utils/extensions/media_query/media_query.dart';
-import 'package:salonat/utils/extensions/theme/colors/color_manager.dart';
 import 'package:salonat/utils/spaces.dart';
+
+import '../../../utils/theme/colors/color_manager.dart';
 
 class EditServicesView extends StatefulWidget {
   MainServicesModel mainServicesModel;

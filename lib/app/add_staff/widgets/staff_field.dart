@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:salonat/utils/extensions/media_query/media_query.dart';
-import '../../../utils/extensions/theme/colors/color_manager.dart';
+
+import '../../../utils/theme/colors/color_manager.dart';
 
 class StaffField extends StatelessWidget {
 

@@ -7,9 +7,9 @@ import 'package:salonat/app/booking/cubit/booking_states.dart';
 import 'package:salonat/app/booking/widget/book_history_card.dart';
 import 'package:salonat/utils/common_widgets/texts.dart';
 import 'package:salonat/utils/extensions/media_query/media_query.dart';
-import 'package:salonat/utils/extensions/theme/colors/color_manager.dart';
 import 'package:calendar_date_picker2/calendar_date_picker2.dart';
 import 'package:intl/intl.dart';
+import '../../../utils/theme/colors/color_manager.dart';
 
 class BookingScreen extends StatefulWidget {
   BookingScreen({super.key});

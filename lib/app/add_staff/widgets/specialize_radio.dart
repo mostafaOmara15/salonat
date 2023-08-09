@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:salonat/utils/common_widgets/texts.dart';
 import 'package:salonat/utils/extensions/media_query/media_query.dart';
 import 'package:salonat/utils/extensions/on_tap/on_tap.dart';
-import 'package:salonat/utils/extensions/theme/colors/color_manager.dart';
 import 'package:salonat/utils/spaces.dart';
+import '../../../utils/theme/colors/color_manager.dart';
 
 class SpecializationRad extends StatelessWidget {
   String? value;

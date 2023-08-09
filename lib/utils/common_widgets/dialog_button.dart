@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:salonat/utils/extensions/media_query/media_query.dart';
-import '../extensions/theme/colors/color_manager.dart';
+import '../theme/colors/color_manager.dart';
 
 class AlertButton extends StatelessWidget {
   String title;

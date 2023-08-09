@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:salonat/utils/common_widgets/texts.dart';
-import '../extensions/theme/colors/color_manager.dart';
+
+import '../theme/colors/color_manager.dart';
 
 class SupButton extends StatelessWidget {
   double height;

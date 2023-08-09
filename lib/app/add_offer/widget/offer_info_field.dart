@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:salonat/utils/extensions/media_query/media_query.dart';
 import '../../../utils/common_widgets/texts.dart';
-import '../../../utils/extensions/theme/colors/color_manager.dart';
+import '../../../utils/theme/colors/color_manager.dart';
 
 class OfferInfo extends StatefulWidget {
   String title;
@@ -12,7 +12,7 @@ class OfferInfo extends StatefulWidget {
   TextEditingController dateController;
 
 
-  OfferInfo({required this.title, required this.isDate, required this.dateController, required this.validator});
+  OfferInfo({super.key, required this.title, required this.isDate, required this.dateController, required this.validator});
 
   @override
   State<OfferInfo> createState() => _OfferInfoState();

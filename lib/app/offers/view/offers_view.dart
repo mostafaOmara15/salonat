@@ -2,7 +2,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:salonat/app/add_offer/view/add_offer_view.dart';
-import 'package:salonat/app/edit_offer/cubit/edit_offer_cubit.dart';
 import 'package:salonat/app/edit_offer/view/edit_offer_view.dart';
 import 'package:salonat/app/offers/cubit/offer_cubit.dart';
 import 'package:salonat/utils/common_widgets/app_button.dart';
@@ -11,8 +10,7 @@ import 'package:salonat/utils/extensions/media_query/media_query.dart';
 import 'package:salonat/utils/extensions/on_tap/on_tap.dart';
 import 'package:salonat/utils/spaces.dart';
 import '../../../utils/common_widgets/loading_indicator.dart';
-import '../../../utils/extensions/theme/colors/color_manager.dart';
-import '../../add_offer/cubit/add_offer_cubit.dart';
+import '../../../utils/theme/colors/color_manager.dart';
 
 class OffersView extends StatefulWidget {
   const OffersView({super.key});
@@ -152,14 +150,9 @@ class _OffersViewState extends State<OffersView> {
                                                                   context,
                                                                   MaterialPageRoute(
                                                                     builder: (context) =>
-                                                                        BlocProvider<
-                                                                            EditOfferCubit>(
-                                                                      create: (context) =>
-                                                                          EditOfferCubit(),
-                                                                      child: EditOfferView(
-                                                                          offerModel:
-                                                                              cubit!.offers[index]),
-                                                                    ),
+                                                                        EditOfferView(
+                                                                            offerModel:
+                                                                                cubit!.offers[index]),
                                                                   ));
                                                           if (result == true) {
                                                             cubit!.offers
@@ -191,10 +184,7 @@ class _OffersViewState extends State<OffersView> {
                               context,
                               MaterialPageRoute(
                                 builder: (context) =>
-                                    BlocProvider<AddOfferCubit>(
-                                  create: (context) => AddOfferCubit(),
-                                  child: const AddOffersView(),
-                                ),
+                                    const AddOffersView(),
                               ));
 
                           if (result == true) {

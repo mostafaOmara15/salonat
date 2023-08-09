@@ -5,8 +5,8 @@ import 'package:salonat/utils/common_widgets/sup_button.dart';
 import 'package:salonat/utils/extensions/media_query/media_query.dart';
 import 'package:salonat/utils/extensions/navigation/navigation.dart';
 import '../../../utils/common_widgets/texts.dart';
-import '../../../utils/extensions/theme/colors/color_manager.dart';
 import '../../../utils/spaces.dart';
+import '../../../utils/theme/colors/color_manager.dart';
 import '../../opening/view/opening_screen.dart';
 import 'about_salon.dart';
 
@@ -37,7 +37,7 @@ class SalonInfo extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             smallTitle("${"openFrom".tr()} ${(openingtime!.where((element) => element.day==currentDay).toList())[0].open!} - ${(openingtime!.where((element) => element.day==currentDay).toList())[0].close!} ", ColorManager.blackColor, false),
-            SupButton(height: context.height * 0.03, title: "edit".tr(), onTap:() {context.push(OpeningTimeView(openingtime:openingtime,));})
+            SupButton(height: context.height * 0.03, title: "edit".tr(), onTap:() {context.push(OpeningTimeView(openingTime:openingtime,));})
           ],
         ),
       ],

@@ -7,7 +7,7 @@ import 'package:salonat/utils/extensions/media_query/media_query.dart';
 import 'package:salonat/utils/extensions/on_tap/on_tap.dart';
 import 'package:salonat/utils/spaces.dart';
 import '../../../utils/common_widgets/texts.dart';
-import '../../../utils/extensions/theme/colors/color_manager.dart';
+import '../../../utils/theme/colors/color_manager.dart';
 import '../../edit_offer/view/offer_info_field.dart';
 import '../widget/offer_description.dart';
 

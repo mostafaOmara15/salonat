@@ -5,9 +5,10 @@ import 'package:salonat/utils/common_widgets/loading_indicator.dart';
 import 'package:salonat/utils/extensions/media_query/media_query.dart';
 import '../../../utils/common_widgets/texts.dart';
 import '../../../utils/common_widgets/warning_alert.dart';
-import '../../../utils/extensions/theme/colors/color_manager.dart';
 import '../../../utils/spaces.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+
+import '../../../utils/theme/colors/color_manager.dart';
 
 
 class StaffTile extends StatelessWidget {

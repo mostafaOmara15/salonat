@@ -9,7 +9,7 @@ import 'package:salonat/utils/extensions/navigation/navigation.dart';
 import 'package:salonat/utils/extensions/on_tap/on_tap.dart';
 import 'package:salonat/utils/spaces.dart';
 import '../../../utils/common_widgets/texts.dart';
-import '../../../utils/extensions/theme/colors/color_manager.dart';
+import '../../../utils/theme/colors/color_manager.dart';
 import '../../add_offer/widget/offer_info_field.dart';
 import '../widget/offer_description.dart';
 

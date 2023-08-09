@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:salonat/utils/extensions/theme/colors/color_manager.dart';
+import '../theme/colors/color_manager.dart';
 
 class InputField extends StatefulWidget {
   IconData icon;

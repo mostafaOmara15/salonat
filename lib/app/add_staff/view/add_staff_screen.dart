@@ -8,8 +8,8 @@ import 'package:salonat/utils/extensions/media_query/media_query.dart';
 import 'package:salonat/utils/extensions/on_tap/on_tap.dart';
 import '../../../utils/common_widgets/app_button.dart';
 import '../../../utils/common_widgets/texts.dart';
-import '../../../utils/extensions/theme/colors/color_manager.dart';
 import '../../../utils/spaces.dart';
+import '../../../utils/theme/colors/color_manager.dart';
 import '../widgets/staff_field.dart';
 
 class AddStaff extends StatefulWidget {

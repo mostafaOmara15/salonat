@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:salonat/app/reviews/widget/review_tile.dart';
 import 'package:salonat/utils/extensions/media_query/media_query.dart';
 import '../../../utils/common_widgets/texts.dart';
-import '../../../utils/extensions/theme/colors/color_manager.dart';
+import '../../../utils/theme/colors/color_manager.dart';
 
 class SalonReviews extends StatelessWidget {
   List reviews;

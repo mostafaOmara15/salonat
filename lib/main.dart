@@ -3,15 +3,24 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:salonat/app/about/cubit/about_cubit.dart';
+import 'package:salonat/app/add_offer/cubit/add_offer_cubit.dart';
+import 'package:salonat/app/add_services/cubit/add_service_cubit.dart';
+import 'package:salonat/app/add_staff/cubit/add_staff_cubit.dart';
+import 'package:salonat/app/edit_offer/cubit/edit_offer_cubit.dart';
+import 'package:salonat/app/edit_services/cubit/edit_service_cubit.dart';
+import 'package:salonat/app/edit_staff/cubit/edit_staff_cubit.dart';
 import 'package:salonat/app/login/cubit/login_cubit.dart';
+import 'package:salonat/app/offers/cubit/offer_cubit.dart';
 import 'package:salonat/app/profile/cubit/profile_cubit.dart';
+import 'package:salonat/app/services/cubit/services_cubit.dart';
 import 'package:salonat/app/splash/cubit/splash_cubit.dart';
 import 'package:salonat/app/splash/view/splash_view.dart';
+import 'package:salonat/app/staff/cubit/staff_cubit.dart';
 import 'package:salonat/firebase_options.dart';
 import 'package:salonat/services/locator.dart';
 import 'package:salonat/utils/block_observer.dart';
-import 'package:salonat/utils/extensions/theme/colors/color_manager.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:salonat/utils/theme/colors/color_manager.dart';
 
 import 'app/booking/cubit/booking_cubit.dart';
 
@@ -48,6 +57,15 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => ProfileCubit()),
         BlocProvider(create: (context) => AboutCubit()),
         BlocProvider(create: (context) => BookingCubit()),
+        BlocProvider(create: (context) => OfferCubit()),
+        BlocProvider(create: (context) => EditOfferCubit()),
+        BlocProvider(create: (context) => AddOfferCubit()),
+        BlocProvider(create: (context) => ServicesCubit()),
+        BlocProvider(create: (context) => StaffCubit()),
+        BlocProvider(create: (context) => EditServiceCubit()),
+        BlocProvider(create: (context) => AddServiceCubit()),
+        BlocProvider(create: (context) => EditStaffCubit()),
+        BlocProvider(create: (context) => AddStaffCubit()),
       ],
       child: MaterialApp(
           localizationsDelegates: context.localizationDelegates,

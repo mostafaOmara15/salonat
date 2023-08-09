@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../../../utils/extensions/theme/colors/color_manager.dart';
+
+import '../../../utils/theme/colors/color_manager.dart';
 
 class LoginFormField extends StatelessWidget {
 

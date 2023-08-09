@@ -9,10 +9,10 @@ import 'package:salonat/utils/common_widgets/warning_alert.dart';
 import 'package:salonat/utils/extensions/media_query/media_query.dart';
 import 'package:salonat/utils/extensions/on_tap/on_tap.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import '../../../utils/extensions/theme/colors/color_manager.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
 import '../../../utils/strings/const_strings.dart';
+import '../../../utils/theme/colors/color_manager.dart';
 
 class ImagesSlider extends StatefulWidget {
   List<dynamic>? imagesUrl;
@@ -56,23 +56,23 @@ class _ImagesSliderState extends State<ImagesSlider> {
                         .onTap(widget.onTabAddPic),
                   )
                 : CarouselSlider(
-                      carouselController: _controller,
-                      items: widget.imagesUrl?.map((e) {
-                        return Container(
-                          decoration: BoxDecoration(
-                              image: DecorationImage(
-                                  fit: BoxFit.cover, image: NetworkImage(e))),
+                    carouselController: _controller,
+                    items: widget.imagesUrl?.map((e) {
+                      return Container(
+                        decoration: BoxDecoration(
+                          image: DecorationImage(fit: BoxFit.cover, image: NetworkImage(e))),
                         );
                       }).toList(),
                       options: CarouselOptions(
-                          autoPlay: true,
-                          initialPage: 0,
-                          viewportFraction: 1,
-                          onPageChanged: (index, _) {
-                            setState(() {
-                              _currentIndex = index;
-                            });
-                          }),
+                        autoPlay: true,
+                        initialPage: 0,
+                        viewportFraction: 1,
+                        onPageChanged: (index, _) {
+                          setState(() {
+                            _currentIndex = index;
+                          });
+                        }
+                      ),
                     ),
             ),
             widget.imagesUrl!.isEmpty
@@ -136,7 +136,8 @@ class _ImagesSliderState extends State<ImagesSlider> {
                   ],
                 ),
               )
-      ]),
+      ]
+      ),
     );
   }
 }

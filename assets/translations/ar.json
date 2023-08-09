@@ -32,7 +32,7 @@
   "from": "من",
   "to": "الى",
   "services": "الخدمات",
-  "moreDetails" : "عرض المذيد ->",
+  "moreDetails" : "عرض المزيد ->",
   "staff": "طاقم عمل",
   "save": "حفظ",
   "done": "تم",
@@ -86,5 +86,6 @@
   "closed" : "مغلق",
   "aboutUpdateMessage" : "تم تحديث ملومات الصالون بنجاح",
   "errorAboutUpdateMessage" : "خطأ في تحديث معلومات الصالون",
-  "emptyWarning" : "لا يجب ان يكون فارغ"
+  "emptyWarning" : "لا يجب ان يكون فارغ",
+  "minute" : "دقيقة"
 }

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:readmore/readmore.dart';
-import '../../../utils/extensions/theme/colors/color_manager.dart';
+
+import '../../../utils/theme/colors/color_manager.dart';
 class AboutTheSalon extends StatelessWidget {
   String text;
   AboutTheSalon({super.key, required this.text});

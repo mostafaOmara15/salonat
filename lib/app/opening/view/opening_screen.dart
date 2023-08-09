@@ -5,13 +5,13 @@ import 'package:salonat/utils/common_widgets/app_button.dart';
 import 'package:salonat/utils/extensions/media_query/media_query.dart';
 import 'package:salonat/utils/spaces.dart';
 import '../../../utils/common_widgets/texts.dart';
-import '../../../utils/extensions/theme/colors/color_manager.dart';
+import '../../../utils/theme/colors/color_manager.dart';
 import '../widgets/time_field.dart';
 
 class OpeningTimeView extends StatefulWidget {
-  List<OpeningTime>? openingtime;
+  List<OpeningTime>? openingTime;
 
-  OpeningTimeView({super.key, required this.openingtime});
+  OpeningTimeView({super.key, required this.openingTime});
 
   List<bool> isSelected = [true, false, false, false, false, false, false];
 
@@ -22,14 +22,14 @@ class OpeningTimeView extends StatefulWidget {
 class _OpeningTimeViewState extends State<OpeningTimeView> {
   String? currentDay;
 
-  TimeOfDay fromSelectedTime = const TimeOfDay(hour: 09, minute: 0);
-  TimeOfDay toSelectedTime = const TimeOfDay(hour: 09, minute: 0);
+  TextEditingController timeFrom = TextEditingController();
+  TextEditingController timeTo = TextEditingController();
   bool timeUpdated = false;
   bool isClose = false;
 
 @override
   void initState() {
-  currentDay = widget.openingtime?[0].day.toString();
+  currentDay = widget.openingTime?[0].day.toString();
     super.initState();
   }
 
@@ -46,13 +46,13 @@ class _OpeningTimeViewState extends State<OpeningTimeView> {
                   height: context.height * 0.07,
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
-                    itemCount: widget.openingtime!.length,
+                    itemCount: widget.openingTime!.length,
                     itemBuilder: (context, index) {
                       return Padding(
                         padding: EdgeInsets.symmetric(
                             horizontal: context.width * 0.03),
                         child: TextButton(
-                            child: Text(widget.openingtime![index].day!.tr(),
+                            child: Text(widget.openingTime![index].day!.tr(),
                                 style: TextStyle(
                                     fontSize: 20,
                                     color: widget.isSelected[index]
@@ -60,7 +60,7 @@ class _OpeningTimeViewState extends State<OpeningTimeView> {
                                         : Colors.black)),
                             onPressed: () {
                               setState(() {
-                                currentDay = widget.openingtime![index].day!;
+                                currentDay = widget.openingTime![index].day!;
                                 for (int i = 0;
                                     i < widget.isSelected.length;
                                     i++) {
@@ -80,8 +80,8 @@ class _OpeningTimeViewState extends State<OpeningTimeView> {
             ],
           ),
           heightSpace(context.height * 0.02),
-          TimeField(title: "from".tr(), selectedTime: fromSelectedTime),
-          TimeField(title: "to".tr(), selectedTime: toSelectedTime),
+          TimeField(title: "from".tr(), timeController: timeFrom,),
+          TimeField(title: "to".tr(), timeController: timeTo),
           Padding(
             padding: EdgeInsets.symmetric(vertical: context.height *0.01, horizontal: context.width * 0.12),
             child: Row(

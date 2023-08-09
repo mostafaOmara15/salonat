@@ -1,7 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:salonat/app/add_services/cubit/add_service_cubit.dart';
 import 'package:salonat/app/add_services/view/add_services_view.dart';
 import 'package:salonat/app/edit_services/view/edit_services_view.dart';
 import 'package:salonat/app/services/cubit/services_cubit.dart';
@@ -10,11 +9,9 @@ import 'package:salonat/utils/common_widgets/app_button.dart';
 import 'package:salonat/utils/common_widgets/loading_indicator.dart';
 import 'package:salonat/utils/common_widgets/texts.dart';
 import 'package:salonat/utils/extensions/media_query/media_query.dart';
-import 'package:salonat/utils/extensions/theme/colors/color_manager.dart';
 import 'package:salonat/utils/spaces.dart';
+import '../../../utils/theme/colors/color_manager.dart';
 import '../cubit/services_state.dart';
-
-import '../../edit_services/cubit/edit_service_cubit.dart';
 
 class ServicesView extends StatefulWidget {
   const ServicesView({Key? key}) : super(key: key);
@@ -59,8 +56,8 @@ class _ServicesViewState extends State<ServicesView> {
                               style: ElevatedButton.styleFrom(
                                   backgroundColor:
                                       cubit.mainServiceIndex == index
-                                          ? ColorManager.greyColor
-                                          : ColorManager.primaryColor,
+                                          ? ColorManager.primaryColor
+                                          : ColorManager.greyColor,
                                   elevation: 0),
                               onPressed: () {
                                 cubit.mainServiceIndex = index;
@@ -122,17 +119,14 @@ class _ServicesViewState extends State<ServicesView> {
                                     context,
                                     MaterialPageRoute(
                                       builder: (context) =>
-                                          BlocProvider<EditServiceCubit>(
-                                        create: (context) => EditServiceCubit(),
-                                        child: EditServicesView(
-                                          mainServicesModel: cubit.mainServices[
-                                              cubit.mainServiceIndex],
-                                          subServicesModel: cubit
-                                              .mainServices[
-                                                  cubit.mainServiceIndex]
-                                              .subServicesModel[index],
-                                        ),
-                                      ),
+                                          EditServicesView(
+                                            mainServicesModel: cubit.mainServices[
+                                                cubit.mainServiceIndex],
+                                            subServicesModel: cubit
+                                                .mainServices[
+                                                    cubit.mainServiceIndex]
+                                                .subServicesModel[index],
+                                          ),
                                     ));
                                 if (result == true) {
                                   cubit.mainServiceIndex = 0;
@@ -169,12 +163,9 @@ class _ServicesViewState extends State<ServicesView> {
                   var result = await Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => BlocProvider<AddServiceCubit>(
-                          create: (context) => AddServiceCubit(),
-                          child: AddServices(
-                              mainServicesModel:
-                                  cubit.mainServices[cubit.mainServiceIndex]),
-                        ),
+                        builder: (context) => AddServices(
+                            mainServicesModel:
+                                cubit.mainServices[cubit.mainServiceIndex]),
                       ));
                   if (result == true) {
                     cubit.mainServiceIndex = 0;

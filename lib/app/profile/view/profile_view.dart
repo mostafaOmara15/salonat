@@ -2,21 +2,18 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:salonat/app/about/cubit/about_cubit.dart';
 import 'package:salonat/app/location/view/location_view.dart';
 import 'package:salonat/app/profile/widgets/images_slider.dart';
 import 'package:salonat/app/profile/widgets/profile_tile.dart';
 import 'package:salonat/app/reviews/view/reviews_view.dart';
-import 'package:salonat/app/services/cubit/services_cubit.dart';
-import 'package:salonat/app/staff/cubit/staff_cubit.dart';
 import 'package:salonat/utils/common_widgets/loading_indicator.dart';
 import 'package:salonat/utils/common_widgets/logo_victor.dart';
 import 'package:salonat/utils/common_widgets/texts.dart';
 import 'package:salonat/utils/extensions/media_query/media_query.dart';
 import 'package:salonat/utils/extensions/navigation/navigation.dart';
-import 'package:salonat/utils/extensions/theme/colors/color_manager.dart';
 import 'package:salonat/utils/spaces.dart';
 import '../../../utils/common_widgets/language_buttons.dart';
+import '../../../utils/theme/colors/color_manager.dart';
 import '../../about/view/about_view.dart';
 import '../../opening/view/opening_screen.dart';
 import '../../services/view/services_view.dart';
@@ -60,14 +57,11 @@ class _ProfileViewState extends State<ProfileView> {
                   Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    BlocProvider<ProfileCubit>(
-                      create: (context) => ProfileCubit(),
-                      child: ImagesSlider(
-                        imagesUrl: profileCubit.salon.coverimages,
-                        onTabAddPic: () async {
-                          profileCubit.addCoverImage();
-                        },
-                      ),
+                    ImagesSlider(
+                      imagesUrl: profileCubit.salon.coverimages,
+                      onTabAddPic: () async {
+                        profileCubit.addCoverImage();
+                      },
                     ),
                     heightSpace(context.height * 0.01),
                     Padding(
@@ -148,10 +142,7 @@ class _ProfileViewState extends State<ProfileView> {
                         var result = await Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => BlocProvider(
-                              create: (context) => AboutCubit(),
-                              child:  AboutView(aboutEn: profileCubit.salon.aboutEn!, aboutAr:  profileCubit.salon.aboutAr!,)
-                            )
+                            builder: (context) => AboutView(aboutEn: profileCubit.salon.aboutEn!, aboutAr:  profileCubit.salon.aboutAr!,)
                           )
                         );
                         if (result == true) {
@@ -165,24 +156,18 @@ class _ProfileViewState extends State<ProfileView> {
                     ),
                     ProfileTile(
                       title: "openingTime".tr(),
-                      onTap: () {context.push(OpeningTimeView(openingtime: profileCubit.salon.openingtime));},
+                      onTap: () {context.push(OpeningTimeView(openingTime: profileCubit.salon.openingtime));},
                     ),
                     ProfileTile(
                       title: "services".tr(),
                       onTap:() {
-                        context.push(BlocProvider<ServicesCubit>(
-                          create: (context) => ServicesCubit(),
-                          child: const ServicesView(),
-                        ));
+                        context.push(const ServicesView());
                       },
                     ),
                     ProfileTile(
                       title: "staff".tr(),
                       onTap: () {
-                        context.push(BlocProvider<StaffCubit>(
-                          create: (context) => StaffCubit(),
-                          child: const StaffScreen(),
-                        ));
+                        context.push(const StaffScreen());
                       },
                     ),
                     ProfileTile(

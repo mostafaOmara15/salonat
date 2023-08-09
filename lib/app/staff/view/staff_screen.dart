@@ -64,11 +64,8 @@ class _StaffScreenState extends State<StaffScreen> {
                             context,
                             MaterialPageRoute(
                               builder: (context) {
-                                return BlocProvider<EditStaffCubit>(
-                                  create: (context) => EditStaffCubit(),
-                                  child: EditStaffView(
-                                    staffModel: cubit.staff[index],
-                                  ),
+                                return EditStaffView(
+                                  staffModel: cubit.staff[index],
                                 );
                               },
                             ),
@@ -90,10 +87,7 @@ class _StaffScreenState extends State<StaffScreen> {
                         context,
                         MaterialPageRoute(
                           builder: (context) =>
-                              BlocProvider<AddStaffCubit>(
-                                create: (context) => AddStaffCubit(),
-                                child: const AddStaff(),
-                              ),
+                              const AddStaff(),
                         ));
                     if (result == true) {
                       cubit.staff.clear();

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:salonat/utils/common_widgets/texts.dart';
 import 'package:salonat/utils/extensions/media_query/media_query.dart';
 import 'package:salonat/utils/extensions/navigation/navigation.dart';
-import '../extensions/theme/colors/color_manager.dart';
+import '../theme/colors/color_manager.dart';
 import 'dialog_button.dart';
 
 class WarningAlert extends StatelessWidget {

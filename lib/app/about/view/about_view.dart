@@ -1,13 +1,11 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:salonat/app/about/cubit/about_cubit.dart';
 import 'package:salonat/app/about/cubit/about_states.dart';
 import 'package:salonat/app/about/widget/about_field.dart';
 import 'package:salonat/utils/common_widgets/app_button.dart';
 import 'package:salonat/utils/extensions/media_query/media_query.dart';
-import 'package:salonat/utils/extensions/theme/colors/color_manager.dart';
 
 import '../../../utils/spaces.dart';
 

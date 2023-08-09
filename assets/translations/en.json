@@ -86,5 +86,6 @@
   "closed" : "Closed",
   "aboutUpdateMessage" : "Salon info updated successfully",
   "errorAboutUpdateMessage" : "Error updating salon information",
-  "emptyWarning" : "It must not be empty"
+  "emptyWarning" : "It must not be empty",
+  "minute" : "Minute"
 }
