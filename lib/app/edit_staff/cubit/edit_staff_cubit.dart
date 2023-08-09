@@ -97,9 +97,9 @@ class EditStaffCubit extends Cubit<EditStaffState> {
           .collection("staff")
           .doc(staffModel.id)
           .set({
-"image":staffImageUrl ?? staffModel.image,
-"name":nameCtrl.text,
-        "sub-services":finalSelectedSubServices.toSet()
+              "image":staffImageUrl ?? staffModel.image,
+                "name":nameCtrl.text,
+              "sub-services":finalSelectedSubServices.toSet()
 
 
       }, SetOptions(merge: true));
