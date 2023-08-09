@@ -5,6 +5,7 @@ import 'package:salonat/app/edit_offer/cubit/edit_offer_cubit.dart';
 import 'package:salonat/app/offers/model/offer_model.dart';
 import 'package:salonat/utils/common_widgets/app_button.dart';
 import 'package:salonat/utils/extensions/media_query/media_query.dart';
+import 'package:salonat/utils/extensions/navigation/navigation.dart';
 import 'package:salonat/utils/extensions/on_tap/on_tap.dart';
 import 'package:salonat/utils/spaces.dart';
 import '../../../utils/common_widgets/texts.dart';
@@ -91,8 +92,7 @@ class _EditOfferViewState extends State<EditOfferView> {
                       OfferDescription(
                           controller: cubit.enDescription,
                           hint: "",
-                          isAr: false
-                      ),
+                          isAr: false),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
@@ -110,14 +110,16 @@ class _EditOfferViewState extends State<EditOfferView> {
                               child: OfferInfo(
                             title: "startDate".tr(),
                             isDate: true,
-                            dateController: cubit.startDateController, validator: null,
+                            dateController: cubit.startDateController,
+                            validator: null,
                           )),
                           widthSpace(context.width * 0.05),
                           Expanded(
                               child: OfferInfo(
                             title: "endDate".tr(),
                             isDate: true,
-                            dateController: cubit.endDateController, validator: null,
+                            dateController: cubit.endDateController,
+                            validator: null,
                           )),
                         ],
                       ),
@@ -126,27 +128,38 @@ class _EditOfferViewState extends State<EditOfferView> {
                         children: [
                           Expanded(
                               child: OfferInfo(
-                                  title: "priceBefore".tr(),
-                                  isDate: false,
-                                  dateController: cubit.priceBeforeController, validator: null,)),
+                            title: "priceBefore".tr(),
+                            isDate: false,
+                            dateController: cubit.priceBeforeController,
+                            validator: null,
+                          )),
                           widthSpace(context.width * 0.05),
                           Expanded(
                               child: OfferInfo(
-                                  title: "priceAfter".tr(),
-                                  isDate: false,
-                                  dateController: cubit.priceAfterController, validator: null,)),
+                            title: "priceAfter".tr(),
+                            isDate: false,
+                            dateController: cubit.priceAfterController,
+                            validator: null,
+                          )),
                         ],
                       ),
                       heightSpace(context.height * 0.015),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          AppButton(onTap: () {}, title: "cancel".tr()),
+                          AppButton(
+                              onTap: () {
+                                context.pop();
+                              },
+                              title: "cancel".tr()),
                           widthSpace(context.width / 10),
                           AppButton(
                               onTap: () async {
-                                await cubit.editOffer(offerId: widget.offerModel.id!);
-                                Navigator.pop(context, true);
+                                await cubit
+                                    .editOffer(offerId: widget.offerModel.id!)
+                                    .then((value) {
+                                  Navigator.pop(context, true);
+                                });
                               },
                               title: "done".tr())
                         ],

@@ -8,6 +8,7 @@ import 'package:salonat/app/offers/cubit/offer_cubit.dart';
 import 'package:salonat/utils/common_widgets/app_button.dart';
 import 'package:salonat/utils/common_widgets/texts.dart';
 import 'package:salonat/utils/extensions/media_query/media_query.dart';
+import 'package:salonat/utils/extensions/on_tap/on_tap.dart';
 import 'package:salonat/utils/spaces.dart';
 import '../../../utils/common_widgets/loading_indicator.dart';
 import '../../../utils/extensions/theme/colors/color_manager.dart';
@@ -71,7 +72,11 @@ class _OffersViewState extends State<OffersView> {
                                           Image.asset(
                                             "assets/icons/delete_icon.png",
                                             width: context.width * 0.07,
-                                          ),
+                                          ).onTap(() async {
+                                            await cubit!.deleteOffer(cubit!
+                                                .offers[index].id
+                                                .toString());
+                                          }),
                                         ],
                                       ),
                                     ),
@@ -93,7 +98,8 @@ class _OffersViewState extends State<OffersView> {
                                                 Container(
                                                   height: context.height * 0.12,
                                                   width: context.width * 0.55,
-                                                  padding: EdgeInsets.all(3),
+                                                  padding:
+                                                      const EdgeInsets.all(3),
                                                   decoration: BoxDecoration(
                                                       border: Border.all(
                                                           color: ColorManager
@@ -121,7 +127,8 @@ class _OffersViewState extends State<OffersView> {
                                                       height:
                                                           context.height * 0.05,
                                                       padding:
-                                                          EdgeInsets.all(3),
+                                                          const EdgeInsets.all(
+                                                              3),
                                                       decoration: BoxDecoration(
                                                           border: Border.all(
                                                               color: ColorManager
@@ -140,21 +147,28 @@ class _OffersViewState extends State<OffersView> {
                                                       child: AppButton(
                                                         title: "edit".tr(),
                                                         onTap: () async {
-                                                          var result =await Navigator.push(context, MaterialPageRoute(builder: (context) =>
-                                                            BlocProvider<EditOfferCubit>(create: (context) => EditOfferCubit(),
-                                                            child: EditOfferView(offerModel: cubit!.offers[index]),
-                                                            )
-                                                            ,));
-                                                          if(result ==true){
-                                                            cubit!.offers.clear();
-                                                            cubit!.getOffer();
-                                                            print("result ===================> $result");
-
+                                                          var result =
+                                                              await Navigator.push(
+                                                                  context,
+                                                                  MaterialPageRoute(
+                                                                    builder: (context) =>
+                                                                        BlocProvider<
+                                                                            EditOfferCubit>(
+                                                                      create: (context) =>
+                                                                          EditOfferCubit(),
+                                                                      child: EditOfferView(
+                                                                          offerModel:
+                                                                              cubit!.offers[index]),
+                                                                    ),
+                                                                  ));
+                                                          if (result == true) {
+                                                            cubit!.offers
+                                                                .clear();
+                                                            await cubit!.getOffer();
                                                           }
-
                                                         },
                                                       ),
-                                                   )
+                                                    )
                                                   ],
                                                 )
                                               ],
@@ -185,7 +199,7 @@ class _OffersViewState extends State<OffersView> {
 
                           if (result == true) {
                             cubit!.offers.clear();
-                            cubit!.getOffer();
+                           await cubit!.getOffer();
                           }
                         },
                         title: "add_offer".tr()),

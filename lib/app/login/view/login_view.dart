@@ -18,91 +18,89 @@ class LoginView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-        create: (context) => LoginCubit(),
-        child: BlocConsumer<LoginCubit, LoginStates>(
-          listener: (BuildContext context, LoginStates state) {},
-          builder: (context, state) {
-            LoginCubit loginCubit = LoginCubit.get(context);
-            return Stack(children: [
-              Form(
-                key: loginCubit.loginKey,
-                child: Scaffold(
-                  resizeToAvoidBottomInset: true,
-                  backgroundColor: ColorManager.primaryColor,
-                  body: Padding(
-                    padding: EdgeInsets.all(context.width * 0.05),
-                    child: ListView(
+    return BlocConsumer<LoginCubit, LoginStates>(
+      listener: (BuildContext context, LoginStates state) {},
+      builder: (context, state) {
+        LoginCubit loginCubit = LoginCubit.get(context);
+        return Stack(children: [
+          Form(
+            key: loginCubit.loginKey,
+            child: Scaffold(
+              resizeToAvoidBottomInset: true,
+              backgroundColor: ColorManager.primaryColor,
+              body: Padding(
+                padding: EdgeInsets.all(context.width * 0.05),
+                child: ListView(
+                  children: [
+                    Column(
                       children: [
-                        Column(
+                        LogoVictor(size: 0.3),
+                        heightSpace(context.height * 0.02),
+                        largeTitle(
+                            "tagLine".tr(), ColorManager.whiteColor, true),
+                        heightSpace(context.width * 0.075),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
                           children: [
-                            LogoVictor(size: 0.3),
-                            heightSpace(context.height * 0.02),
-                            largeTitle(
-                                "tagLine".tr(), ColorManager.whiteColor, true),
-                            heightSpace(context.width * 0.075),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                LanguageButtons(
-                                  language: "En",
-                                  active: loginCubit.en,
-                                  onTap: () {
-                                    context.setLocale(const Locale('en'));
-                                    loginCubit.changeToEnglish();
-                                  },
-                                ),
-                                widthSpace(context.width * 0.03),
-                                LanguageButtons(
-                                  language: "Ar",
-                                  active: loginCubit.ar,
-                                  onTap: () {
-                                    context.setLocale(const Locale('ar'));
-                                    loginCubit.changeToArabic();
-                                  },
-                                ),
-                              ],
-                            ),
-                            heightSpace(context.width * 0.075),
-                            LoginFormField(
-                              validate: loginCubit.emailValidator(),
-                              fieldCtrl: loginCubit.userNameCtrl,
-                              withIcon: false,
-                              fieldIcon: Icons.email_outlined,
-                              isSecured: false,
-                              fieldInput: TextInputType.name,
-                              fieldHint: "userName".tr(),
-                            ),
-                            heightSpace(context.width * 0.05),
-                            LoginFormField(
-                              validate: loginCubit.passwordValidator(),
-                              fieldCtrl: loginCubit.passwordCtrl,
-                              fieldIcon: Icons.lock_outline_rounded,
-                              fieldHint: "password".tr(),
-                              fieldInput: TextInputType.visiblePassword,
-                              isSecured: loginCubit.showPass,
-                              withIcon: true,
-                              showPass: () {
-                                loginCubit.changePasswordVisibility();
+                            LanguageButtons(
+                              language: "En",
+                              active: loginCubit.en,
+                              onTap: () {
+                                context.setLocale(const Locale('en'));
+                                loginCubit.changeToEnglish();
                               },
                             ),
-                            heightSpace(context.width * 0.05),
-                            LoginButton(function: () async {
-                              await loginCubit.login(context: context);
-                            }),
-                            heightSpace(context.width * 0.05),
-                            largeTitle("introSentence".tr(),
-                                ColorManager.whiteColor, false),
+                            widthSpace(context.width * 0.03),
+                            LanguageButtons(
+                              language: "Ar",
+                              active: loginCubit.ar,
+                              onTap: () {
+                                context.setLocale(const Locale('ar'));
+                                loginCubit.changeToArabic();
+                              },
+                            ),
                           ],
                         ),
+                        heightSpace(context.width * 0.075),
+                        LoginFormField(
+                          validate: loginCubit.emailValidator(),
+                          fieldCtrl: loginCubit.userNameCtrl,
+                          withIcon: false,
+                          fieldIcon: Icons.email_outlined,
+                          isSecured: false,
+                          fieldInput: TextInputType.name,
+                          fieldHint: "userName".tr(),
+                        ),
+                        heightSpace(context.width * 0.05),
+                        LoginFormField(
+                          validate: loginCubit.passwordValidator(),
+                          fieldCtrl: loginCubit.passwordCtrl,
+                          fieldIcon: Icons.lock_outline_rounded,
+                          fieldHint: "password".tr(),
+                          fieldInput: TextInputType.visiblePassword,
+                          isSecured: loginCubit.showPass,
+                          withIcon: true,
+                          showPass: () {
+                            loginCubit.changePasswordVisibility();
+                          },
+                        ),
+                        heightSpace(context.width * 0.05),
+                        LoginButton(function: () async {
+                          await loginCubit.login(context: context);
+                        }),
+                        heightSpace(context.width * 0.05),
+                        largeTitle("introSentence".tr(),
+                            ColorManager.whiteColor, false),
                       ],
                     ),
-                  ),
+                  ],
                 ),
               ),
-              if (state is LoginLoadingState) centerIndicator(),
-            ]);
-          },
-        ));
+            ),
+          ),
+          if (state is LoginLoadingState) centerIndicator(),
+        ]);
+      },
+    );
   }
 }

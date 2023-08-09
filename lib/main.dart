@@ -43,6 +43,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
+        BlocProvider(create: (context) => SplashCubit()),
         BlocProvider(create: (context) => LoginCubit()),
         BlocProvider(create: (context) => ProfileCubit()),
         BlocProvider(create: (context) => AboutCubit()),
@@ -69,10 +70,8 @@ class MyApp extends StatelessWidget {
             fontFamily: 'Fraunces',
             useMaterial3: true,
           ),
-          home: BlocProvider<SplashCubit>(
-            create: (context) => SplashCubit(),
-            child: const SplashView(),
-          )),
+          home: const SplashView(),
+          ),
     );
   }
 }

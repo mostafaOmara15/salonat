@@ -1,6 +1,4 @@
-import 'dart:convert';
 import 'dart:developer';
-
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
@@ -21,7 +19,6 @@ class OfferCubit extends Cubit<OfferState> {
 
   getOffer() async {
     emit(OfferLoading());
-    offers.clear();
     String docId = await prefs.getString(salonId);
     try {
       await FirebaseFirestore.instance
@@ -38,5 +35,10 @@ class OfferCubit extends Cubit<OfferState> {
     } catch (e) {
       log("get Offer error $e");
     }
+  }
+  deleteOffer(String docId) async {
+    await FirebaseFirestore.instance.collection("offers").doc(docId).delete();
+     offers.clear();
+     await getOffer();
   }
 }

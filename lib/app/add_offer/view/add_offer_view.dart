@@ -105,14 +105,15 @@ class _AddOffersViewState extends State<AddOffersView> {
                             title: "startDate".tr(),
                             isDate: true,
                             dateController: cubit.startDateController,
-                                validator: cubit.textValidator(),
+                            validator: cubit.textValidator(),
                           )),
                           widthSpace(context.width * 0.05),
                           Expanded(
                               child: OfferInfo(
                             title: "endDate".tr(),
                             isDate: true,
-                            dateController: cubit.endDateController, validator: cubit.textValidator(),
+                            dateController: cubit.endDateController,
+                            validator: cubit.textValidator(),
                           )),
                         ],
                       ),
@@ -121,15 +122,19 @@ class _AddOffersViewState extends State<AddOffersView> {
                         children: [
                           Expanded(
                               child: OfferInfo(
-                                  title: "priceBefore".tr(),
-                                  isDate: false,
-                                  dateController: cubit.priceBeforeController, validator: cubit.textValidator(),)),
+                            title: "priceBefore".tr(),
+                            isDate: false,
+                            dateController: cubit.priceBeforeController,
+                            validator: cubit.textValidator(),
+                          )),
                           widthSpace(context.width * 0.05),
                           Expanded(
                               child: OfferInfo(
-                                  title: "priceAfter".tr(),
-                                  isDate: false,
-                                  dateController: cubit.priceAfterController, validator: cubit.textValidator(),)),
+                            title: "priceAfter".tr(),
+                            isDate: false,
+                            dateController: cubit.priceAfterController,
+                            validator: cubit.textValidator(),
+                          )),
                         ],
                       ),
                       heightSpace(context.height * 0.015),
@@ -140,8 +145,9 @@ class _AddOffersViewState extends State<AddOffersView> {
                           widthSpace(context.width / 10),
                           AppButton(
                               onTap: () async {
-                                await cubit.addOffer();
-                                // Navigator.pop(context, true);
+                                await cubit.addOffer().then(() {
+                                  Navigator.pop(context, true);
+                                });
                               },
                               title: "done".tr())
                         ],
