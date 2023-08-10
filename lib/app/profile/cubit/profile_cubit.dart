@@ -86,7 +86,7 @@ class ProfileCubit extends Cubit<ProfileStates> {
     try {
       await FirebaseAuth.instance.signOut().then((value) {
         emit(LogOutState());
-        context.pushAndRemoveUntil(const LoginView());
+        //context.pushAndRemoveUntil(const LoginView());
         prefs.clearPrefs();
       });
 

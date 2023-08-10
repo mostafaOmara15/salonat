@@ -34,7 +34,7 @@ class _BookingScreenState extends State<BookingScreen> {
         appBar: AppBar(
           backgroundColor: ColorManager.greyColor,
           title: Text(
-            'bookings'.tr().toUpperCase(),
+            'bookings'.tr(),
           ),
         ),
         body: BlocBuilder<BookingCubit, BookingStates>(
