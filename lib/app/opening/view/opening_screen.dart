@@ -27,7 +27,7 @@ class _OpeningTimeViewState extends State<OpeningTimeView> {
   var prefs = locator<SharedPrefServices>();
   String? currentDay;
   int currentIndex = 0;
-  List<dynamic>? updatedTime;
+  List<OpeningTime>? updatedTime;
   TextEditingController timeFrom = TextEditingController();
   TextEditingController timeTo = TextEditingController();
   bool timeUpdated = false;
@@ -133,11 +133,14 @@ class _OpeningTimeViewState extends State<OpeningTimeView> {
           Center(
             child: AppButton(title: "save".tr(),
               onTap: () async {
-              List<Map> newTime =[];
-              for(int i = 0 ; i <= updatedTime!.length; i++){
+                updatedTime?[currentIndex].open = timeFrom.text;
+                updatedTime?[currentIndex].close = timeTo.text;
+              List<Map<String, dynamic>> newTime = [];
+              for(int i = 0 ; i <= updatedTime!.length - 1; i++){
                 // updatedTime![i] = updatedTime![i].toJson();
                 newTime.add(updatedTime![i].toJson());
               }
+              print(newTime);
                 String salId = await prefs.getString(salonId);
                 await FirebaseFirestore.instance
                     .collection("salons")
