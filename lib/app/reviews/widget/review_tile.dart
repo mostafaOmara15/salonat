@@ -8,8 +8,10 @@ class ReviewTile extends StatelessWidget {
   String name;
   String date;
   String comment;
+  String clientImage;
 
-  ReviewTile({required this.name, required this.date, required this.comment});
+
+  ReviewTile({required this.name, required this.date, required this.comment,required this.clientImage});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +20,9 @@ class ReviewTile extends StatelessWidget {
       child: ListTile(
         title: Row(
           children: [
-            Image.asset("assets/images/profile.png", width: 40),
+           clientImage.isEmpty? Image.asset("assets/images/profile.png", width: 40):
+           Image.network(clientImage, width: 40)
+            ,
             widthSpace(context.width * 0.03),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,

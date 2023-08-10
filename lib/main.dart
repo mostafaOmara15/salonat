@@ -13,6 +13,7 @@ import 'package:salonat/app/edit_staff/cubit/edit_staff_cubit.dart';
 import 'package:salonat/app/login/cubit/login_cubit.dart';
 import 'package:salonat/app/offers/cubit/offer_cubit.dart';
 import 'package:salonat/app/profile/cubit/profile_cubit.dart';
+import 'package:salonat/app/reviews/cubit/review_cubit.dart';
 import 'package:salonat/app/services/cubit/services_cubit.dart';
 import 'package:salonat/app/splash/cubit/splash_cubit.dart';
 import 'package:salonat/app/splash/view/splash_view.dart';
@@ -68,6 +69,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => EditStaffCubit()),
         BlocProvider(create: (context) => AddStaffCubit()),
         BlocProvider(create: (context) => BookingDetailsCubit()),
+        BlocProvider(create: (context) => ReviewCubit()),
       ],
       child: MaterialApp(
           localizationsDelegates: context.localizationDelegates,

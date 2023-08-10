@@ -19,7 +19,7 @@ class SalonReviews extends StatelessWidget {
             shrinkWrap: true,
             itemCount: reviews.length,
             itemBuilder: (BuildContext context, int index) {
-              return ReviewTile(name: "Anas", date: "July 2023", comment: "Amazing",);
+              return ReviewTile(name: "Anas", date: "July 2023", comment: "Amazing",clientImage: "",);
             }
           )
         : Center(child: mediumTitle("No Review", ColorManager.blackColor, false))
