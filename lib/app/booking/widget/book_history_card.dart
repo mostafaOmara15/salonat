@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:salonat/app/booking/model/booking_model.dart';
 import 'package:salonat/utils/extensions/media_query/media_query.dart';
 import 'package:salonat/utils/extensions/navigation/navigation.dart';
 import 'package:salonat/utils/extensions/on_tap/on_tap.dart';
@@ -9,7 +10,8 @@ import '../../../utils/theme/colors/color_manager.dart';
 import '../../booking_details/view/booking_details_view.dart';
 
 class BookHistoryCard extends StatelessWidget {
-  const BookHistoryCard({Key? key}) : super(key: key);
+  BookingModel bookingModel;
+   BookHistoryCard({Key? key,required this.bookingModel}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -58,15 +60,15 @@ class BookHistoryCard extends StatelessWidget {
                   mainAxisAlignment:
                   MainAxisAlignment.spaceEvenly,
                   children: [
-                    mediumBody("Example",
+                    mediumBody(bookingModel.clientname,
                         ColorManager.greyColor200, false),
-                    mediumBody("01111111111",
+                    mediumBody(bookingModel.clientphone,
                         ColorManager.greyColor200, false),
-                    mediumBody("11:00",
+                    mediumBody(bookingModel.time,
                         ColorManager.greyColor200, false),
-                    mediumBody("SAR 1233",
+                    mediumBody(bookingModel.amount,
                         ColorManager.greyColor200, false),
-                    mediumBody("Open",
+                    mediumBody(bookingModel.status.toString(),
                         ColorManager.greyColor200, false),
                   ],
                 ),
@@ -78,7 +80,7 @@ class BookHistoryCard extends StatelessWidget {
                 mediumBody("moreDetails".tr(),
                     ColorManager.blackColor, false)
                     .onTap(() {
-                  context.push(const BookingDetailsView());
+                  context.push( BookingDetailsView(bookingModel: bookingModel,));
                 }),
               ],
             )

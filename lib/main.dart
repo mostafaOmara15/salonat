@@ -6,6 +6,7 @@ import 'package:salonat/app/about/cubit/about_cubit.dart';
 import 'package:salonat/app/add_offer/cubit/add_offer_cubit.dart';
 import 'package:salonat/app/add_services/cubit/add_service_cubit.dart';
 import 'package:salonat/app/add_staff/cubit/add_staff_cubit.dart';
+import 'package:salonat/app/booking_details/cubit/booking_details_cubit.dart';
 import 'package:salonat/app/edit_offer/cubit/edit_offer_cubit.dart';
 import 'package:salonat/app/edit_services/cubit/edit_service_cubit.dart';
 import 'package:salonat/app/edit_staff/cubit/edit_staff_cubit.dart';
@@ -66,6 +67,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => AddServiceCubit()),
         BlocProvider(create: (context) => EditStaffCubit()),
         BlocProvider(create: (context) => AddStaffCubit()),
+        BlocProvider(create: (context) => BookingDetailsCubit()),
       ],
       child: MaterialApp(
           localizationsDelegates: context.localizationDelegates,
