@@ -25,7 +25,6 @@ class _OffersViewState extends State<OffersView> {
   @override
   void initState() {
     cubit = BlocProvider.of<OfferCubit>(context);
-    cubit!.getOffer();
   }
 
   @override

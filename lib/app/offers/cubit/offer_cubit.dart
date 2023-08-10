@@ -19,6 +19,7 @@ class OfferCubit extends Cubit<OfferState> {
 
   getOffer() async {
     emit(OfferLoading());
+    offers.clear();
     String docId = await prefs.getString(salonId);
     try {
       await FirebaseFirestore.instance

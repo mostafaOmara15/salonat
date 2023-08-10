@@ -2,8 +2,10 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
+import 'package:salonat/app/booking/cubit/booking_cubit.dart';
 import 'package:salonat/app/booking/view/booking_view.dart';
 import 'package:salonat/app/notifications/view/notifications_view.dart';
+import 'package:salonat/app/offers/cubit/offer_cubit.dart';
 import 'package:salonat/app/offers/view/offers_view.dart';
 import 'package:salonat/utils/extensions/media_query/media_query.dart';
 import '../../../utils/theme/colors/color_manager.dart';
@@ -58,7 +60,18 @@ class AppLayout extends StatelessWidget {
     }
 
     return PersistentTabView(
+
       context,
+      onItemSelected: (int index) async {
+        if (index == 1) {
+        await  BlocProvider.of<OfferCubit>(context).getOffer();
+             }
+        if (index == 2) {
+          await  BlocProvider.of<BookingCubit>(context).getBooking(
+              date: DateFormat("yyyy-MM-dd", "en").format( BlocProvider.of<BookingCubit>(context).selectedDate));
+        }
+
+      },
       controller: _controller,
       screens: _buildScreens(),
       items: navBarsItems(),
