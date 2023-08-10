@@ -1,4 +1,3 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:salonat/utils/extensions/media_query/media_query.dart';
@@ -18,8 +17,6 @@ class TimeField extends StatefulWidget {
 }
 
 class _TimeFieldState extends State<TimeField> {
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -49,11 +46,11 @@ class _TimeFieldState extends State<TimeField> {
                   );
                   if(pickedTime != null ){
                     print(pickedTime.format(context));   //output 10:51 PM
-                    DateTime parsedTime = DateFormat.jm().parse(pickedTime.format(context).toString());
-                    String formattedTime = DateFormat('HH:mm').format(parsedTime);
-                    print(formattedTime); //output 14:59:00
+                    // DateTime parsedTime = DateFormat.jm().parse(pickedTime.format(context).toString());
+                    // String formattedTime = DateFormat('HH:mm').format(parsedTime);
+                    // print(formattedTime); //output 14:59:00
                     setState(() {
-                      widget.timeController.text = formattedTime;
+                      widget.timeController.text = pickedTime.format(context);
                       widget.onTap;
                     });
                   }else{

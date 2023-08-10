@@ -4,6 +4,7 @@ import 'dart:io';
 
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
@@ -36,15 +37,17 @@ class ProfileCubit extends Cubit<ProfileStates> {
   bool ar = false;
   String currentLang = "en";
 
-  void changeToEnglish() {
+  void changeToEnglish(BuildContext context) {
     en = true;
     ar = false;
+    context.setLocale(const Locale('en'));
     emit(ChangeLanguageState());
   }
 
-  void changeToArabic() {
+  void changeToArabic(BuildContext context) {
     en = false;
     ar = true;
+    context.setLocale(const Locale('ar'));
     emit(ChangeLanguageState());
   }
 

@@ -12,6 +12,7 @@ import 'package:salonat/app/edit_services/cubit/edit_service_cubit.dart';
 import 'package:salonat/app/edit_staff/cubit/edit_staff_cubit.dart';
 import 'package:salonat/app/login/cubit/login_cubit.dart';
 import 'package:salonat/app/offers/cubit/offer_cubit.dart';
+import 'package:salonat/app/opening/cubit/opening_time_cubit.dart';
 import 'package:salonat/app/profile/cubit/profile_cubit.dart';
 import 'package:salonat/app/reviews/cubit/review_cubit.dart';
 import 'package:salonat/app/services/cubit/services_cubit.dart';
@@ -69,9 +70,11 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => EditStaffCubit()),
         BlocProvider(create: (context) => AddStaffCubit()),
         BlocProvider(create: (context) => BookingDetailsCubit()),
+        BlocProvider(create: (context) => OpeningTimeCubit()),
         BlocProvider(create: (context) => ReviewCubit()),
       ],
       child: MaterialApp(
+        builder: (context, child) => MediaQuery(data: MediaQuery.of(context).copyWith(alwaysUse24HourFormat: true), child: child!),
           localizationsDelegates: context.localizationDelegates,
           supportedLocales: context.supportedLocales,
           locale: context.locale,
