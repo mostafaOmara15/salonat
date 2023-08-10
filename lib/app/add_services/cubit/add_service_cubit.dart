@@ -1,14 +1,12 @@
 import 'dart:developer';
-
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:meta/meta.dart';
 import 'package:salonat/app/services/model/sub_services_model.dart';
 import 'package:salonat/services/locator.dart';
 import 'package:salonat/services/shared_pref.dart';
 import 'package:salonat/utils/strings/const_strings.dart';
-
 part 'add_service_state.dart';
 
 class AddServiceCubit extends Cubit<AddServiceState> {
@@ -21,7 +19,6 @@ class AddServiceCubit extends Cubit<AddServiceState> {
   TextEditingController descriptionAr = TextEditingController();
   var prefs = locator<SharedPrefServices>();
   var formKey = GlobalKey<FormState>();
-
 
   addService({required String mainServiceID}) async {
     String salId = await prefs.getString(salonId);
@@ -57,5 +54,15 @@ class AddServiceCubit extends Cubit<AddServiceState> {
     } catch (e) {
       log("addService $e");
     }
+  }
+
+  FormFieldValidator<String>? textValidator() {
+    validator(value) {
+      if (value == null || value.isEmpty) {
+        return tr('emptyWarning');
+      }
+      return null;
+    }
+    return validator;
   }
 }

@@ -1,6 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -66,7 +65,7 @@ class _AddServicesState extends State<AddServices> {
                       inputType: TextInputType.text,
                       controller: cubit.serviceNameEn,
                       icon: Icons.add,
-                      validator: (value) {}),
+                      validator: cubit.textValidator()),
                 ),
                 widthSpace(context.width / 50),
                 SizedBox(
@@ -77,7 +76,7 @@ class _AddServicesState extends State<AddServices> {
                       inputType: TextInputType.number,
                       controller: cubit.price,
                       icon: Icons.add,
-                      validator: (value) {}),
+                      validator: cubit.textValidator()),
                 ),
               ],
             ),
@@ -90,7 +89,7 @@ class _AddServicesState extends State<AddServices> {
                   inputType: TextInputType.number,
                   controller: cubit.duration,
                   icon: Icons.add,
-                  validator: (value) {}),
+                  validator: cubit.textValidator()),
             ),
             heightSpace(10),
             SizedBox(
@@ -101,7 +100,7 @@ class _AddServicesState extends State<AddServices> {
                   controller: cubit.descriptionEn,
                   icon: Icons.add,
                   maxLine: 5,
-                  validator: (value) {}),
+                  validator: cubit.textValidator()),
             ),
             heightSpace(20),
             SizedBox(
@@ -111,7 +110,7 @@ class _AddServicesState extends State<AddServices> {
                   inputType: TextInputType.text,
                   controller: cubit.serviceNameAr,
                   icon: Icons.add,
-                  validator: (value) {}),
+                  validator: cubit.textValidator()),
             ),
             heightSpace(10),
             SizedBox(
@@ -122,7 +121,7 @@ class _AddServicesState extends State<AddServices> {
                   inputType: TextInputType.text,
                   controller: cubit.descriptionAr,
                   icon: Icons.add,
-                  validator: (value) {}),
+                  validator: cubit.textValidator()),
             ),
             heightSpace(20),
             Padding(
@@ -130,15 +129,13 @@ class _AddServicesState extends State<AddServices> {
               child: AppButton(
                   title: "done".tr(),
                   onTap: () async {
-                    await cubit
-                        .addService(
-                      mainServiceID: widget.mainServicesModel.id!,
-                    )
-                        .then(
-                      (value) {
-                        Navigator.pop(context, true);
-                      },
-                    );
+                    if(cubit.formKey.currentState!.validate()){
+                      await cubit.addService(mainServiceID: widget.mainServicesModel.id!).then(
+                            (value) {
+                          Navigator.pop(context, true);
+                        },
+                      );
+                    }
                   }),
             )
           ],

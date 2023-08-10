@@ -14,7 +14,7 @@ class LoginButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(10),
-      width: context.width * 0.3,
+      width: context.width * 0.4,
       decoration: BoxDecoration(
         color: Colors.white,
         border: Border.all(color: ColorManager.lightBrownColor, width: 1.5),

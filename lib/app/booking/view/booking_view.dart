@@ -61,13 +61,13 @@ class _BookingScreenState extends State<BookingScreen> {
                         selectedDayHighlightColor: ColorManager.primaryColor,
                         calendarType: CalendarDatePicker2Type.single,
                         weekdayLabels: [
-                          'Su',
-                          'Mo',
-                          'Tu',
-                          'We',
-                          'Th',
-                          'Fr',
-                          'Sa'
+                          'Sun'.tr(),
+                          'Mon'.tr(),
+                          'Tue'.tr(),
+                          'Wed'.tr(),
+                          'Tha'.tr(),
+                          'Fri'.tr(),
+                          'Sat'.tr()
                         ],
                         selectedDayTextStyle: GoogleFonts.fraunces(
                             textStyle: TextStyle(

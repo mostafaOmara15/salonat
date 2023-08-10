@@ -43,6 +43,7 @@ class _InputFieldState extends State<InputField> {
   Widget build(BuildContext context) {
     return Center(
       child: TextFormField(
+
         textDirection: widget.language.isEmpty
             ? null
             : widget.language == "ar"
