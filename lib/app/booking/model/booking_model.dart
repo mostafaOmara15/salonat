@@ -23,7 +23,7 @@ class BookingModel {
     bookingdate = json['booking-date'];
     uid = json['uid'];
     hasdiscount = json['has-discount'];
-    modificationdate = json['modification -date'];
+    modificationdate = json['modification-date'];
     salonid = json['salon-id'];
     if (json['booking-service'] != null) {
       bookingservice = [];
@@ -60,7 +60,7 @@ class BookingModel {
     map['booking-date'] = bookingdate;
     map['uid'] = uid;
     map['has-discount'] = hasdiscount;
-    map['modification -date'] = modificationdate;
+    map['modification-date'] = modificationdate;
     map['salon-id'] = salonid;
     if (bookingservice != null) {
       map['booking-service'] = bookingservice?.map((v) => v.toJson()).toList();
