@@ -87,5 +87,6 @@
   "aboutUpdateMessage" : "تم تحديث ملومات الصالون بنجاح",
   "errorAboutUpdateMessage" : "خطأ في تحديث معلومات الصالون",
   "emptyWarning" : "لا يجب ان يكون فارغ",
-  "minute" : "دقيقة"
+  "minute" : "دقيقة",
+  "status" : "الحالة"
 }

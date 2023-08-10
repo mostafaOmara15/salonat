@@ -19,7 +19,7 @@ class BookHistoryCard extends StatelessWidget {
           vertical: context.height * 0.01),
       child: Container(
         width: context.width,
-        height: context.height * 0.15,
+        height: context.height * 0.18,
         padding: EdgeInsets.only(
             right: context.width * 0.04,
             left: context.width * 0.04,
@@ -47,8 +47,8 @@ class BookHistoryCard extends StatelessWidget {
                         ColorManager.greyColor200, false),
                     mediumBody("time".tr(),
                         ColorManager.greyColor200, false),
-                    mediumBody("reservationAmount".tr(),
-                        ColorManager.greyColor200, false),
+                    mediumBody("reservationAmount".tr(),ColorManager.greyColor200, false),
+                    mediumBody("status".tr(),ColorManager.greyColor200, false),
                   ],
                 ),
                 widthSpace(context.width * 0.15),
@@ -65,6 +65,8 @@ class BookHistoryCard extends StatelessWidget {
                     mediumBody("11:00",
                         ColorManager.greyColor200, false),
                     mediumBody("SAR 1233",
+                        ColorManager.greyColor200, false),
+                    mediumBody("Open",
                         ColorManager.greyColor200, false),
                   ],
                 ),

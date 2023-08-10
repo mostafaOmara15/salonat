@@ -28,7 +28,7 @@ class BookingDetailsView extends StatelessWidget {
                 border: Border.all(color: ColorManager.blackColor),
                 borderRadius: BorderRadius.circular(15),
               ),
-              height: context.height / 6,
+              height: context.height / 5.5,
               child: Row(
                 children: [
                   Expanded(
@@ -56,6 +56,11 @@ class BookingDetailsView extends StatelessWidget {
                           ),
                           mediumBody(
                             "reservation_amount".tr(),
+                            ColorManager.blackColor,
+                            false,
+                          ),
+                          mediumBody(
+                            "status".tr(),
                             ColorManager.blackColor,
                             false,
                           ),
@@ -88,6 +93,11 @@ class BookingDetailsView extends StatelessWidget {
                           ),
                           mediumBody(
                             "SAR 1233",
+                            ColorManager.greyColor200,
+                            false,
+                          ),
+                          mediumBody(
+                            "Pending",
                             ColorManager.greyColor200,
                             false,
                           ),
