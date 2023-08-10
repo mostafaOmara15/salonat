@@ -34,111 +34,115 @@ class _AddServicesState extends State<AddServices> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: ListView(
-        padding: const EdgeInsets.symmetric(horizontal: 12),
-        children: [
-          heightSpace(50),
-          AutoSizeText(
-            widget.mainServicesModel.titleen!,
-            style: GoogleFonts.fraunces(
-              textStyle: TextStyle(
-                  color: ColorManager.blackColor,
-                  letterSpacing: 0.5,
-                  fontWeight: FontWeight.w400),
-            ),
-            textAlign: TextAlign.start,
-            minFontSize: 18,
-            maxFontSize: 22,
-            maxLines: 2,
-          ),
-          heightSpace(20),
+      body: Form(
+        key:cubit. formKey,
 
-          Row(
-            children: [
-              SizedBox(
-                height: context.height / 20,
-                width: context.width / 1.5,
-                child: InputField(
-                    hint: "service_name_en".tr(),
-                    inputType: TextInputType.text,
-                    controller: cubit.serviceNameEn,
-                    icon: Icons.add,
-                    validator: (value) {}),
+        child: ListView(
+          padding: const EdgeInsets.symmetric(horizontal: 12),
+          children: [
+            heightSpace(50),
+            AutoSizeText(
+              widget.mainServicesModel.titleen!,
+              style: GoogleFonts.fraunces(
+                textStyle: TextStyle(
+                    color: ColorManager.blackColor,
+                    letterSpacing: 0.5,
+                    fontWeight: FontWeight.w400),
               ),
-              widthSpace(context.width / 50),
-              SizedBox(
-                height: context.height / 20,
-                width: context.width / 4,
-                child: InputField(
-                    hint: "service_price".tr(),
-                    inputType: TextInputType.number,
-                    controller: cubit.price,
-                    icon: Icons.add,
-                    validator: (value) {}),
-              ),
-            ],
-          ),
-          heightSpace(10),
-          SizedBox(
-            height: context.height / 20,
-            child: InputField(
-                hint: "service_duration".tr(),
-                suffexText: "minute".tr(),
-                inputType: TextInputType.number,
-                controller: cubit.duration,
-                icon: Icons.add,
-                validator: (value) {}),
-          ),
-          heightSpace(10),
-          SizedBox(
-            height: context.height / 8,
-            child: InputField(
-                hint: "service_des_en".tr(),
-                inputType: TextInputType.text,
-                controller: cubit.descriptionEn,
-                icon: Icons.add,
-                maxLine: 5,
-                validator: (value) {}),
-          ),
-          heightSpace(20),
-          SizedBox(
-            height: context.height / 20,
-            child: InputField(
-                hint: "service_name_ar".tr(),
-                inputType: TextInputType.text,
-                controller: cubit.serviceNameAr,
-                icon: Icons.add,
-                validator: (value) {}),
-          ),
-          heightSpace(10),
-          SizedBox(
-            height: context.height / 8,
-            child: InputField(
-                maxLine: 5,
-                hint: "service_des_ar".tr(),
-                inputType: TextInputType.text,
-                controller: cubit.descriptionAr,
-                icon: Icons.add,
-                validator: (value) {}),
-          ),
-          heightSpace(20),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: context.width / 5),
-            child: AppButton(
-                title: "done".tr(),
-                onTap: () async {
-                  await cubit
-                      .addService(
-                    mainServiceID: widget.mainServicesModel.id!,
-                  )
-                      .then(
-                    (value) {
-                      Navigator.pop(context, true);
-                    },
-                  );
-                }),
-          )
-        ],
+              textAlign: TextAlign.start,
+              minFontSize: 18,
+              maxFontSize: 22,
+              maxLines: 2,
+            ),
+            heightSpace(20),
+
+            Row(
+              children: [
+                SizedBox(
+                  height: context.height / 20,
+                  width: context.width / 1.5,
+                  child: InputField(
+                      hint: "service_name_en".tr(),
+                      inputType: TextInputType.text,
+                      controller: cubit.serviceNameEn,
+                      icon: Icons.add,
+                      validator: (value) {}),
+                ),
+                widthSpace(context.width / 50),
+                SizedBox(
+                  height: context.height / 20,
+                  width: context.width / 4,
+                  child: InputField(
+                      hint: "service_price".tr(),
+                      inputType: TextInputType.number,
+                      controller: cubit.price,
+                      icon: Icons.add,
+                      validator: (value) {}),
+                ),
+              ],
+            ),
+            heightSpace(10),
+            SizedBox(
+              height: context.height / 20,
+              child: InputField(
+                  hint: "service_duration".tr(),
+                  suffexText: "minute".tr(),
+                  inputType: TextInputType.number,
+                  controller: cubit.duration,
+                  icon: Icons.add,
+                  validator: (value) {}),
+            ),
+            heightSpace(10),
+            SizedBox(
+              height: context.height / 8,
+              child: InputField(
+                  hint: "service_des_en".tr(),
+                  inputType: TextInputType.text,
+                  controller: cubit.descriptionEn,
+                  icon: Icons.add,
+                  maxLine: 5,
+                  validator: (value) {}),
+            ),
+            heightSpace(20),
+            SizedBox(
+              height: context.height / 20,
+              child: InputField(
+                  hint: "service_name_ar".tr(),
+                  inputType: TextInputType.text,
+                  controller: cubit.serviceNameAr,
+                  icon: Icons.add,
+                  validator: (value) {}),
+            ),
+            heightSpace(10),
+            SizedBox(
+              height: context.height / 8,
+              child: InputField(
+                  maxLine: 5,
+                  hint: "service_des_ar".tr(),
+                  inputType: TextInputType.text,
+                  controller: cubit.descriptionAr,
+                  icon: Icons.add,
+                  validator: (value) {}),
+            ),
+            heightSpace(20),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: context.width / 5),
+              child: AppButton(
+                  title: "done".tr(),
+                  onTap: () async {
+                    await cubit
+                        .addService(
+                      mainServiceID: widget.mainServicesModel.id!,
+                    )
+                        .then(
+                      (value) {
+                        Navigator.pop(context, true);
+                      },
+                    );
+                  }),
+            )
+          ],
+        ),
       ),
     );
   }

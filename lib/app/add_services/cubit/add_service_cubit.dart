@@ -20,6 +20,8 @@ class AddServiceCubit extends Cubit<AddServiceState> {
   TextEditingController serviceNameAr = TextEditingController();
   TextEditingController descriptionAr = TextEditingController();
   var prefs = locator<SharedPrefServices>();
+  var formKey = GlobalKey<FormState>();
+
 
   addService({required String mainServiceID}) async {
     String salId = await prefs.getString(salonId);
