@@ -37,6 +37,13 @@ class _ProfileViewState extends State<ProfileView> {
     profileCubit = ProfileCubit.get(context);
     profileCubit.getSalonData();
     profileCubit.getSalonRate();
+    if("current_language_iso".tr() == "en"){
+      profileCubit.en = true;
+      profileCubit.ar = false;
+    }else{
+      profileCubit.en = false;
+      profileCubit.ar = true;
+    }
   }
 
   @override

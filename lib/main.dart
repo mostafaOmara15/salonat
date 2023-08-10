@@ -43,6 +43,7 @@ Future<void> main() async {
       supportedLocales: const [Locale('en'), Locale('ar')],
       fallbackLocale: const Locale('en'),
       startLocale: const Locale('en'),
+      useFallbackTranslations: true,
       child: const MyApp(),
     ),
   );
