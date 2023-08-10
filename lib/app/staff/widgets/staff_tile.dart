@@ -128,7 +128,7 @@ class StaffTile extends StatelessWidget {
             ),
           ),
         ),
-        heightSpace(context.height * 0.06)
+        heightSpace(context.height * 0.08)
       ],
     );
   }

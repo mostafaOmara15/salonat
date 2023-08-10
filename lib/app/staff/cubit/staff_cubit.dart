@@ -35,6 +35,7 @@ class StaffCubit extends Cubit<StaffState> {
 
   getStaff() async {
     double rate = 0;
+    staff.clear();
     emit(StaffLoading());
     var docId = await prefs.getString(salonId);
     await FirebaseFirestore.instance
@@ -63,8 +64,9 @@ class StaffCubit extends Cubit<StaffState> {
             staff[i].subservices!.add(documentSnapshot.id);
           });
         }
+        emit(StaffInitial());
+
       }
     });
-    emit(StaffInitial());
   }
 }
