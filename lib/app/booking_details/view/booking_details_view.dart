@@ -117,7 +117,7 @@ class _BookingDetailsViewState extends State<BookingDetailsView> {
                                 false,
                               ),
                               mediumBody(
-                                widget.bookingModel.amount,
+                                "${widget.bookingModel.amount!} ${"sar".tr()}",
                                 ColorManager.greyColor200,
                                 false,
                               ),

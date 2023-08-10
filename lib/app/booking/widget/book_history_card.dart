@@ -66,7 +66,7 @@ class BookHistoryCard extends StatelessWidget {
                         ColorManager.greyColor200, false),
                     mediumBody(bookingModel.time,
                         ColorManager.greyColor200, false),
-                    mediumBody(bookingModel.amount,
+                    mediumBody("${bookingModel.amount!} ${"sar".tr()}",
                         ColorManager.greyColor200, false),
                     mediumBody(bookingModel.status.toString(),
                         ColorManager.greyColor200, false),

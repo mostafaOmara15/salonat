@@ -51,9 +51,9 @@ class AddOfferCubit extends Cubit<OffDetailsState> {
         salonid: salonRef,
         descriptionen: enDescription.text,
         descriptionar: arDescription.text,
-        startdate: DateFormat('yyyy-MM-dd')
+        startdate: DateFormat('yyyy-MM-dd',"en")
             .format(DateTime.parse(startDateController.text)),
-        enddate: DateFormat('yyyy-MM-dd')
+        enddate: DateFormat('yyyy-MM-dd',"en")
             .format(DateTime.parse(endDateController.text)),
         image: offerImageUrl,
         priceafter: priceAfterController.text,

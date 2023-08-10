@@ -13,19 +13,20 @@ import 'package:salonat/utils/strings/const_strings.dart';
 class BookingCubit extends Cubit<BookingStates> {
   BookingCubit() : super(BookingInitialState());
   var prefs = locator<SharedPrefServices>();
-  List<BookingModel> bookings=[];
+  List<BookingModel> bookings = [];
+
   static BookingCubit get(context) => BlocProvider.of(context);
 
-  DateTime selectedDate =DateTime.now();
+  DateTime selectedDate = DateTime.now();
 
   void selectDate(DateTime date) {
     selectedDate = date;
-    print(DateFormat("yyyy-MM-dd").format(selectedDate));
     emit(SelectBookingDateState());
   }
 
   getBooking({required String date}) async {
     emit(BookingLoadingState());
+    bookings.clear();
     String salon = await prefs.getString(salonId);
     try {
       await FirebaseFirestore.instance
@@ -38,7 +39,6 @@ class BookingCubit extends Cubit<BookingStates> {
           bookings.add(BookingModel.fromJson(doc.data()));
         }
         emit(BookingSuccessState());
-
       });
     } catch (e) {
       log("get Booking");
