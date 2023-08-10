@@ -59,11 +59,12 @@ class ProfileCubit extends Cubit<ProfileStates> {
       salon = SalonModel.fromJson(value);
     }).catchError((error) {
       emit(SalonErrorState());
-      print(error.toString());
+      log(error.toString());
     });
   }
 
   getSalonRate() async {
+    rate = 0;
     String docId = await prefs.getString(salonId);
     try {
       await FirebaseFirestore.instance
@@ -93,7 +94,7 @@ class ProfileCubit extends Cubit<ProfileStates> {
           screen: const LoginView(),
           withNavBar: false, // OPTIONAL VALUE. True by default.
           pageTransitionAnimation: PageTransitionAnimation.cupertino);
-    } catch (e) {
+                } catch (e) {
       print('Error occurred while signing out: $e');
     }
   }
