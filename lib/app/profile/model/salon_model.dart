@@ -104,23 +104,27 @@ class OpeningTime {
     this.close,
     this.day,
     this.open,
+    this.isClosed,
   });
 
   OpeningTime.fromJson(dynamic json) {
     close = json['close'];
     day = json['day'];
     open = json['open'];
+    isClosed = json['is-closed'];
   }
 
   String? close;
   String? day;
   String? open;
+  bool? isClosed;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
     map['close'] = close;
     map['day'] = day;
     map['open'] = open;
+    map['is-closed'] = isClosed;
     return map;
   }
 }

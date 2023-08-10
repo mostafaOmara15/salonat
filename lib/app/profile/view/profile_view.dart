@@ -37,7 +37,6 @@ class _ProfileViewState extends State<ProfileView> {
     profileCubit = ProfileCubit.get(context);
     profileCubit.getSalonData();
     profileCubit.getSalonRate();
-
   }
 
   @override
@@ -103,18 +102,14 @@ class _ProfileViewState extends State<ProfileView> {
                               LanguageButtons(
                                 language: "En",
                                 active: profileCubit.en,
-                                onTap: () {
-                                  context.setLocale(const Locale('en'));
-                                  profileCubit.changeToEnglish();
-                                },
+                                onTap: () {profileCubit.changeToEnglish(context);},
                               ),
                               widthSpace(context.width * 0.03),
                               LanguageButtons(
                                 language: "Ar",
                                 active: profileCubit.ar,
                                 onTap: () {
-                                  context.setLocale(const Locale('ar'));
-                                  profileCubit.changeToArabic();
+                                  profileCubit.changeToArabic(context);
                                 },
                               ),
                             ],
@@ -159,7 +154,7 @@ class _ProfileViewState extends State<ProfileView> {
                     ),
                     ProfileTile(
                       title: "openingTime".tr(),
-                      onTap: () {context.push(OpeningTimeView(openingTime: profileCubit.salon.openingtime));},
+                      onTap: () {context.push(OpeningTimeView(openingTimesList: profileCubit.salon.openingtime));},
                     ),
                     ProfileTile(
                       title: "services".tr(),
@@ -183,8 +178,7 @@ class _ProfileViewState extends State<ProfileView> {
                       title: "logout".tr(),
                       onTap: () {profileCubit.logOut(context);},
                     )
-                  ],
-                ),
+                  ]),
                 ]
               ),
             ),
