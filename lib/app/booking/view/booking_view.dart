@@ -25,8 +25,8 @@ class _BookingScreenState extends State<BookingScreen> {
   @override
   void initState() {
     bookingCubit = BlocProvider.of<BookingCubit>(context);
-
-
+    bookingCubit.getBooking(
+        date: DateFormat("yyyy-MM-dd", "en").format(bookingCubit.selectedDate));
     super.initState();
   }
 
