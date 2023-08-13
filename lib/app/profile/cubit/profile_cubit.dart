@@ -8,6 +8,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
@@ -75,7 +76,7 @@ class ProfileCubit extends Cubit<ProfileStates> {
         for (var doc in querySnapshot.docs) {
           rate += double.parse(doc['rate'].toString());
         }
-        rate=rate/querySnapshot.docs.length;
+        rate = rate / querySnapshot.docs.length;
       });
     } catch (e) {
       log("get Salon Rate error $e");
@@ -86,15 +87,17 @@ class ProfileCubit extends Cubit<ProfileStates> {
     try {
       await FirebaseAuth.instance.signOut().then((value) {
         emit(LogOutState());
-        //context.pushAndRemoveUntil(const LoginView());
         prefs.clearPrefs();
+        Navigator.of(context, rootNavigator: true).pushAndRemoveUntil(
+          MaterialPageRoute(
+            builder: (BuildContext context) {
+              return const LoginView();
+            },
+          ),
+          (_) => false,
+        );
       });
-
-      PersistentNavBarNavigator.pushNewScreen(context,
-          screen: const LoginView(),
-          withNavBar: false, // OPTIONAL VALUE. True by default.
-          pageTransitionAnimation: PageTransitionAnimation.cupertino);
-                } catch (e) {
+    } catch (e) {
       print('Error occurred while signing out: $e');
     }
   }
