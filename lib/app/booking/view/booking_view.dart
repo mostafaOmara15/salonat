@@ -65,7 +65,7 @@ class _BookingScreenState extends State<BookingScreen> {
                           'Mon'.tr(),
                           'Tue'.tr(),
                           'Wed'.tr(),
-                          'Tha'.tr(),
+                          'Thu'.tr(),
                           'Fri'.tr(),
                           'Sat'.tr()
                         ],

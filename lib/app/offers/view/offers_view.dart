@@ -133,7 +133,7 @@ class _OffersViewState extends State<OffersView> {
                                                               width: 0.5)),
                                                       child: Center(
                                                           child: largeBody(
-                                                              "Get ${((double.parse(cubit!.offers[index].priceafter!.toString()) * 100) / double.parse(cubit!.offers[index].pricebefore!.toString())).toStringAsFixed(0)} % off ",
+                                                              "Get ${(((double.parse(cubit!.offers[index].pricebefore.toString()) - double.parse(cubit!.offers[index].priceafter.toString())) / double.parse(cubit!.offers[index].pricebefore.toString())) * 100).toStringAsFixed(0)} % off ",
                                                               ColorManager
                                                                   .blackColor,
                                                               true)),
@@ -156,7 +156,8 @@ class _OffersViewState extends State<OffersView> {
                                                           if (result == true) {
                                                             cubit!.offers
                                                                 .clear();
-                                                            await cubit!.getOffer();
+                                                            await cubit!
+                                                                .getOffer();
                                                           }
                                                         },
                                                       ),
@@ -182,13 +183,12 @@ class _OffersViewState extends State<OffersView> {
                           var result = await Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) =>
-                                    const AddOffersView(),
+                                builder: (context) => const AddOffersView(),
                               ));
 
                           if (result == true) {
                             cubit!.offers.clear();
-                           await cubit!.getOffer();
+                            await cubit!.getOffer();
                           }
                         },
                         title: "add_offer".tr()),

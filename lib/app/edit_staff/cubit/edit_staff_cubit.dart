@@ -60,6 +60,7 @@ class EditStaffCubit extends Cubit<EditStaffState> {
   getSubServices({required List<String> selectedSubServices}) async {
     String docId = await prefs.getString(salonId);
     try {
+      subServices.clear();
       emit(Loading());
       await FirebaseFirestore.instance
           .collection("sub-services")
@@ -83,15 +84,7 @@ class EditStaffCubit extends Cubit<EditStaffState> {
   }
 
   editStaff({required StaffModel staffModel}) async {
-    print(finalSelectedSubServices.toSet());
-    // StaffModel staff = StaffModel(
-    //   id: staffModel.id,
-    //   createdat: staffModel.createdat,
-    //   image: staffImageUrl ?? staffModel.image,
-    //   name: nameCtrl.text,
-    //   salonid: staffModel.id,
-    //   subservices: finalSelectedSubServices,
-    // );
+
     try {
       await FirebaseFirestore.instance
           .collection("staff")

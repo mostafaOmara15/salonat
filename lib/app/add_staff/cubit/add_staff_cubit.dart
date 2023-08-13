@@ -50,6 +50,7 @@ class AddStaffCubit extends Cubit<AddStaffState> {
   }
 
   getSubServices() async {
+    subServices.clear();
     String docId = await prefs.getString(salonId);
     try {
       emit(LoadingSubServices());

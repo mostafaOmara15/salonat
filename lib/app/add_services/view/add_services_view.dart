@@ -61,7 +61,7 @@ class _AddServicesState extends State<AddServices> {
                   height: context.height / 20,
                   width: context.width / 1.5,
                   child: InputField(
-                      hint: "service_name_en".tr(),
+                      hint: "Service name",
                       inputType: TextInputType.text,
                       controller: cubit.serviceNameEn,
                       icon: Icons.add,
@@ -95,7 +95,7 @@ class _AddServicesState extends State<AddServices> {
             SizedBox(
               height: context.height / 8,
               child: InputField(
-                  hint: "service_des_en".tr(),
+                  hint: "Service Description",
                   inputType: TextInputType.text,
                   controller: cubit.descriptionEn,
                   icon: Icons.add,
@@ -106,21 +106,24 @@ class _AddServicesState extends State<AddServices> {
             SizedBox(
               height: context.height / 20,
               child: InputField(
-                  hint: "service_name_ar".tr(),
+                  hint: "اسم الخدمة",
                   inputType: TextInputType.text,
                   controller: cubit.serviceNameAr,
                   icon: Icons.add,
-                  validator: cubit.textValidator()),
+                  validator: cubit.textValidator(),
+              language: "ar",
+              ),
             ),
             heightSpace(10),
             SizedBox(
               height: context.height / 8,
               child: InputField(
                   maxLine: 5,
-                  hint: "service_des_ar".tr(),
+                  hint: "وصف الخدمة",
                   inputType: TextInputType.text,
                   controller: cubit.descriptionAr,
                   icon: Icons.add,
+                  language: "ar",
                   validator: cubit.textValidator()),
             ),
             heightSpace(20),

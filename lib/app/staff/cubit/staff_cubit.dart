@@ -55,6 +55,7 @@ class StaffCubit extends Cubit<StaffState> {
             staff[i].rate = (rate / (querySnapshot.docs.length));
           }
         });
+        staff[i].subservices!.clear();
         for (var subServiceId in querySnapshot.docs[i]['sub-services']) {
           await FirebaseFirestore.instance
               .collection("sub-services")

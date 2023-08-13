@@ -60,22 +60,21 @@ class _AddOffersViewState extends State<AddOffersView> {
                               padding: EdgeInsets.symmetric(
                                   vertical: context.height / 7),
                               child: Center(
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Icon(
-                                      Icons.add,
-                                      color: ColorManager.greyColor100,
-                                    ),
-                                    mediumTitle("add_pic".tr(),
-                                        ColorManager.greyColor100, false),
-                                  ],
-                                ).onTap(() {
-                                  cubit.pickImage();
-                                }),
-                              ),
-                            ),
+                                  child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Icon(
+                                    Icons.add,
+                                    color: ColorManager.greyColor100,
+                                  ),
+                                  mediumTitle("add_pic".tr(),
+                                      ColorManager.greyColor100, false),
+                                ],
+                              )),
+                            ).onTap(() {
+                              cubit.pickImage();
+                            }),
                       heightSpace(context.height * 0.02),
                       largeBody("Add offer description",
                           ColorManager.greyColor100, false),

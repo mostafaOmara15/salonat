@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -8,10 +7,7 @@ import 'package:salonat/app/profile/model/salon_model.dart';
 import 'package:salonat/utils/common_widgets/app_button.dart';
 import 'package:salonat/utils/extensions/media_query/media_query.dart';
 import 'package:salonat/utils/spaces.dart';
-import '../../../services/locator.dart';
-import '../../../services/shared_pref.dart';
 import '../../../utils/common_widgets/texts.dart';
-import '../../../utils/strings/const_strings.dart';
 import '../../../utils/theme/colors/color_manager.dart';
 import '../widgets/time_field.dart';
 
@@ -30,7 +26,6 @@ class _OpeningTimeViewState extends State<OpeningTimeView> {
   @override
   void initState() {
     super.initState();
-    print(widget.openingTimesList);
     openingTimeCubit = OpeningTimeCubit.get(context);
     openingTimeCubit.times = widget.openingTimesList;
     openingTimeCubit.currentDay = widget.openingTimesList?[0].day.toString();
