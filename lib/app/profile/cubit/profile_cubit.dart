@@ -12,6 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
+import 'package:salonat/app/layout/cubit/layout_cubit.dart';
 import 'package:salonat/app/login/view/login_view.dart';
 import 'package:salonat/app/profile/cubit/profile_states.dart';
 import 'package:salonat/app/profile/model/rate_salon_model.dart';
@@ -43,6 +44,7 @@ class ProfileCubit extends Cubit<ProfileStates> {
     ar = false;
     context.setLocale(const Locale('en'));
     emit(ChangeLanguageState());
+    BlocProvider.of<LayoutCubit>(context).emit(LayoutInitial());
   }
 
   void changeToArabic(BuildContext context) {
@@ -50,6 +52,8 @@ class ProfileCubit extends Cubit<ProfileStates> {
     ar = true;
     context.setLocale(const Locale('ar'));
     emit(ChangeLanguageState());
+    BlocProvider.of<LayoutCubit>(context).emit(LayoutInitial());
+
   }
 
   Future<void> getSalonData() async {
