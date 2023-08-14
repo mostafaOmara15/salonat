@@ -1,7 +1,5 @@
-import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
-
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -11,13 +9,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:salonat/app/layout/cubit/layout_cubit.dart';
 import 'package:salonat/app/login/view/login_view.dart';
 import 'package:salonat/app/profile/cubit/profile_states.dart';
 import 'package:salonat/app/profile/model/rate_salon_model.dart';
 import 'package:salonat/app/profile/model/salon_model.dart';
-import 'package:salonat/utils/extensions/navigation/navigation.dart';
 import 'package:salonat/utils/strings/const_strings.dart';
 import '../../../../services/locator.dart';
 import '../../../../services/shared_pref.dart';
